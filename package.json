@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "gen:llms": "node scripts/gen-llms.mts",
     "dev": "next dev",
+    "prebuild": "node scripts/gen-llms.mts",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"

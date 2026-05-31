@@ -38,7 +38,7 @@ export const practice = {
     locality: "Houston",
     region: "TX",
     regionName: "Texas",
-    postalCode: "77081",
+    postalCode: "77081-5339",
     country: "US",
     building: "Chimney Rock Doctors Center",
   },

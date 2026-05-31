@@ -7,12 +7,17 @@ import { DoctorIntro } from "@/components/sections/DoctorIntro";
 import { ReviewsMarquee } from "@/components/sections/ReviewsMarquee";
 import { Amenities } from "@/components/sections/Amenities";
 import { LocationBlock } from "@/components/sections/LocationBlock";
+import { AreasServed } from "@/components/sections/AreasServed";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
 
 const homeFaqs = [
+  {
+    q: "What makes Bellaire Dental Group a good choice in Houston?",
+    a: "Bellaire Dental Group is a women-owned practice led by Dr. Regina Valter, DDS, rated 4.9 stars across 352+ Google reviews. Patients choose us for gentle, judgment-free care (a specialty for anxious patients), modern technology, same-day emergency availability, a multilingual team (English, Spanish, Russian, Hebrew), and a calm, unhurried experience — for the whole family, from age two and up.",
+  },
   {
     q: "Are you accepting new patients?",
     a: "Yes — we happily welcome new patients of every age, from children age two and up to grandparents. You can book online in under a minute or give us a call.",
@@ -47,6 +52,7 @@ export default function Home() {
       <ReviewsMarquee />
       <Amenities />
       <LocationBlock />
+      <AreasServed />
       <FaqSection
         items={homeFaqs}
         eyebrow="New here?"

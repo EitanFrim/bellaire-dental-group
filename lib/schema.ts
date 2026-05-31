@@ -1,6 +1,7 @@
 /** Structured-data builders (schema.org) sourced from practice data. */
 import { practice, fullAddress } from "./practice";
 import { reviewSummary } from "./reviews";
+import { services } from "./services";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://www.bellairedentalgroup.com";
@@ -63,14 +64,66 @@ export function dentistSchema() {
       bestRating: 5,
       worstRating: 1,
     },
-    areaServed: practice.areasServed.map((a) => ({ "@type": "City", name: a })),
+    areaServed: practice.areasServed.map((a) => ({
+      "@type": "City",
+      name: a,
+      "@id": `https://en.wikipedia.org/wiki/${a.replace(/ /g, "_")},_Texas`,
+    })),
     availableLanguage: practice.languages,
     medicalSpecialty: "Dentistry",
+    slogan: practice.tagline,
+    // Entity/topical signals — help AI assistants understand exactly what this
+    // practice does and recommend it for relevant queries.
+    knowsAbout: [
+      "Cosmetic Dentistry",
+      "Family Dentistry",
+      "Dental Implants",
+      "Invisalign",
+      "Porcelain Veneers",
+      "Teeth Whitening",
+      "Emergency Dentistry",
+      "TMJ Treatment",
+      "Sleep Apnea Oral Appliances",
+      "Periodontal Care",
+      "Pediatric Dentistry",
+    ],
+    founder: {
+      "@type": "Physician",
+      name: practice.team[0].name,
+      honorificSuffix: practice.team[0].credentials,
+      jobTitle: practice.team[0].role,
+      medicalSpecialty: "Dentistry",
+    },
+    employee: practice.team.map((m) => ({
+      "@type": "Physician",
+      name: m.name,
+      honorificSuffix: m.credentials,
+      jobTitle: m.role,
+    })),
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Dental services",
+      itemListElement: services.map((s) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "MedicalProcedure",
+          name: s.name,
+          url: url(`/services/${s.slug}`),
+        },
+      })),
+    },
+    award: practice.awards.map((a) => `${a.name} (${a.year})`),
+    memberOf: practice.affiliations.map((a) => ({
+      "@type": "Organization",
+      name: a.name,
+      url: a.url,
+    })),
     sameAs: [
       practice.social.facebook,
       practice.social.instagram,
       practice.social.yelp,
       practice.social.twitter,
+      practice.ratings.google.url,
     ],
   };
 }
