@@ -1,26 +1,237 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* =========================================================================
+   Bellaire Dental Group — "The Calm" design system
+   Tailwind v4 theme tokens (navy + cyan brand, warm-gold accent, airy neutrals)
+   ========================================================================= */
+
+@theme {
+  /* Brand navy (from logo) */
+  --color-navy-50: #eef3fb;
+  --color-navy-100: #d8e3f2;
+  --color-navy-200: #aec7e4;
+  --color-navy-300: #7ba3d2;
+  --color-navy-400: #4a7ab6;
+  --color-navy-500: #2b5c98;
+  --color-navy-600: #1d4677;
+  --color-navy-700: #163a6a;
+  --color-navy-800: #0e2a56;
+  --color-navy-900: #0a1f40;
+  --color-navy-950: #06142a;
+
+  /* Cyan accent (brand bright / primary CTA) */
+  --color-cyan-50: #e8f8fe;
+  --color-cyan-100: #c8effc;
+  --color-cyan-200: #94e0f8;
+  --color-cyan-300: #5fcdf1;
+  --color-cyan-400: #2bb6e8;
+  --color-cyan-500: #1799d2;
+  --color-cyan-600: #0f7aae;
+  --color-cyan-700: #115f89;
+
+  /* Warm gold / amber (office accent — warmth, awards, stars) */
+  --color-gold-50: #fbf5e9;
+  --color-gold-100: #f6e7c9;
+  --color-gold-200: #edcf98;
+  --color-gold-300: #e4ba6e;
+  --color-gold-400: #d99a4e;
+  --color-gold-500: #c17f37;
+  --color-gold-600: #9b632a;
+
+  /* Airy neutrals */
+  --color-cream: #fbf8f2;
+  --color-sand: #f3ede1;
+  --color-aqua: #dceff6;
+  --color-mint: #e7f3ec;
+  --color-ink: #14233b;
+  --color-ink-soft: #475569;
+  --color-line: #e9e2d5;
+
+  /* Fonts wired from next/font in layout.tsx */
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Motion timing */
+  --ease-calm: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Custom animations */
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-marquee-slow: marquee 60s linear infinite;
+  --animate-aurora: aurora 18s ease-in-out infinite;
+  --animate-breathe: breathe 6s ease-in-out infinite;
+  --animate-float: float 9s ease-in-out infinite;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes aurora {
+  0%,
+  100% {
+    transform: translate3d(-4%, -2%, 0) scale(1.05) rotate(0deg);
+  }
+  33% {
+    transform: translate3d(6%, 3%, 0) scale(1.15) rotate(4deg);
+  }
+  66% {
+    transform: translate3d(-2%, 5%, 0) scale(1.1) rotate(-3deg);
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.78;
+  }
+  50% {
+    transform: scale(1.14);
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+/* =========================================================================
+   Base
+   ========================================================================= */
+@layer base {
+  :root {
+    --background: var(--color-cream);
+    --foreground: var(--color-ink);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    color: var(--color-navy-900);
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-cyan-400) 28%, white);
+    color: var(--color-navy-900);
+  }
+
+  /* Visible focus for accessibility */
+  :focus-visible {
+    outline: 2px solid var(--color-cyan-500);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  a {
+    text-underline-offset: 3px;
+  }
+}
+
+/* =========================================================================
+   Lenis smooth scroll
+   ========================================================================= */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* =========================================================================
+   Utilities / helpers
+   ========================================================================= */
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(
+      100deg,
+      var(--color-navy-700),
+      var(--color-cyan-500) 60%,
+      var(--color-navy-600)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .glass {
+    background: color-mix(in oklab, white 72%, transparent);
+    backdrop-filter: blur(14px) saturate(1.2);
+    -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  }
+
+  .glass-dark {
+    background: color-mix(in oklab, var(--color-navy-900) 55%, transparent);
+    backdrop-filter: blur(14px) saturate(1.1);
+    -webkit-backdrop-filter: blur(14px) saturate(1.1);
+  }
+
+  /* Pause heavy ambient animation when user is fine with it but device is small handled in JS */
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 8%,
+      black 92%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 8%,
+      black 92%,
+      transparent
+    );
+  }
+}
+
+/* =========================================================================
+   Reduced motion — honor user preference site-wide
+   ========================================================================= */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

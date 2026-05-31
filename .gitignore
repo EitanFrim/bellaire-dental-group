@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Transient QA artifacts
+.playwright-mcp/
+*.lighthouseci
+tsconfig.tsbuildinfo
+.claude/settings.local.json
