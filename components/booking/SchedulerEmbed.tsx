@@ -4,22 +4,32 @@ import { useState } from "react";
 import { ExternalLink, Loader2, Phone } from "lucide-react";
 import { schedulerUrl } from "@/lib/scheduler";
 import { practice } from "@/lib/practice";
+import { cn } from "@/lib/utils";
 
 /**
  * Embeds the practice's real PMS-integrated scheduler (Dolfin "Web Sched")
  * in an iframe — the same secure booking flow the practice already uses.
  *
- * The scheduler is a session-tokenized app, so we always surface an
- * "open in a new tab" escape hatch (some browsers block third-party cookies
- * inside iframes) plus a call fallback. This keeps booking robust everywhere.
+ * The scheduler is a multi-step, cross-origin app, so the browser won't let us
+ * read its content height to auto-size. Instead:
+ *  - "page" variant: a tall, viewport-responsive box (scales to the screen).
+ *  - "modal" variant: fills the available height of the dialog.
+ * The iframe scrolls its own content if a step is taller than the box, and we
+ * always surface an "open in new tab" escape hatch + a call fallback.
  */
-export function SchedulerEmbed({ height = 620 }: { height?: number }) {
+export function SchedulerEmbed({
+  variant = "page",
+}: {
+  variant?: "page" | "modal";
+}) {
   const [loaded, setLoaded] = useState(false);
 
   if (!schedulerUrl) return null;
 
+  const isModal = variant === "modal";
+
   return (
-    <div>
+    <div className={cn(isModal && "flex h-full min-h-0 flex-col")}>
       <div className="mb-2 flex items-center justify-between gap-3">
         <p className="text-xs text-ink-soft">
           Real-time scheduling, synced with our front desk.
@@ -35,8 +45,18 @@ export function SchedulerEmbed({ height = 620 }: { height?: number }) {
       </div>
 
       <div
-        className="relative overflow-hidden rounded-2xl border border-line bg-white"
-        style={{ height }}
+        className={cn(
+          "relative overflow-hidden rounded-2xl border border-line bg-white",
+          isModal && "min-h-0 flex-1",
+        )}
+        // Page variant: tall and responsive to the viewport so the calendar /
+        // patient-detail steps fit without clipping. dvh accounts for mobile
+        // browser chrome.
+        style={
+          isModal
+            ? undefined
+            : { height: "clamp(560px, calc(100dvh - 13rem), 1024px)" }
+        }
       >
         {!loaded && (
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-ink-soft">
@@ -55,7 +75,7 @@ export function SchedulerEmbed({ height = 620 }: { height?: number }) {
         />
       </div>
 
-      <p className="mt-3 text-center text-xs text-ink-soft">
+      <p className="mt-3 shrink-0 text-center text-xs text-ink-soft">
         Trouble loading?{" "}
         <a
           href={`tel:${practice.phone.tel}`}

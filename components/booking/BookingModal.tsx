@@ -24,6 +24,8 @@ export function BookingModal({
   const lenis = useLenis();
   const [tab, setTab] = useState<Tab>("request");
   const scheduler = hasScheduler();
+  // When the online scheduler is active, the dialog needs to grow to fit it.
+  const showScheduler = scheduler && tab === "request";
 
   useEffect(() => {
     if (!isOpen) return;
@@ -59,7 +61,11 @@ export function BookingModal({
             aria-modal="true"
             aria-label="Book an appointment"
             data-lenis-prevent
-            className="relative flex max-h-[92vh] w-full flex-col overflow-hidden rounded-t-3xl bg-cream shadow-2xl sm:max-w-lg sm:rounded-3xl"
+            className={cn(
+              "relative flex max-h-[92vh] w-full flex-col overflow-hidden rounded-t-3xl bg-cream shadow-2xl sm:rounded-3xl",
+              // The online scheduler needs more room than the call panel.
+              showScheduler ? "h-[92vh] sm:max-w-3xl" : "sm:max-w-lg",
+            )}
             initial={{ opacity: 0, y: reduce ? 0 : 40, scale: reduce ? 1 : 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: reduce ? 0 : 30, scale: reduce ? 1 : 0.98 }}
@@ -97,10 +103,18 @@ export function BookingModal({
             </div>
 
             {/* Body */}
-            <div className="overflow-y-auto px-6 pb-6 pt-4" data-lenis-prevent>
+            <div
+              className={cn(
+                "px-6 pb-6 pt-4",
+                showScheduler
+                  ? "flex min-h-0 flex-1 flex-col"
+                  : "overflow-y-auto",
+              )}
+              data-lenis-prevent
+            >
               {tab === "request" ? (
                 scheduler ? (
-                  <SchedulerEmbed />
+                  <SchedulerEmbed variant="modal" />
                 ) : (
                   <BookingForm />
                 )
