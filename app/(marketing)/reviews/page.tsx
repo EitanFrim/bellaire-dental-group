@@ -6,7 +6,7 @@ import { StarRating } from "@/components/ui/StarRating";
 import { Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { breadcrumbSchema } from "@/lib/schema";
+import { breadcrumbSchema, reviewsSchema } from "@/lib/schema";
 import { getReviews } from "@/lib/google-reviews";
 import { practice } from "@/lib/practice";
 
@@ -85,10 +85,13 @@ export default async function ReviewsPage() {
 
       <FinalCTA />
       <JsonLd
-        data={breadcrumbSchema([
-          { name: "Home", path: "/" },
-          { name: "Reviews", path: "/reviews" },
-        ])}
+        data={[
+          reviewsSchema(reviews.slice(0, 12)),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Reviews", path: "/reviews" },
+          ]),
+        ]}
       />
     </>
   );

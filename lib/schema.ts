@@ -118,12 +118,56 @@ export function dentistSchema() {
       name: a.name,
       url: a.url,
     })),
+    // Lets AI assistants + Google surface a direct "Book" action.
+    potentialAction: {
+      "@type": "ReserveAction",
+      name: "Book a dental appointment",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: url("/book"),
+        actionPlatform: [
+          "https://schema.org/DesktopWebPlatform",
+          "https://schema.org/MobileWebPlatform",
+        ],
+      },
+      result: { "@type": "Reservation", name: "Dental appointment" },
+    },
     sameAs: [
       practice.social.facebook,
       practice.social.instagram,
       practice.social.yelp,
       practice.social.twitter,
       practice.ratings.google.url,
+      ...practice.directories,
+    ],
+  };
+}
+
+/** Dr. Valter as a Physician/Person entity — used on the About page so AI and
+ *  Google build a strong author/practitioner entity tied to the practice. */
+export function dentistPersonSchema() {
+  const doc = practice.team[0];
+  return {
+    "@context": "https://schema.org",
+    "@type": ["Physician", "Person"],
+    "@id": `${siteUrl}/about#dr-valter`,
+    name: doc.name,
+    honorificSuffix: doc.credentials,
+    jobTitle: doc.role,
+    description: doc.bio[0],
+    image: url(doc.image),
+    medicalSpecialty: "Dentistry",
+    knowsLanguage: practice.languages,
+    worksFor: { "@id": `${siteUrl}/#dentist` },
+    knowsAbout: doc.specialties,
+    memberOf: practice.affiliations.map((a) => ({
+      "@type": "Organization",
+      name: a.name,
+      url: a.url,
+    })),
+    sameAs: [
+      "https://www.healthgrades.com/physician/dr-regina-valter-y9ts25z",
+      "https://connect.medicalnewstoday.com/provider/dr-regina-valter-1891134813",
     ],
   };
 }
@@ -177,6 +221,35 @@ export function serviceSchema(s: {
     description: s.summary,
     url: url(`/services/${s.slug}`),
     provider: { "@id": `${siteUrl}/#dentist` },
+    procedureType: "https://schema.org/NoninvasiveProcedure",
+    areaServed: practice.areasServed.map((a) => ({ "@type": "City", name: a })),
+    audience: { "@type": "MedicalAudience", audienceType: "Patient" },
+  };
+}
+
+/** Individual review schema (for the reviews page). Strengthens AEO — AI reads
+ *  review *text* to match service queries, not just the star count. */
+export function reviewsSchema(
+  reviews: { author: string; rating: number; text: string; source: string }[],
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Dentist",
+    "@id": `${siteUrl}/#dentist`,
+    name: practice.name,
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: reviewSummary.average,
+      reviewCount: reviewSummary.total,
+      bestRating: 5,
+    },
+    review: reviews.map((r) => ({
+      "@type": "Review",
+      reviewRating: { "@type": "Rating", ratingValue: r.rating, bestRating: 5 },
+      author: { "@type": "Person", name: r.author },
+      reviewBody: r.text,
+      publisher: { "@type": "Organization", name: r.source },
+    })),
   };
 }
 

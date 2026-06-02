@@ -27,14 +27,19 @@ export async function generateMetadata({
   const { slug } = await params;
   const s = getService(slug);
   if (!s) return {};
-  const title = `${s.name} in Houston`;
-  const description = `${s.summary} ${s.tagline} at Bellaire Dental Group — gentle, modern ${s.category.toLowerCase()} from Dr. Regina Valter.`;
+  const title = `${s.name} in Houston, TX`;
+  const description = `${s.summary} Gentle ${s.category.toLowerCase()} from Dr. Regina Valter at Bellaire Dental Group — 4.9★ rated, most PPO insurance accepted, flexible financing. Book your consultation in Houston today.`;
   return {
     title,
     description,
     alternates: { canonical: `/services/${s.slug}` },
     keywords: s.keywords,
-    openGraph: { title: `${title} | ${practice.name}`, description },
+    openGraph: {
+      type: "website",
+      title: `${title} | ${practice.name}`,
+      description,
+      images: ["/og.jpg"],
+    },
   };
 }
 

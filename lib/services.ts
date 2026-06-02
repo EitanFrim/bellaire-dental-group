@@ -123,6 +123,7 @@ export const services: Service[] = [
       { title: "Bond & refine", description: "Your custom veneers are bonded and polished for a seamless finish." },
     ],
     faqs: [
+      { q: "How much do veneers cost in Houston?", a: "In the Houston area, porcelain veneers typically range from about $1,000 to $2,500 per tooth depending on the material and how many you need. Because every smile is different, we give you a clear, itemized quote at your consultation — and we offer financing through Cherry and CareCredit to spread out the cost." },
       { q: "Do veneers look fake?", a: "Not when they're designed well. We craft each veneer to match your facial features and the translucency of natural enamel." },
       { q: "How long do they last?", a: "With good hygiene, porcelain veneers commonly last 10–15+ years." },
       { q: "Are veneers reversible?", a: "Traditional veneers involve minimal enamel removal. No-prep options, when suitable, are more conservative — we'll review what's right for you." },
@@ -157,6 +158,7 @@ export const services: Service[] = [
       { title: "Wear & progress", description: "Switch trays on schedule with simple check-ins along the way." },
     ],
     faqs: [
+      { q: "How much does Invisalign cost in Houston?", a: "Invisalign in Houston generally runs from roughly $3,500 to $6,500 depending on how complex your case is and how long you'll be in treatment. We'll give you an exact price at your consultation, verify your insurance (many PPO plans include orthodontic benefits), and offer monthly financing through Cherry and CareCredit." },
       { q: "How long does treatment take?", a: "Many cases finish in 6–18 months depending on complexity. We'll estimate your timeline at the consult." },
       { q: "Is Invisalign uncomfortable?", a: "There's mild pressure when you switch to a new tray — that's it working. Most people adjust within a day or two." },
       { q: "How often do I wear the trays?", a: "About 20–22 hours a day for best results — basically all the time except eating and brushing." },
@@ -190,6 +192,7 @@ export const services: Service[] = [
       { title: "Restore", description: "A custom crown is attached, completing your natural-looking tooth." },
     ],
     faqs: [
+      { q: "How much do dental implants cost in Houston?", a: "A single dental implant in Houston typically costs about $3,000 to $5,000 including the implant, abutment, and crown; full-arch solutions cost more. The exact price depends on your needs (for example, whether a bone graft is required). We provide a clear written estimate up front and offer financing through Cherry and CareCredit." },
       { q: "Are implants painful?", a: "Most patients are surprised how comfortable it is. The area is fully numbed, and post-op soreness is typically mild and short-lived." },
       { q: "How long does the whole process take?", a: "It varies — healing/integration takes a few months, but we'll give you a clear timeline and discuss temporary options." },
       { q: "Am I a candidate?", a: "Most healthy adults are. We'll evaluate your bone and gums and review options, including bone grafting if needed." },

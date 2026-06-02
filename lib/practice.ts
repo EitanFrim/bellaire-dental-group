@@ -145,6 +145,18 @@ export const practice = {
     twitter: "https://twitter.com/bellaire_dental",
   },
 
+  // --- Directory citations (for schema `sameAs` + AI entity grounding) ---
+  // Consistent NAP across these strengthens local SEO and makes AI assistants
+  // far more likely to cite/recommend the practice. Real, verified profiles:
+  directories: [
+    "https://www.healthgrades.com/group-directory/tx-texas/houston/bellaire-dental-group-y4g22m",
+    "https://www.healthgrades.com/physician/dr-regina-valter-y9ts25z",
+    "https://reviews.birdeye.com/bellaire-dental-group-dr-regina-valter-dds-155344066971930",
+    "https://www.bbb.org/us/tx/houston/profile/dentist/bellaire-dental-group-0915-90059923",
+    "https://connect.medicalnewstoday.com/provider/dr-regina-valter-1891134813",
+    "https://care.healthline.com/find-care/provider/dr-regina-valter-1891134813",
+  ],
+
   // --- Team --- (only confirmed members; add more when client supplies bios/photos)
   team: [
     {
