@@ -5,7 +5,7 @@ import { useLenis } from "lenis/react";
 import { useEffect, useState } from "react";
 import { X, Phone, MessageSquare, MapPin, Clock } from "lucide-react";
 import { practice, groupedHours, fullAddress } from "@/lib/practice";
-import { BrandMark } from "@/components/brand/BrandMark";
+import { BrandIcon } from "@/components/brand/BrandIcon";
 import { BookingForm } from "./BookingForm";
 import { SchedulerEmbed } from "./SchedulerEmbed";
 import { hasScheduler } from "@/lib/scheduler";
@@ -74,7 +74,7 @@ export function BookingModal({
             {/* Header */}
             <div className="flex items-center justify-between gap-4 border-b border-line bg-white/60 px-6 py-4">
               <div className="flex items-center gap-2.5">
-                <BrandMark className="h-8 w-8" />
+                <BrandIcon className="h-8 w-8" size={32} />
                 <div className="leading-tight">
                   <p className="font-display text-lg text-navy-900">Book your visit</p>
                   <p className="text-xs text-ink-soft">

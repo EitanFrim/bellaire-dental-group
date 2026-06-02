@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Phone } from "lucide-react";
-import { BrandMark } from "@/components/brand/BrandMark";
+import { Phone, CalendarCheck } from "lucide-react";
 import { useBooking } from "@/components/booking/BookingProvider";
 import { practice } from "@/lib/practice";
 import { cn } from "@/lib/utils";
@@ -37,12 +36,7 @@ export function MobileStickyCTA() {
           onClick={open}
           className="flex h-12 flex-[1.4] items-center justify-center gap-2 rounded-xl bg-cyan-400 font-semibold text-navy-950 shadow-[0_8px_24px_-8px_rgba(43,182,232,0.8)]"
         >
-          <BrandMark
-            className="h-[18px] w-[18px]"
-            toothClassName="text-navy-950"
-            sparkleClassName="text-navy-950"
-          />{" "}
-          Book appointment
+          <CalendarCheck className="h-[18px] w-[18px]" /> Book appointment
         </button>
       </div>
     </div>

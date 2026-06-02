@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Phone, Menu, X, ChevronDown, ArrowRight } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
-import { BrandMark } from "@/components/brand/BrandMark";
+import { BrandIcon } from "@/components/brand/BrandIcon";
 import { ServiceIcon } from "@/components/brand/ServiceIcon";
 import { BookButton } from "@/components/booking/BookButton";
 import { Container } from "@/components/ui/Container";
@@ -187,7 +187,7 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
             <Phone className="h-4 w-4 text-cyan-600" /> {practice.phone.display}
           </a>
           <p className="flex items-center justify-center gap-2 pt-2 text-sm text-ink-soft">
-            <BrandMark className="h-4 w-4" /> {practice.ratings.google.value}★ ·{" "}
+            <BrandIcon className="h-4 w-4" size={16} /> {practice.ratings.google.value}★ ·{" "}
             {practice.ratings.google.count} Google reviews
           </p>
         </div>
