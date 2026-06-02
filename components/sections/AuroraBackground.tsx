@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { useReducedMotion } from "motion/react";
 import { cn } from "@/lib/utils";
+import { asset } from "@/lib/asset";
 
 /**
  * The signature "breathing" aurora — soft brand-colored light that drifts and
@@ -49,7 +50,7 @@ export function AuroraBackground({
       {/* Generated aurora plate (very soft) under the animated blooms */}
       <div
         className="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-screen"
-        style={{ backgroundImage: "url(/images/generated/aurora.webp)" }}
+        style={{ backgroundImage: `url(${asset("/images/generated/aurora.webp")})` }}
       />
       <div
         className="absolute -left-[8%] -top-[12%] h-[58vh] w-[58vh] rounded-full bg-cyan-300/45 blur-3xl animate-breathe"

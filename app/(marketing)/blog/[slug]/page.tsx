@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
+import { Img } from "@/components/ui/Img";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, Clock } from "lucide-react";
 import { PageHero } from "@/components/sections/PageHero";
@@ -122,7 +122,7 @@ export default async function BlogPostPage({
         <Container className="max-w-3xl">
           {post.cover && (
             <div className="relative mb-10 aspect-[16/9] overflow-hidden rounded-3xl border border-line">
-              <Image
+              <Img
                 src={post.cover}
                 alt=""
                 fill

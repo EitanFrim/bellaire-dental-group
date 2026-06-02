@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Img } from "@/components/ui/Img";
 import Link from "next/link";
 import { ArrowRight, Quote } from "lucide-react";
 import { Container } from "@/components/ui/Container";
@@ -76,7 +76,7 @@ function GalleryTile({
 }) {
   return (
     <div className={`group relative overflow-hidden rounded-2xl ${className ?? ""}`}>
-      <Image
+      <Img
         src={src}
         alt={alt}
         fill

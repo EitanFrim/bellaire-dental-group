@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Img } from "@/components/ui/Img";
 import { Phone, ArrowRight, ShieldCheck, Sparkles } from "lucide-react";
 import { AuroraBackground } from "./AuroraBackground";
 import { BookButton } from "@/components/booking/BookButton";
@@ -84,7 +84,7 @@ function HeroVisual() {
   return (
     <div className="relative mx-auto max-w-md lg:mr-0 lg:max-w-none">
       <div className="relative aspect-[4/5] overflow-hidden rounded-[2.25rem] border border-white/70 shadow-[0_40px_80px_-30px_rgba(10,31,64,0.5)]">
-        <Image
+        <Img
           src="/images/office/lobby.jpg"
           alt="The calm, modern reception area at Bellaire Dental Group"
           fill

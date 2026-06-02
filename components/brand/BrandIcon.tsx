@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { asset } from "@/lib/asset";
 
 /**
  * The tooth + sparkle mark cropped from the practice's real logo — used in
@@ -17,7 +18,9 @@ export function BrandIcon({
 }) {
   return (
     <Image
-      src={tone === "light" ? "/images/brand/mark-light.webp" : "/images/brand/mark.webp"}
+      src={asset(
+        tone === "light" ? "/images/brand/mark-light.webp" : "/images/brand/mark.webp",
+      )}
       alt=""
       aria-hidden="true"
       width={size}

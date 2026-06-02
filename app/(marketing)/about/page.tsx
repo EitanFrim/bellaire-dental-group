@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import { Img } from "@/components/ui/Img";
 import { Award, Heart, Languages, Sparkles } from "lucide-react";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
@@ -65,7 +65,7 @@ export default function AboutPage() {
             <div className="relative mx-auto max-w-sm lg:sticky lg:top-28">
               <div className="absolute -inset-5 -z-10 rounded-[2.75rem] bg-gradient-to-br from-cyan-200/60 via-aqua/50 to-mint/60 blur-2xl" />
               <div className="relative aspect-[3/4] overflow-hidden rounded-[2rem] border border-white/70 shadow-2xl">
-                <Image
+                <Img
                   src={doc.image}
                   alt={`${doc.name}, ${doc.role}`}
                   fill

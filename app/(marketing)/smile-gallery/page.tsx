@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import { Img } from "@/components/ui/Img";
 import { Quote } from "lucide-react";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
@@ -49,7 +49,7 @@ export default function SmileGalleryPage() {
                   key={g.src}
                   className={`group relative overflow-hidden rounded-3xl ${g.span ?? ""}`}
                 >
-                  <Image
+                  <Img
                     src={g.src}
                     alt={g.alt}
                     fill

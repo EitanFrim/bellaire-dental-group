@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
+import { Img } from "@/components/ui/Img";
 import { ArrowRight, Clock } from "lucide-react";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
@@ -52,7 +52,7 @@ export default function BlogPage() {
           >
             <div className="relative aspect-[16/10] overflow-hidden lg:aspect-auto">
               {featured.cover && (
-                <Image
+                <Img
                   src={featured.cover}
                   alt=""
                   fill
@@ -92,7 +92,7 @@ export default function BlogPage() {
                 >
                   <div className="relative aspect-[16/10] overflow-hidden">
                     {post.cover && (
-                      <Image
+                      <Img
                         src={post.cover}
                         alt=""
                         fill

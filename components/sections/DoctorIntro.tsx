@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Img } from "@/components/ui/Img";
 import Link from "next/link";
 import { ArrowRight, Award } from "lucide-react";
 import { Container } from "@/components/ui/Container";
@@ -17,7 +17,7 @@ export function DoctorIntro() {
           <div className="relative mx-auto max-w-sm">
             <div className="absolute -inset-5 -z-10 rounded-[2.75rem] bg-gradient-to-br from-cyan-200/60 via-aqua/50 to-mint/60 blur-2xl" />
             <div className="relative aspect-[3/4] overflow-hidden rounded-[2rem] border border-white/70 shadow-[0_40px_80px_-30px_rgba(10,31,64,0.5)]">
-              <Image
+              <Img
                 src={doc.image}
                 alt={`${doc.name}, ${doc.role} at Bellaire Dental Group`}
                 fill

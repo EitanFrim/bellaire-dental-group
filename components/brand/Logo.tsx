@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { asset } from "@/lib/asset";
 
 /**
  * Brand lockup — uses the practice's real logo files (the horizontal
@@ -36,7 +37,7 @@ export function Logo({
       className={cn("group inline-flex items-center", className)}
     >
       <Image
-        src={src}
+        src={asset(src)}
         alt="Bellaire Dental Group"
         width={width}
         height={height}

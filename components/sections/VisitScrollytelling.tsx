@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { Img } from "@/components/ui/Img";
 import { useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { Container } from "@/components/ui/Container";
@@ -55,7 +55,7 @@ export function VisitScrollytelling() {
 
             <div className="relative mt-8 aspect-[4/3] overflow-hidden rounded-3xl border border-white/70 shadow-2xl">
               {steps.map((s, i) => (
-                <Image
+                <Img
                   key={s.title}
                   src={s.image}
                   alt={s.alt}
