@@ -45,10 +45,10 @@ export default function Home() {
     <>
       <Hero />
       <TrustStrip />
+      <DoctorIntro />
       <ServicesGrid />
       <VisitScrollytelling />
       <SmileGallery />
-      <DoctorIntro />
       <ReviewsMarquee />
       <Amenities />
       <LocationBlock />

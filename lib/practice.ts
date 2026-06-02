@@ -47,7 +47,8 @@ export const practice = {
     latitude: 29.70772,
     longitude: -95.47613,
   },
-  googleMapsUrl: "https://www.google.com/maps/place/Bellaire+Dental+Group",
+  googleMapsUrl:
+    "https://www.google.com/maps/search/?api=1&query=Bellaire+Dental+Group+6699+Chimney+Rock+Rd+Suite+101+Houston+TX+77081",
   googleMapsEmbed:
     "https://www.google.com/maps?q=Bellaire+Dental+Group+6699+Chimney+Rock+Rd+Suite+101+Houston+TX+77081&output=embed",
   directionsUrl:
@@ -75,7 +76,12 @@ export const practice = {
     google: {
       value: 4.9,
       count: 352,
-      url: "https://www.google.com/maps/place/Bellaire+Dental+Group",
+      // Google "search" URL reliably resolves to the practice's own Business
+      // Profile panel (with reviews) without needing a Place ID. A plain
+      // /maps/place/<name> link can land on an empty/ambiguous result.
+      // TODO(client): replace with the exact Place ID review link, e.g.
+      // https://search.google.com/local/reviews?placeid=<PLACE_ID>
+      url: "https://www.google.com/search?q=Bellaire+Dental+Group+6699+Chimney+Rock+Rd+Suite+101+Houston+TX+77081",
     },
     yelp: {
       value: 5,
