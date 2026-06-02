@@ -18,6 +18,8 @@ export type Service = {
   summary: string;
   featured?: boolean;
   hasPage: boolean;
+  /** Hero/illustration image for the landing page + service card. */
+  image?: string;
   // --- Landing-page content (only for hasPage services) ---
   heroHeadline?: string;
   overview?: string[];
@@ -73,6 +75,7 @@ export const services: Service[] = [
       "Professional whitening that lifts years of stains safely — far beyond what store-bought kits can do.",
     featured: true,
     hasPage: true,
+    image: "/images/services/cosmetic.webp",
     heroHeadline: "A noticeably brighter smile — comfortably",
     overview: [
       "Coffee, tea, red wine, and time all dull a smile. Professional whitening at Bellaire Dental Group removes years of surface and deep stains with dentist-grade products that are far stronger — and far safer — than anything sold over the counter.",
@@ -107,6 +110,7 @@ export const services: Service[] = [
       "Thin, custom porcelain shells that correct chips, gaps, and discoloration for a flawless, natural look.",
     featured: true,
     hasPage: true,
+    image: "/images/services/cosmetic.webp",
     heroHeadline: "A custom-designed smile that still looks like you",
     overview: [
       "Veneers are thin, custom-crafted porcelain shells bonded to the front of your teeth — a transformative way to correct chips, gaps, worn edges, and stubborn discoloration in a single cohesive design.",
@@ -142,6 +146,7 @@ export const services: Service[] = [
       "Clear, removable aligners that straighten teeth discreetly — no metal brackets, no diet restrictions.",
     featured: true,
     hasPage: true,
+    image: "/images/services/invisalign.webp",
     heroHeadline: "Straighter teeth, no one needs to notice",
     overview: [
       "Invisalign and clear aligners straighten your teeth with a series of clear, removable trays — no metal brackets or wires. They're nearly invisible, comfortable, and you take them out to eat, brush, and floss.",
@@ -176,6 +181,7 @@ export const services: Service[] = [
       "Permanent, natural-looking tooth replacement that looks, feels, and functions like your own teeth.",
     featured: true,
     hasPage: true,
+    image: "/images/services/implants.webp",
     heroHeadline: "Permanent tooth replacement that feels like your own",
     overview: [
       "A dental implant replaces a missing tooth from the root up — a small titanium post integrates with your jaw and supports a custom crown that looks and works like a natural tooth. Unlike bridges, implants don't rely on neighboring teeth, and they help preserve the jawbone.",
@@ -211,6 +217,7 @@ export const services: Service[] = [
       "Gentle checkups, cleanings, fillings, and preventive care for the whole family — from age 2 and up.",
     featured: true,
     hasPage: true,
+    image: "/images/services/family.webp",
     heroHeadline: "One calm dental home for the whole family",
     overview: [
       "From a toddler's first visit to a grandparent's crown, Bellaire Dental Group is a dental home for every age. We focus on prevention — thorough cleanings, gentle exams, and honest guidance — so small issues stay small.",
@@ -245,6 +252,7 @@ export const services: Service[] = [
       "Custom solutions for jaw pain, clenching, snoring, and sleep apnea — including comfortable oral appliances.",
     featured: true,
     hasPage: true,
+    image: "/images/services/sleep.webp",
     heroHeadline: "Sleep better, wake without jaw pain",
     overview: [
       "Persistent jaw pain, headaches, clenching, snoring, or restless sleep often trace back to your jaw and airway. Dr. Valter offers targeted, comfortable treatments — from custom night guards and Botox for TMJ tension to oral appliances for snoring and sleep apnea.",
@@ -278,6 +286,7 @@ export const services: Service[] = [
       "In pain or broke a tooth? We make room for dental emergencies and get you comfortable, fast.",
     featured: true,
     hasPage: true,
+    image: "/images/services/cosmetic.webp",
     heroHeadline: "Dental pain? We'll get you seen quickly",
     overview: [
       "A toothache, broken tooth, lost crown, or sudden swelling can't wait. We keep room in the schedule for dental emergencies and prioritize getting you out of pain and back to normal as quickly as possible.",

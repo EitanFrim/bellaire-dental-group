@@ -7,6 +7,7 @@ import { writeFileSync } from "node:fs";
 import { practice, fullAddress, groupedHours } from "../lib/practice.ts";
 import { services } from "../lib/services.ts";
 import { posts } from "../lib/blog.ts";
+import { locations } from "../lib/locations.ts";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://www.bellairedentalgroup.com";
@@ -25,6 +26,10 @@ const serviceLines = services
 
 const blogLines = posts
   .map((p) => `- [${p.title}](${siteUrl}/blog/${p.slug}): ${p.excerpt}`)
+  .join("\n");
+
+const locationLines = locations
+  .map((l) => `- [Dentist in ${l.area}](${siteUrl}/locations/${l.slug}): serving ${l.area} (${l.zips.join(", ")})`)
   .join("\n");
 
 const body = `# ${practice.name}
@@ -59,6 +64,9 @@ ${hours}
 
 ## Services
 ${serviceLines}
+
+## Neighborhoods served (dedicated pages)
+${locationLines}
 
 ## Helpful articles
 ${blogLines}

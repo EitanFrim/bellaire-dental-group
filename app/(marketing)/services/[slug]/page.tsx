@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowRight, Check, Phone } from "lucide-react";
 import { PageHero } from "@/components/sections/PageHero";
@@ -82,6 +83,24 @@ export default async function ServicePage({
           </a>
         </div>
       </PageHero>
+
+      {service.image && (
+        <Container className="-mt-2">
+          <Reveal>
+            <div className="relative aspect-[21/9] overflow-hidden rounded-[2rem] border border-white/70 shadow-[0_30px_70px_-30px_rgba(10,31,64,0.5)]">
+              <Image
+                src={service.image}
+                alt={`${service.name} at ${practice.name} in Houston`}
+                fill
+                priority
+                sizes="(max-width: 1280px) 100vw, 1200px"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy-950/20 to-transparent" />
+            </div>
+          </Reveal>
+        </Container>
+      )}
 
       {/* Overview */}
       {service.overview && (

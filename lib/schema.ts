@@ -227,6 +227,49 @@ export function serviceSchema(s: {
   };
 }
 
+/** Per-neighborhood schema: the practice scoped to a served area, with the
+ *  area as the primary `areaServed`. Reinforces "dentist in <area>" relevance. */
+export function localAreaSchema(loc: {
+  area: string;
+  slug: string;
+  intro: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Dentist",
+    "@id": `${siteUrl}/locations/${loc.slug}#dentist`,
+    name: `${practice.name} — Dentist serving ${loc.area}`,
+    description: loc.intro,
+    url: url(`/locations/${loc.slug}`),
+    parentOrganization: { "@id": `${siteUrl}/#dentist` },
+    telephone: practice.phone.tel,
+    image: url("/og.jpg"),
+    priceRange: "$$",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: `${practice.address.street}, ${practice.address.suite}`,
+      addressLocality: practice.address.locality,
+      addressRegion: practice.address.region,
+      postalCode: practice.address.postalCode,
+      addressCountry: practice.address.country,
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: practice.geo.latitude,
+      longitude: practice.geo.longitude,
+    },
+    areaServed: { "@type": "City", name: `${loc.area}, Texas` },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: reviewSummary.average,
+      reviewCount: reviewSummary.total,
+      bestRating: 5,
+    },
+    availableLanguage: practice.languages,
+    medicalSpecialty: "Dentistry",
+  };
+}
+
 /** Individual review schema (for the reviews page). Strengthens AEO — AI reads
  *  review *text* to match service queries, not just the star count. */
 export function reviewsSchema(

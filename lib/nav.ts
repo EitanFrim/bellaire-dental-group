@@ -16,6 +16,7 @@ export const footerPracticeLinks = [
   { label: "New Patients", href: "/new-patients" },
   { label: "Smile Gallery", href: "/smile-gallery" },
   { label: "Patient Reviews", href: "/reviews" },
+  { label: "Areas We Serve", href: "/locations" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ];
