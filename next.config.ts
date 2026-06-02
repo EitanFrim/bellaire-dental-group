@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { wpRedirects } from "./lib/redirects";
 
 /**
  * STATIC_EXPORT=1 builds a fully static site for GitHub Pages:
@@ -33,7 +34,9 @@ const nextConfig: NextConfig = {
       }
     : {
         async redirects() {
+          // 301s from the old WordPress URLs → new pages (preserve rankings).
           return [
+            ...wpRedirects,
             { source: "/services.html", destination: "/services", permanent: true },
             { source: "/contact.html", destination: "/contact", permanent: true },
           ];
