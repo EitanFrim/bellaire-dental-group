@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { Phone, Menu, X, ChevronDown, ArrowRight } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
 import { BrandIcon } from "@/components/brand/BrandIcon";
@@ -135,10 +136,17 @@ function ServicesDropdown() {
 }
 
 function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
-  return (
+  // Portal to <body> so the overlay escapes the header's fixed/z-50 stacking
+  // context. Without this, iOS Safari paints transformed/backdrop-blur page
+  // sections on top of a position:fixed element nested inside another
+  // position:fixed ancestor — leaving the menu stuck behind the page.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
+  const menu = (
     <div
       className={cn(
-        "fixed inset-0 z-50 bg-cream transition-opacity duration-300 lg:hidden",
+        "fixed inset-0 z-[60] bg-cream transition-opacity duration-300 lg:hidden",
         open ? "visible opacity-100" : "invisible opacity-0",
       )}
     >
@@ -194,4 +202,7 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
       </Container>
     </div>
   );
+
+  if (!mounted) return null;
+  return createPortal(menu, document.body);
 }
