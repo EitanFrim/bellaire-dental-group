@@ -11,7 +11,7 @@ import { breadcrumbSchema } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Smile Gallery & Our Office",
   description:
-    "Step inside Bellaire Dental Group — a calm, modern, spa-like dental office in Houston. See our space and the smiles we care for.",
+    "Step inside Bellaire Dental Group, a calm, modern, spa-like dental office in Houston. See our space and the smiles we care for.",
   alternates: { canonical: "/smile-gallery" },
 };
 
@@ -33,7 +33,7 @@ export default function SmileGalleryPage() {
             A space designed to <span className="text-gradient">put you at ease</span>
           </>
         }
-        intro="Warm textures, soft lighting, and little comforts throughout — our Bellaire office was made to feel nothing like the dental office of memory."
+        intro="Warm textures, soft lighting, and little comforts throughout. Our Bellaire office was made to feel nothing like the dental office of memory."
         crumbs={[
           { name: "Home", path: "/" },
           { name: "Smile Gallery", path: "/smile-gallery" },
@@ -61,14 +61,14 @@ export default function SmileGalleryPage() {
             </div>
           </Reveal>
 
-          {/* Before/after placeholder — enabled when consented clinical photos are provided */}
+          {/* Before/after placeholder: enabled when consented clinical photos are provided */}
           <Reveal>
             <div className="mt-16 rounded-3xl border border-dashed border-navy-200 bg-white/50 p-10 text-center">
               <h2 className="font-display text-2xl text-navy-900">
                 Before &amp; after transformations
               </h2>
               <p className="mx-auto mt-3 max-w-xl text-ink-soft">
-                We&apos;re curating a gallery of real smile transformations — shared with
+                We&apos;re curating a gallery of real smile transformations, shared with
                 each patient&apos;s written consent. Want to see results for your specific
                 goals? Ask us at your visit.
               </p>
@@ -80,10 +80,10 @@ export default function SmileGalleryPage() {
             <figure className="mt-16 rounded-3xl bg-navy-900 p-10 text-center text-white sm:p-14">
               <Quote className="mx-auto h-8 w-8 text-cyan-300" />
               <blockquote className="mx-auto mt-5 max-w-2xl text-balance font-display text-2xl leading-snug sm:text-3xl">
-                “This business is Bellaire proud — and Bellaire is proud to have them in
+                “This business is Bellaire proud, and Bellaire is proud to have them in
                 our neighborhood. I now look forward to going to the dentist!”
               </blockquote>
-              <figcaption className="mt-5 text-navy-200">— Jan, Google review</figcaption>
+              <figcaption className="mt-5 text-navy-200">Jan, Google review</figcaption>
             </figure>
           </Reveal>
         </Container>

@@ -28,7 +28,7 @@ export default function ContactPage() {
             We&apos;d love to <span className="text-gradient">meet you</span>
           </>
         }
-        intro="Book online, request a time below, or simply give us a call — whichever is easiest for you."
+        intro="Book online, request a time below, or simply give us a call, whichever is easiest for you."
         crumbs={[
           { name: "Home", path: "/" },
           { name: "Contact", path: "/contact" },
@@ -97,7 +97,7 @@ export default function ContactPage() {
             </h2>
             <p className="mt-2 text-sm text-ink-soft">
               {scheduler
-                ? "Pick a time that works for you — we'll confirm by text or call."
+                ? "Pick a time that works for you and we'll confirm by text or call."
                 : "Tell us a little about your visit and we'll reach out to confirm a time."}
             </p>
             <div className="mt-6">{scheduler ? <SchedulerEmbed /> : <BookingForm />}</div>

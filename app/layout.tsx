@@ -30,11 +30,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default:
-      "Dentist in Houston, TX | Bellaire Dental Group — Cosmetic & Family Dentistry",
+      "Dentist in Houston, TX | Bellaire Dental Group | Cosmetic & Family Dentistry",
     template: "%s | Bellaire Dental Group",
   },
   description:
-    "Top-rated dentist in Houston, TX (4.9★, 350+ reviews). Bellaire Dental Group offers gentle cosmetic, family, implant & emergency dentistry from Dr. Regina Valter. Most PPO insurance accepted — book online today.",
+    "Top-rated dentist in Houston, TX (4.9★, 350+ reviews). Bellaire Dental Group offers gentle cosmetic, family, implant & emergency dentistry from Dr. Regina Valter. Most PPO insurance accepted. Book online today.",
   applicationName: practice.name,
   keywords: [
     "dentist Houston",
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     siteName: practice.name,
     url: siteUrl,
     title:
-      "Dentist in Houston, TX | Bellaire Dental Group — Cosmetic & Family Dentistry",
+      "Dentist in Houston, TX | Bellaire Dental Group | Cosmetic & Family Dentistry",
     description:
       "Gentle, top-rated dentistry in Houston (4.9★, 350+ reviews). Cosmetic, family, implants & emergency care from Dr. Regina Valter. Book online today.",
     locale: "en_US",
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
         url: "/og.jpg",
         width: 1200,
         height: 630,
-        alt: "Bellaire Dental Group — modern dentistry, gentle care in Houston, TX",
+        alt: "Bellaire Dental Group: modern dentistry, gentle care in Houston, TX",
       },
     ],
   },

@@ -58,11 +58,11 @@ export default async function LocationPage({
   const faqs = [
     {
       q: `Do you serve patients in ${loc.area}?`,
-      a: `Yes — ${practice.name} proudly serves ${loc.area} (${loc.zips.join(", ")}) and the surrounding Houston area. We're ${loc.driveTime} away at ${practice.address.street}, ${practice.address.suite}, with free on-site parking.`,
+      a: `Yes. ${practice.name} proudly serves ${loc.area} (${loc.zips.join(", ")}) and the surrounding Houston area. We're ${loc.driveTime} away at ${practice.address.street}, ${practice.address.suite}, with free on-site parking.`,
     },
     {
       q: `Are you accepting new patients from ${loc.area}?`,
-      a: `Absolutely. We welcome new patients of every age from ${loc.area} — children from age two through grandparents. You can book online in under a minute or call ${practice.phone.display}.`,
+      a: `Absolutely. We welcome new patients of every age from ${loc.area}, children from age two through grandparents. You can book online in under a minute or call ${practice.phone.display}.`,
     },
     {
       q: `What dental services are available for ${loc.area} families?`,
@@ -214,7 +214,7 @@ export default async function LocationPage({
       {/* FAQ */}
       <section className="bg-white/60 py-16 lg:py-24">
         <Container className="max-w-3xl">
-          <SectionHeading eyebrow="Good to know" title={`Dentist in ${loc.area} — FAQs`} />
+          <SectionHeading eyebrow="Good to know" title={`Dentist in ${loc.area}: FAQs`} />
           <div className="mt-10 space-y-4">
             {faqs.map((f) => (
               <div key={f.q} className="rounded-2xl border border-line bg-white p-6">

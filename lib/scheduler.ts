@@ -1,5 +1,5 @@
 /**
- * Online scheduler config — framework-neutral so it can be read from both
+ * Online scheduler config, framework-neutral so it can be read from both
  * server and client components.
  *
  * Default is the practice's real, PMS-integrated Dolfin "Web Sched" scheduler

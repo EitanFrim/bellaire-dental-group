@@ -23,7 +23,7 @@ export function ReviewsMarquee() {
               visit
             </>
           }
-          intro={`Rated ${practice.ratings.google.value} stars across ${practice.ratings.google.count}+ Google reviews — by real neighbors, many for decades.`}
+          intro={`Rated ${practice.ratings.google.value} stars across ${practice.ratings.google.count}+ Google reviews, by real neighbors, many for decades.`}
         />
       </Container>
 

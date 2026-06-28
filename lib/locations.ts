@@ -1,5 +1,5 @@
 /**
- * Neighborhood landing pages — local-SEO surface for "dentist in <area>"
+ * Neighborhood landing pages - local-SEO surface for "dentist in <area>"
  * searches. Each area has UNIQUE content (no thin/duplicate copy) so each page
  * earns its own ranking and gives AI assistants distinct, citable facts.
  */
@@ -25,10 +25,10 @@ export const locations: Location[] = [
     zips: ["77401", "77081"],
     driveTime: "right in the neighborhood",
     intro:
-      "A trusted dentist in the heart of Bellaire — gentle cosmetic, family, and emergency care just minutes from anywhere in the City of Bellaire.",
+      "A trusted dentist in the heart of Bellaire, offering gentle cosmetic, family, and emergency care just minutes from anywhere in the City of Bellaire.",
     blurb: [
       "Bellaire Dental Group has cared for Bellaire families for nearly a decade. Our office sits in the Chimney Rock Doctors Center, moments from Bellaire's tree-lined neighborhoods, with free on-site parking that makes every visit easy.",
-      "From a child's first cleaning to a complete smile makeover, we're the dental home Bellaire neighbors return to year after year — many for decades. Gentle, unhurried, and genuinely glad to see you.",
+      "From a child's first cleaning to a complete smile makeover, we're the dental home Bellaire neighbors return to year after year, many for decades. Gentle, unhurried, and genuinely glad to see you.",
     ],
     landmarks: [
       "City of Bellaire",
@@ -39,11 +39,11 @@ export const locations: Location[] = [
     highlights: [
       {
         title: "Truly local",
-        body: "We're not a chain — we're your neighbors, woman-owned and rooted in Bellaire.",
+        body: "We're not a chain. We're your neighbors, woman-owned and rooted in Bellaire.",
       },
       {
         title: "Easy & free parking",
-        body: "On-site parking at the Chimney Rock Doctors Center — no garages, no hassle.",
+        body: "On-site parking at the Chimney Rock Doctors Center: no garages, no hassle.",
       },
       {
         title: "Generations of families",
@@ -65,7 +65,7 @@ export const locations: Location[] = [
     zips: ["77005"],
     driveTime: "about 10 minutes",
     intro:
-      "A calm, modern dentist for West University Place families — cosmetic, family, and restorative care a short drive from West U.",
+      "A calm, modern dentist for West University Place families, with cosmetic, family, and restorative care a short drive from West U.",
     blurb: [
       "West U families choose Bellaire Dental Group for unhurried, judgment-free care and a team that remembers their names. We're an easy drive from West University Place, with free parking and flexible morning and early-week hours that fit busy schedules.",
       "Whether you want a brighter smile before a big event or a reliable dental home for the whole household, Dr. Valter delivers natural-looking results and honest, no-pressure guidance.",
@@ -79,7 +79,7 @@ export const locations: Location[] = [
     highlights: [
       {
         title: "Quick from West U",
-        body: "A short, simple drive — and free parking when you arrive.",
+        body: "A short, simple drive, and free parking when you arrive.",
       },
       {
         title: "Cosmetic expertise",
@@ -101,9 +101,9 @@ export const locations: Location[] = [
     slug: "upper-kirby",
     area: "Upper Kirby",
     zips: ["77098", "77019"],
-    driveTime: "about 10–12 minutes",
+    driveTime: "about 10-12 minutes",
     intro:
-      "Modern, gentle dentistry for Upper Kirby — cosmetic, family, and emergency dental care just south of the district.",
+      "Modern, gentle dentistry for Upper Kirby: cosmetic, family, and emergency dental care just south of the district.",
     blurb: [
       "Upper Kirby professionals appreciate that we run on time, explain everything, and keep visits calm and efficient. Bellaire Dental Group is a quick trip from Upper Kirby, with comfortable amenities and modern technology that make appointments easy to fit into a full day.",
       "From same-day emergencies to discreet Invisalign and premium cosmetic work, we deliver high-end results with a warm, personal touch.",
@@ -117,7 +117,7 @@ export const locations: Location[] = [
     highlights: [
       {
         title: "Respects your time",
-        body: "We don't double-book — appointments start on time and stay unhurried.",
+        body: "We don't double-book. Appointments start on time and stay unhurried.",
       },
       {
         title: "Discreet & premium",
@@ -141,10 +141,10 @@ export const locations: Location[] = [
     zips: ["77096"],
     driveTime: "about 8 minutes",
     intro:
-      "A gentle, trusted dentist for Meyerland families — comprehensive cosmetic, family, and emergency care close to home.",
+      "A gentle, trusted dentist for Meyerland families, with comprehensive cosmetic, family, and emergency care close to home.",
     blurb: [
       "Meyerland families have long counted on Bellaire Dental Group for caring, comprehensive dentistry. We're just minutes away, with a multilingual team (English, Spanish, Russian, and Hebrew) that helps everyone feel understood and at ease.",
-      "From routine checkups to TMJ relief and full smile makeovers, we make great dentistry feel calm and personal — exactly what a neighborhood dental home should be.",
+      "From routine checkups to TMJ relief and full smile makeovers, we make great dentistry feel calm and personal: exactly what a neighborhood dental home should be.",
     ],
     landmarks: [
       "Meyerland Plaza",
@@ -155,11 +155,11 @@ export const locations: Location[] = [
     highlights: [
       {
         title: "Minutes from home",
-        body: "One of the closest gentle, modern dental offices to Meyerland — with free parking.",
+        body: "One of the closest gentle, modern dental offices to Meyerland, with free parking.",
       },
       {
         title: "Care in your language",
-        body: "English, Spanish, Russian, and Hebrew spoken — comfort for the whole community.",
+        body: "English, Spanish, Russian, and Hebrew spoken: comfort for the whole community.",
       },
       {
         title: "Comprehensive care",

@@ -13,7 +13,7 @@ import { servicesByCategory, type Service } from "@/lib/services";
 export const metadata: Metadata = {
   title: "Dental Services in Houston",
   description:
-    "Cosmetic, family, restorative, and emergency dentistry in Houston — Invisalign, veneers, implants, whitening, TMJ & sleep apnea care, and more. Gentle, modern care from Dr. Regina Valter.",
+    "Cosmetic, family, restorative, and emergency dentistry in Houston: Invisalign, veneers, implants, whitening, TMJ & sleep apnea care, and more. Gentle, modern care from Dr. Regina Valter.",
   alternates: { canonical: "/services" },
 };
 
@@ -28,7 +28,7 @@ export default function ServicesPage() {
             Everything your smile needs, <span className="text-gradient">in one place</span>
           </>
         }
-        intro="From a child's first cleaning to a complete smile makeover, we provide comprehensive, gentle dental care for the whole family — all under one calm roof in Bellaire."
+        intro="From a child's first cleaning to a complete smile makeover, we provide comprehensive, gentle dental care for the whole family, all under one calm roof in Bellaire."
         crumbs={[
           { name: "Home", path: "/" },
           { name: "Services", path: "/services" },

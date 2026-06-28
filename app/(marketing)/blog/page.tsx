@@ -13,7 +13,7 @@ import { sortedPosts } from "@/lib/blog";
 export const metadata: Metadata = {
   title: "Dental Health Blog",
   description:
-    "Practical, friendly dental health tips from Bellaire Dental Group in Houston — answering the questions real patients ask, from prevention to anxiety to modern technology.",
+    "Practical, friendly dental health tips from Bellaire Dental Group in Houston, answering the questions real patients ask, from prevention to anxiety to modern technology.",
   alternates: { canonical: "/blog" },
 };
 
@@ -36,7 +36,7 @@ export default function BlogPage() {
             Tips &amp; answers from <span className="text-gradient">our team</span>
           </>
         }
-        intro="Friendly, practical guidance on keeping your smile healthy — answering the questions we hear most often in the chair."
+        intro="Friendly, practical guidance on keeping your smile healthy, answering the questions we hear most often in the chair."
         crumbs={[
           { name: "Home", path: "/" },
           { name: "Blog", path: "/blog" },

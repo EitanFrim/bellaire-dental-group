@@ -27,7 +27,7 @@ const amenities = [
   {
     icon: Globe,
     title: "Multilingual team",
-    body: "Care in English, Spanish, Russian, and Hebrew — so everyone feels understood.",
+    body: "Care in English, Spanish, Russian, and Hebrew, so everyone feels understood.",
   },
   {
     icon: MapPin,
@@ -51,7 +51,7 @@ export function Amenities() {
               precise
             </>
           }
-          intro="Every detail — from the coffee bar to the laser scanner — is here to make great dentistry feel easy."
+          intro="Every detail, from the coffee bar to the laser scanner, is here to make great dentistry feel easy."
         />
 
         <Stagger className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

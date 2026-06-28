@@ -1,6 +1,6 @@
 /**
- * Bellaire Dental Group — single source of truth for all practice data.
- * Keep NAP (name / address / phone) consistent everywhere it renders — this is
+ * Bellaire Dental Group: single source of truth for all practice data.
+ * Keep NAP (name / address / phone) consistent everywhere it renders. This is
  * a local-SEO requirement and must match the Google Business Profile exactly.
  *
  * Facts sourced from the practice's existing site, Google Business Profile, and
@@ -14,7 +14,7 @@ export const practice = {
   // TODO(client): confirm preferred tagline.
   tagline: "Modern dentistry. Gentle care.",
   shortDescription:
-    "A calm, modern dental practice in Houston led by Dr. Regina Valter — cosmetic, family, and restorative dentistry delivered with a gentle, unhurried touch.",
+    "A calm, modern dental practice in Houston led by Dr. Regina Valter, offering cosmetic, family, and restorative dentistry delivered with a gentle, unhurried touch.",
   longDescription:
     "For nearly a decade, Bellaire Dental Group has cared for the Bellaire and Houston community with honest, high-quality dentistry and genuine, personalized attention. From routine family cleanings to complete smile transformations, we take the time to listen, explain, and make every visit feel calm and comfortable.",
 
@@ -119,14 +119,14 @@ export const practice = {
     },
   ],
   awards: [
-    { name: "Houstonia Magazine — Top Dentist", year: 2017 },
+    { name: "Houstonia Magazine: Top Dentist", year: 2017 },
   ],
 
   // --- Financing ---
   financing: [
     {
       name: "Cherry",
-      description: "Flexible monthly payment plans — quick approval, no hard credit check.",
+      description: "Flexible monthly payment plans with quick approval and no hard credit check.",
       url: "https://pay.withcherry.com/bellaire-dental-group",
     },
     {
@@ -144,7 +144,7 @@ export const practice = {
     name: "In-Office Dental Savings Plan",
     tagline: "No insurance? No problem.",
     summary:
-      "An affordable, no-hassle annual membership for patients without dental insurance — covering your routine preventive care and discounting the rest of your treatment. It's not insurance, so there are no claim forms and none of the usual red tape.",
+      "An affordable, no-hassle annual membership for patients without dental insurance: it covers your routine preventive care and discounts the rest of your treatment. It's not insurance, so there are no claim forms and none of the usual red tape.",
     highlights: [
       "No insurance required",
       "No deductibles or annual maximums",
@@ -159,7 +159,7 @@ export const practice = {
     {
       title: "Complimentary cosmetic consultation",
       description:
-        "Thinking about veneers, Invisalign, or a smile makeover? Sit down with Dr. Valter to talk through your options — no cost, no pressure.",
+        "Thinking about veneers, Invisalign, or a smile makeover? Sit down with Dr. Valter to talk through your options. No cost, no pressure.",
     },
   ],
 
@@ -203,9 +203,9 @@ export const practice = {
         "TMJ treatment",
       ],
       bio: [
-        "Dr. Regina Valter is the owner of Bellaire Dental Group, where she provides cosmetic and family dentistry with a focus on personalized care, long-term relationships, and natural-looking results. Her path began in dental hygiene before she became a dentist — giving her a rare understanding of dentistry from both the clinical and the patient side of the chair.",
+        "Dr. Regina Valter is the owner of Bellaire Dental Group, where she provides cosmetic and family dentistry with a focus on personalized care, long-term relationships, and natural-looking results. Her path began in dental hygiene before she became a dentist, giving her a rare understanding of dentistry from both the clinical and the patient side of the chair.",
         "For nearly a decade, Dr. Valter has proudly served the Bellaire and Houston community, building a practice centered on honesty, quality treatment, and individualized attention. She cares for everything from routine family visits and emergencies to cosmetic smile enhancements, crowns, restorative treatment, and TMJ concerns.",
-        "Known for a direct yet compassionate approach, she takes the time to educate patients so they can make informed decisions — creating an environment where people feel heard, respected, and genuinely comfortable. Outside the office she enjoys fitness, travel, and time with her family and cats, and stays current through ongoing continuing education.",
+        "Known for a direct yet compassionate approach, she takes the time to educate patients so they can make informed decisions, creating an environment where people feel heard, respected, and genuinely comfortable. Outside the office she enjoys fitness, travel, and time with her family and cats, and stays current through ongoing continuing education.",
       ],
     },
   ],
@@ -224,12 +224,12 @@ export function groupedHours() {
   const groups: Array<{ label: string; value: string }> = [];
   for (const h of practice.hours) {
     const value =
-      h.opens && h.closes ? `${to12(h.opens)} – ${to12(h.closes)}` : "Closed";
+      h.opens && h.closes ? `${to12(h.opens)} - ${to12(h.closes)}` : "Closed";
     const last = groups[groups.length - 1];
     if (last && last.value === value) {
       // extend label range
-      const [start] = last.label.split("–");
-      last.label = `${start.trim()}–${h.short}`;
+      const [start] = last.label.split("-");
+      last.label = `${start.trim()}-${h.short}`;
     } else {
       groups.push({ label: h.short, value });
     }

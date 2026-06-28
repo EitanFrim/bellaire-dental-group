@@ -12,7 +12,7 @@ import { locations } from "@/lib/locations";
 import { practice } from "@/lib/practice";
 
 export const metadata: Metadata = {
-  title: "Areas We Serve — Dentist Near You in Houston",
+  title: "Areas We Serve | Dentist Near You in Houston",
   description:
     "Bellaire Dental Group serves Bellaire, West University Place, Upper Kirby, Meyerland, and greater Houston. Find gentle cosmetic, family & emergency dentistry near you.",
   alternates: { canonical: "/locations" },
@@ -28,7 +28,7 @@ export default function LocationsPage() {
             A gentle dentist <span className="text-gradient">near you</span>
           </>
         }
-        intro="From our home in Bellaire, we care for families across West University Place, Upper Kirby, Meyerland, and greater Houston — with free parking and easy, unhurried visits."
+        intro="From our home in Bellaire, we care for families across West University Place, Upper Kirby, Meyerland, and greater Houston, with free parking and easy, unhurried visits."
         crumbs={[
           { name: "Home", path: "/" },
           { name: "Locations", path: "/locations" },

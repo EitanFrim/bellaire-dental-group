@@ -12,7 +12,7 @@ export default function NotFound() {
         This page took a coffee break
       </h1>
       <p className="mt-4 max-w-md text-ink-soft">
-        We couldn&apos;t find the page you were looking for — but we can still help you
+        We couldn&apos;t find the page you were looking for, but we can still help you
         find your way to a healthier smile.
       </p>
       <div className="mt-8 flex flex-col gap-3 sm:flex-row">

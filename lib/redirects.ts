@@ -1,7 +1,7 @@
 /**
  * 301 redirect map: every known URL from the previous WordPress site →
  * its equivalent on the new site. This preserves the domain's existing Google
- * rankings during migration — each old ranked URL passes its authority to the
+ * rankings during migration: each old ranked URL passes its authority to the
  * new page instead of 404ing. (Source list scraped from the live old site.)
  *
  * Vercel/Next serve these as real HTTP 301s (permanent: true).
@@ -29,7 +29,7 @@ const map: Array<[string, string]> = [
   ["/appointment", "/book"],
   ["/contact-us", "/contact"],
   ["/patient-reviews", "/reviews"],
-  // /contact, /reviews already match new routes — no redirect needed.
+  // /contact, /reviews already match new routes - no redirect needed.
 
   // --- Gallery / office tour (old) → smile gallery ---
   ["/gallery", "/smile-gallery"],

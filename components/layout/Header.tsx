@@ -139,7 +139,7 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
   // Portal to <body> so the overlay escapes the header's fixed/z-50 stacking
   // context. Without this, iOS Safari paints transformed/backdrop-blur page
   // sections on top of a position:fixed element nested inside another
-  // position:fixed ancestor — leaving the menu stuck behind the page.
+  // position:fixed ancestor - leaving the menu stuck behind the page.
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 

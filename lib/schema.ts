@@ -72,7 +72,7 @@ export function dentistSchema() {
     availableLanguage: practice.languages,
     medicalSpecialty: "Dentistry",
     slogan: practice.tagline,
-    // Entity/topical signals — help AI assistants understand exactly what this
+    // Entity/topical signals that help AI assistants understand exactly what this
     // practice does and recommend it for relevant queries.
     knowsAbout: [
       "Cosmetic Dentistry",
@@ -143,7 +143,7 @@ export function dentistSchema() {
   };
 }
 
-/** Dr. Valter as a Physician/Person entity — used on the About page so AI and
+/** Dr. Valter as a Physician/Person entity, used on the About page so AI and
  *  Google build a strong author/practitioner entity tied to the practice. */
 export function dentistPersonSchema() {
   const doc = practice.team[0];
@@ -238,7 +238,7 @@ export function localAreaSchema(loc: {
     "@context": "https://schema.org",
     "@type": "Dentist",
     "@id": `${siteUrl}/locations/${loc.slug}#dentist`,
-    name: `${practice.name} — Dentist serving ${loc.area}`,
+    name: `${practice.name}, Dentist serving ${loc.area}`,
     description: loc.intro,
     url: url(`/locations/${loc.slug}`),
     parentOrganization: { "@id": `${siteUrl}/#dentist` },
@@ -270,7 +270,7 @@ export function localAreaSchema(loc: {
   };
 }
 
-/** Individual review schema (for the reviews page). Strengthens AEO — AI reads
+/** Individual review schema (for the reviews page). Strengthens AEO. AI reads
  *  review *text* to match service queries, not just the star count. */
 export function reviewsSchema(
   reviews: { author: string; rating: number; text: string; source: string }[],

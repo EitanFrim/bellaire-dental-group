@@ -24,7 +24,7 @@ import { breadcrumbSchema, faqSchema } from "@/lib/schema";
 import { practice } from "@/lib/practice";
 
 export const metadata: Metadata = {
-  title: "New Patients — What to Expect",
+  title: "New Patients: What to Expect",
   description:
     "New to Bellaire Dental Group? Here's what your first visit looks like, plus insurance, financing (Cherry & CareCredit), our no-insurance savings plan, and easy ways to book. We can't wait to meet you.",
   alternates: { canonical: "/new-patients" },
@@ -34,7 +34,7 @@ const firstVisit = [
   {
     icon: Phone,
     title: "Before you arrive",
-    body: "Book online or call us. We'll confirm your visit and let you know anything to bring — like your insurance card and a list of any medications.",
+    body: "Book online or call us. We'll confirm your visit and let you know anything to bring, like your insurance card and a list of any medications.",
   },
   {
     icon: FileText,
@@ -49,7 +49,7 @@ const firstVisit = [
   {
     icon: Check,
     title: "Your personalized plan",
-    body: "We talk through what we found in plain language — no pressure, no jargon — and build a plan prioritized around what matters to you.",
+    body: "We talk through what we found in plain language (no pressure, no jargon) and build a plan prioritized around what matters to you.",
   },
 ];
 
@@ -60,11 +60,11 @@ const faqs = [
   },
   {
     q: "Do you accept my insurance?",
-    a: "We accept most major PPO dental insurance plans. Because coverage varies plan to plan, the easiest thing is to call us at (713) 668-8383 — we'll happily verify your specific benefits before your visit.",
+    a: "We accept most major PPO dental insurance plans. Because coverage varies plan to plan, the easiest thing is to call us at (713) 668-8383. We'll happily verify your specific benefits before your visit.",
   },
   {
     q: "What if I don't have insurance?",
-    a: "No problem at all. We offer an in-office dental savings plan that covers your routine preventive care and discounts other treatment — no insurance, deductibles, or waiting periods. We also offer flexible financing through Cherry and CareCredit, and we'll always discuss fees openly before any treatment.",
+    a: "No problem at all. We offer an in-office dental savings plan that covers your routine preventive care and discounts other treatment, with no insurance, deductibles, or waiting periods. We also offer flexible financing through Cherry and CareCredit, and we'll always discuss fees openly before any treatment.",
   },
   {
     q: "How early should I arrive?",
@@ -72,7 +72,7 @@ const faqs = [
   },
   {
     q: "I'm anxious about dental visits. Can you accommodate me?",
-    a: "Absolutely — it's what we're known for. Let us know you're nervous and we'll go at your pace, explain each step, and offer comfort options including nitrous (laughing gas) sedation.",
+    a: "Absolutely. It's what we're known for. Let us know you're nervous and we'll go at your pace, explain each step, and offer comfort options including nitrous (laughing gas) sedation.",
   },
 ];
 
@@ -83,7 +83,7 @@ export default function NewPatientsPage() {
         eyebrow="New patients"
         title={
           <>
-            Welcome — we&apos;re so glad <span className="text-gradient">you&apos;re here</span>
+            Welcome. We&apos;re so glad <span className="text-gradient">you&apos;re here</span>
           </>
         }
         intro="Whether it's been six months or six years since your last visit, you'll be met with warmth and zero judgment. Here's exactly what to expect."
@@ -150,7 +150,7 @@ export default function NewPatientsPage() {
                 <a href={`tel:${practice.phone.tel}`} className="font-medium text-cyan-700">
                   {practice.phone.display}
                 </a>{" "}
-                and we&apos;ll verify your benefits before you come in — no surprises.
+                and we&apos;ll verify your benefits before you come in, with no surprises.
               </p>
               <ul className="mt-5 space-y-2 text-sm text-navy-800">
                 {["Most PPO plans accepted", "We file claims for you", "Clear estimates before treatment"].map(
@@ -232,7 +232,7 @@ export default function NewPatientsPage() {
                   ))}
                 </ul>
                 <p className="mt-5 text-xs text-ink-soft">
-                  Ask us for this year&apos;s membership details — we&apos;ll walk you
+                  Ask us for this year&apos;s membership details and we&apos;ll walk you
                   through exactly what&apos;s included.
                 </p>
               </div>
@@ -267,7 +267,7 @@ export default function NewPatientsPage() {
             </Reveal>
           </div>
 
-          {/* Save time before your visit — forms & portal (shown when configured) */}
+          {/* Save time before your visit: forms & portal (shown when configured) */}
           {(practice.patientFormsUrl || practice.patientPortalUrl) && (
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               {practice.patientFormsUrl && (
@@ -334,7 +334,7 @@ export default function NewPatientsPage() {
             <Link href="/contact" className="font-medium text-cyan-700 hover:text-cyan-600">
               Get in touch
             </Link>{" "}
-            — we&apos;re happy to help.
+            and we&apos;re happy to help.
           </p>
         </Container>
       </section>

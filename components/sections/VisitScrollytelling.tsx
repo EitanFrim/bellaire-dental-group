@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 const steps = [
   {
     title: "A warm welcome",
-    body: "Walk into a calm, spa-like space — comfortable seating, fresh coffee, and a team that already knows your name.",
+    body: "Walk into a calm, spa-like space with comfortable seating, fresh coffee, and a team that already knows your name.",
     image: "/images/office/entry.jpg",
     alt: "The welcoming entryway at Bellaire Dental Group",
   },
@@ -22,7 +22,7 @@ const steps = [
   },
   {
     title: "Gentle, precise care",
-    body: "Modern, low-radiation imaging and gentle techniques — with comfort options like nitrous sedation whenever you want them.",
+    body: "Modern, low-radiation imaging and gentle techniques, with comfort options like nitrous sedation whenever you want them.",
     image: "/images/team/dr-regina-valter.jpg",
     alt: "Dr. Regina Valter providing gentle care",
   },
@@ -46,10 +46,10 @@ export function VisitScrollytelling() {
           <div className="lg:sticky lg:top-28 lg:self-start">
             <Eyebrow>Your visit, reimagined</Eyebrow>
             <h2 className="mt-4 font-display text-3xl leading-tight text-navy-900 sm:text-4xl">
-              Exactly what to expect — <span className="text-gradient">step by step</span>
+              Exactly what to expect, <span className="text-gradient">step by step</span>
             </h2>
             <p className="mt-4 max-w-md text-ink-soft">
-              Dental anxiety is real — and common. So we make every moment calm and
+              Dental anxiety is real, and common. So we make every moment calm and
               predictable. Here&apos;s how a visit actually feels.
             </p>
 

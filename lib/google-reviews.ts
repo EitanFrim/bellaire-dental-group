@@ -35,7 +35,7 @@ export async function getReviews(): Promise<ReviewsPayload> {
         // FieldMask keeps the request on the cheapest SKU that includes reviews.
         "X-Goog-FieldMask": "rating,userRatingCount,reviews",
       },
-      // Cache for 12h (ISR) — fresh enough, well within rate limits.
+      // Cache for 12h (ISR): fresh enough, well within rate limits.
       next: { revalidate: 43200 },
     });
 

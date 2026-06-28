@@ -6,7 +6,7 @@ import { useBooking } from "@/components/booking/BookingProvider";
 import { practice } from "@/lib/practice";
 import { cn } from "@/lib/utils";
 
-/** Persistent one-tap Call + Book bar on mobile — appears once past the hero. */
+/** Persistent one-tap Call + Book bar on mobile - appears once past the hero. */
 export function MobileStickyCTA() {
   const { open } = useBooking();
   const [show, setShow] = useState(false);

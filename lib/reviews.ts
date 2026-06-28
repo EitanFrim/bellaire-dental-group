@@ -11,7 +11,7 @@
 
 export type Review = {
   author: string;
-  rating: number; // 1–5
+  rating: number; // 1-5
   text: string;
   /** Relative or absolute time label, e.g. "2 months ago". */
   relativeTime?: string;
@@ -23,13 +23,13 @@ export const curatedReviews: Review[] = [
     author: "Jan J. Rayburn",
     rating: 5,
     source: "Google",
-    text: "My parents have been patients of Bellaire Dental for 20+ years. I don't know what took me so long! Excellent, caring and knowledgeable staff. I cannot say enough about Dr. Valter — smart, informed and a true caregiver. I now look forward to going to the dentist!",
+    text: "My parents have been patients of Bellaire Dental for 20+ years. I don't know what took me so long! Excellent, caring and knowledgeable staff. I cannot say enough about Dr. Valter: smart, informed and a true caregiver. I now look forward to going to the dentist!",
   },
   {
     author: "Brian Krauskopf",
     rating: 5,
     source: "Google",
-    text: "Huge fear of dentists my entire life — but Dr. Valter and her staff were amazing. They were patient, gentle, and made me feel completely at ease. I can't recommend them enough.",
+    text: "Huge fear of dentists my entire life, but Dr. Valter and her staff were amazing. They were patient, gentle, and made me feel completely at ease. I can't recommend them enough.",
   },
   {
     author: "Charlotte Bowers",

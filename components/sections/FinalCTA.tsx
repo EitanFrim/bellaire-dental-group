@@ -17,7 +17,7 @@ export function FinalCTA() {
             </h2>
             <p className="mx-auto mt-5 max-w-xl text-pretty text-navy-200 sm:text-lg">
               Book online in under a minute, or give us a call. We can&apos;t wait to
-              meet you — and your smile.
+              meet you and your smile.
             </p>
             <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <BookButton size="lg" variant="primary">

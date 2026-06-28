@@ -5,7 +5,7 @@ import { Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { practice } from "@/lib/practice";
 
 const blurbs: Record<string, string> = {
-  Bellaire: "Our home neighborhood — minutes from anywhere in the City of Bellaire.",
+  Bellaire: "Our home neighborhood, minutes from anywhere in the City of Bellaire.",
   "West University Place": "A short drive from West U for families and professionals.",
   "Upper Kirby": "Convenient, modern dental care just south of Upper Kirby.",
   Meyerland: "Trusted by Meyerland families for gentle, comprehensive dentistry.",
@@ -24,7 +24,7 @@ export function AreasServed() {
               <span className="text-gradient">Bellaire &amp; Houston</span>
             </>
           }
-          intro="Conveniently located at the Chimney Rock Doctors Center with free parking — welcoming patients from across the area."
+          intro="Conveniently located at the Chimney Rock Doctors Center with free parking. We welcome patients from across the area."
         />
 
         <Stagger className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

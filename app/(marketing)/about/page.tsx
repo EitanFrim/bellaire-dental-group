@@ -13,7 +13,7 @@ import { practice } from "@/lib/practice";
 export const metadata: Metadata = {
   title: "About Dr. Regina Valter & Our Team",
   description:
-    "Meet Dr. Regina Valter, DDS, and the Bellaire Dental Group team — nearly a decade of gentle, personalized dentistry in Houston, built on honesty and genuine care.",
+    "Meet Dr. Regina Valter, DDS, and the Bellaire Dental Group team: nearly a decade of gentle, personalized dentistry in Houston, built on honesty and genuine care.",
   alternates: { canonical: "/about" },
 };
 
@@ -21,12 +21,12 @@ const values = [
   {
     icon: Heart,
     title: "Gentle, judgment-free",
-    body: "We meet every patient with patience and warmth — no lectures, no rushing, no shame. Just honest, comfortable care.",
+    body: "We meet every patient with patience and warmth. No lectures, no rushing, no shame. Just honest, comfortable care.",
   },
   {
     icon: Sparkles,
     title: "Natural-looking results",
-    body: "Dr. Valter designs every smile around your face for results that look like the best version of you — never overdone.",
+    body: "Dr. Valter designs every smile around your face for results that look like the best version of you, never overdone.",
   },
   {
     icon: Award,
@@ -36,7 +36,7 @@ const values = [
   {
     icon: Languages,
     title: "Care in your language",
-    body: "Our team speaks English, Spanish, Russian, and Hebrew — so every patient feels truly understood.",
+    body: "Our team speaks English, Spanish, Russian, and Hebrew, so every patient feels truly understood.",
   },
 ];
 
@@ -48,7 +48,7 @@ export default function AboutPage() {
         eyebrow="About the practice"
         title={
           <>
-            Honest, gentle dentistry — <span className="text-gradient">for nearly a decade</span>
+            Honest, gentle dentistry <span className="text-gradient">for nearly a decade</span>
           </>
         }
         intro={practice.longDescription}

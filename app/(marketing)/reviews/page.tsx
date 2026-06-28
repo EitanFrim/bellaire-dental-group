@@ -13,7 +13,7 @@ import { practice } from "@/lib/practice";
 export const metadata: Metadata = {
   title: "Patient Reviews",
   description:
-    "Read what Houston families say about Bellaire Dental Group — rated 4.9 stars across 352+ Google reviews. Gentle, caring dentistry from Dr. Regina Valter.",
+    "Read what Houston families say about Bellaire Dental Group, rated 4.9 stars across 352+ Google reviews. Gentle, caring dentistry from Dr. Regina Valter.",
   alternates: { canonical: "/reviews" },
 };
 
@@ -32,7 +32,7 @@ export default async function ReviewsPage() {
             Loved by <span className="text-gradient">Houston</span> families
           </>
         }
-        intro={`We're proud to be rated ${average} stars across ${total}+ Google reviews — by real neighbors, many of whom have trusted us for decades.`}
+        intro={`We're proud to be rated ${average} stars across ${total}+ Google reviews, by real neighbors, many of whom have trusted us for decades.`}
         crumbs={[
           { name: "Home", path: "/" },
           { name: "Reviews", path: "/reviews" },

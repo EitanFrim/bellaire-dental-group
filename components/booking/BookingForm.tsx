@@ -30,7 +30,7 @@ export function BookingForm({ onSuccess }: { onSuccess?: () => void }) {
         </span>
         <h3 className="font-display text-xl text-navy-900">Request received</h3>
         <p className="max-w-xs text-sm text-ink-soft">
-          Thank you — our team will reach out shortly to confirm your appointment.
+          Thank you. Our team will reach out shortly to confirm your appointment.
           For anything urgent, please call us at{" "}
           <a href="tel:+17136688383" className="font-medium text-cyan-600 underline">
             (713) 668-8383
@@ -145,7 +145,7 @@ export function BookingForm({ onSuccess }: { onSuccess?: () => void }) {
         />
         <span>
           I agree to be contacted about my request. This form is not for medical
-          emergencies — for emergencies call 911 or (713) 668-8383.
+          emergencies. For emergencies call 911 or (713) 668-8383.
         </span>
       </label>
 

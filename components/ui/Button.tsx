@@ -14,7 +14,7 @@ const base =
   "inline-flex items-center justify-center gap-2 rounded-full font-medium tracking-tight transition-all duration-300 ease-[cubic-bezier(.22,1,.36,1)] focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-50 disabled:pointer-events-none select-none whitespace-nowrap";
 
 const variants: Record<ButtonVariant, string> = {
-  // Primary CTA — consistent cyan treatment everywhere, dark text for AA contrast
+  // Primary CTA - consistent cyan treatment everywhere, dark text for AA contrast
   primary:
     "bg-cyan-400 text-navy-950 hover:bg-cyan-300 shadow-[0_10px_30px_-10px_rgba(43,182,232,0.75)] hover:shadow-[0_16px_44px_-12px_rgba(43,182,232,0.85)] hover:-translate-y-0.5",
   navy: "bg-navy-800 text-white hover:bg-navy-700 shadow-[0_10px_30px_-12px_rgba(14,42,86,0.6)] hover:-translate-y-0.5",

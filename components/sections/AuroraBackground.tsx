@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { asset } from "@/lib/asset";
 
 /**
- * The signature "breathing" aurora — soft brand-colored light that drifts and
+ * The signature "breathing" aurora - soft brand-colored light that drifts and
  * gently expands/contracts, and (on capable devices) leans toward the cursor.
  * Purely decorative; disabled for reduced-motion users.
  */

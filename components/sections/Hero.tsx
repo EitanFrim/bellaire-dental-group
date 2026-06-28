@@ -36,7 +36,7 @@ export function Hero() {
 
           <Reveal delay={0.12}>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-soft">
-              Cosmetic, family &amp; restorative care from Dr. Regina Valter —
+              Cosmetic, family &amp; restorative care from Dr. Regina Valter:
               unhurried, judgment-free, and designed entirely around your comfort.
             </p>
           </Reveal>
@@ -101,7 +101,7 @@ function HeroVisual() {
         <p className="mt-2 text-sm leading-snug text-navy-800">
           “I now look forward to going to the dentist!”
         </p>
-        <p className="mt-1 text-xs text-ink-soft">— Jan, Google review</p>
+        <p className="mt-1 text-xs text-ink-soft">Jan, Google review</p>
       </div>
 
       {/* Floating stat */}

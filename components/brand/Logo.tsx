@@ -4,11 +4,11 @@ import { cn } from "@/lib/utils";
 import { asset } from "@/lib/asset";
 
 /**
- * Brand lockup — uses the practice's real logo files (the horizontal
+ * Brand lockup - uses the practice's real logo files (the horizontal
  * tooth + "BELLAIRE DENTAL GROUP" lockup).
  *
- *  - theme="dark"  → navy lockup, for LIGHT backgrounds (header).
- *  - theme="light" → white lockup, for DARK backgrounds (footer).
+ *  - theme="dark"  -> navy lockup, for LIGHT backgrounds (header).
+ *  - theme="light" -> white lockup, for DARK backgrounds (footer).
  *
  * Intrinsic art is 402×75 (≈5.36:1); we render at a fixed height and let width
  * scale to keep it crisp on any display.
@@ -33,7 +33,7 @@ export function Logo({
   return (
     <Link
       href={href}
-      aria-label="Bellaire Dental Group — home"
+      aria-label="Bellaire Dental Group home"
       className={cn("group inline-flex items-center", className)}
     >
       <Image

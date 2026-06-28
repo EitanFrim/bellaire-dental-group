@@ -18,7 +18,7 @@ export function ServicesGrid() {
               Comprehensive care, <span className="text-gradient">gently delivered</span>
             </>
           }
-          intro="From routine cleanings to complete smile makeovers — everything your family needs, under one calm roof."
+          intro="From routine cleanings to complete smile makeovers, everything your family needs, under one calm roof."
         />
 
         <Stagger className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

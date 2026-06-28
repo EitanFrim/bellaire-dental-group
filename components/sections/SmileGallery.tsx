@@ -38,10 +38,10 @@ export function SmileGallery() {
             <figure className="flex flex-col justify-between rounded-2xl bg-navy-800 p-5 text-white">
               <Quote className="h-6 w-6 text-cyan-300" />
               <blockquote className="text-sm leading-snug">
-                “Huge fear of dentists my entire life — but they made me feel
+                “Huge fear of dentists my entire life, but they made me feel
                 completely at ease.”
               </blockquote>
-              <figcaption className="text-xs text-navy-200">— Brian, Google</figcaption>
+              <figcaption className="text-xs text-navy-200">Brian, Google</figcaption>
             </figure>
           </div>
         </Reveal>

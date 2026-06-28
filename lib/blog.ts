@@ -26,7 +26,7 @@ export const posts: Post[] = [
     slug: "how-often-should-you-see-the-dentist",
     title: "How Often Should You Really See the Dentist?",
     excerpt:
-      "The short answer is twice a year for most people — but here's why, and when you might need to come in more often.",
+      "The short answer is twice a year for most people, but here's why, and when you might need to come in more often.",
     date: "2026-04-22",
     readMinutes: 4,
     category: "Preventive Care",
@@ -35,12 +35,12 @@ export const posts: Post[] = [
     body: [
       {
         type: "p",
-        text: "If you've ever wondered whether twice-a-year dental visits are really necessary, you're not alone. It's one of the most common questions we hear at Bellaire Dental Group — and the honest answer is: for most people, yes, but it depends on you.",
+        text: "If you've ever wondered whether twice-a-year dental visits are really necessary, you're not alone. It's one of the most common questions we hear at Bellaire Dental Group, and the honest answer is: for most people, yes, but it depends on you.",
       },
       { type: "h2", text: "The general rule: every six months" },
       {
         type: "p",
-        text: "For the average healthy adult, a checkup and professional cleaning every six months is the sweet spot. It lets us catch small problems — a tiny cavity, early gum inflammation — while they're easy and inexpensive to fix, long before they become painful or costly.",
+        text: "For the average healthy adult, a checkup and professional cleaning every six months is the sweet spot. It lets us catch small problems (a tiny cavity, early gum inflammation) while they're easy and inexpensive to fix, long before they become painful or costly.",
       },
       { type: "h2", text: "When you might need to come in more often" },
       {
@@ -64,7 +64,7 @@ export const posts: Post[] = [
       },
       {
         type: "p",
-        text: "Due for a checkup? We'd love to see you. Book online or call (713) 668-8383 — new patients of every age are always welcome.",
+        text: "Due for a checkup? We'd love to see you. Book online or call (713) 668-8383. New patients of every age are always welcome.",
       },
     ],
   },
@@ -72,7 +72,7 @@ export const posts: Post[] = [
     slug: "what-to-expect-first-visit",
     title: "What to Expect at Your First Dental Visit With Us",
     excerpt:
-      "Nervous about a new dentist? Here's exactly what happens at your first visit to Bellaire Dental Group — step by step.",
+      "Nervous about a new dentist? Here's exactly what happens at your first visit to Bellaire Dental Group, step by step.",
     date: "2026-03-15",
     readMinutes: 5,
     category: "New Patients",
@@ -81,7 +81,7 @@ export const posts: Post[] = [
     body: [
       {
         type: "p",
-        text: "Walking into a new dental office can feel uncertain — especially if it's been a while. We get it, and we've designed your first visit to be calm, unhurried, and completely judgment-free.",
+        text: "Walking into a new dental office can feel uncertain, especially if it's been a while. We get it, and we've designed your first visit to be calm, unhurried, and completely judgment-free.",
       },
       { type: "h2", text: "Before you arrive" },
       {
@@ -91,7 +91,7 @@ export const posts: Post[] = [
       { type: "h2", text: "A warm welcome" },
       {
         type: "p",
-        text: "When you arrive, you'll be greeted by name and offered coffee or water in our comfortable lounge. New-patient paperwork is quick — and we're happy to help with any of it.",
+        text: "When you arrive, you'll be greeted by name and offered coffee or water in our comfortable lounge. New-patient paperwork is quick, and we're happy to help with any of it.",
       },
       { type: "h2", text: "Your comprehensive exam" },
       {
@@ -101,7 +101,7 @@ export const posts: Post[] = [
       { type: "h2", text: "Your personalized plan" },
       {
         type: "p",
-        text: "Afterward, we'll walk you through what we found in plain language — no jargon, no pressure. Together we'll build a plan prioritized around what matters most to you, including clear cost estimates before any treatment.",
+        text: "Afterward, we'll walk you through what we found in plain language: no jargon, no pressure. Together we'll build a plan prioritized around what matters most to you, including clear cost estimates before any treatment.",
       },
       {
         type: "p",
@@ -113,7 +113,7 @@ export const posts: Post[] = [
     slug: "easing-dental-anxiety",
     title: "7 Gentle Ways We Help Ease Dental Anxiety",
     excerpt:
-      "Dental anxiety is real and incredibly common. Here's how we make every visit calmer — and what you can do too.",
+      "Dental anxiety is real and incredibly common. Here's how we make every visit calmer, and what you can do too.",
     date: "2026-02-10",
     readMinutes: 5,
     category: "Comfort & Care",
@@ -122,7 +122,7 @@ export const posts: Post[] = [
     body: [
       {
         type: "p",
-        text: "If the thought of the dentist makes your heart race, you're far from alone — dental anxiety affects a huge number of adults. The good news: with the right approach, dental visits can feel genuinely calm. Here's how we help.",
+        text: "If the thought of the dentist makes your heart race, you're far from alone. Dental anxiety affects a huge number of adults. The good news: with the right approach, dental visits can feel genuinely calm. Here's how we help.",
       },
       { type: "h2", text: "1. We never rush you" },
       {
@@ -157,11 +157,11 @@ export const posts: Post[] = [
       { type: "h2", text: "7. Small, steady steps" },
       {
         type: "p",
-        text: "If you're very anxious, we can start with something simple — just a cleaning or a consultation — to build trust before anything more.",
+        text: "If you're very anxious, we can start with something simple (just a cleaning or a consultation) to build trust before anything more.",
       },
       {
         type: "p",
-        text: "You deserve dental care that feels safe. If anxiety has kept you away, tell us — we'll take great care of you. Call (713) 668-8383 or book online.",
+        text: "You deserve dental care that feels safe. If anxiety has kept you away, tell us. We'll take great care of you. Call (713) 668-8383 or book online.",
       },
     ],
   },
@@ -169,7 +169,7 @@ export const posts: Post[] = [
     slug: "are-dental-x-rays-safe",
     title: "Are Dental X-Rays Safe? What Modern Imaging Really Means",
     excerpt:
-      "Modern digital dental X-rays use very low radiation — here's what they show and why they matter for your health.",
+      "Modern digital dental X-rays use very low radiation. Here's what they show and why they matter for your health.",
     date: "2026-01-18",
     readMinutes: 4,
     category: "Technology",
@@ -178,12 +178,12 @@ export const posts: Post[] = [
     body: [
       {
         type: "p",
-        text: "X-rays are one of the most valuable tools in dentistry — they let us see what's hidden between and beneath your teeth. A common question is whether they're safe. With today's digital technology, the answer is reassuring.",
+        text: "X-rays are one of the most valuable tools in dentistry. They let us see what's hidden between and beneath your teeth. A common question is whether they're safe. With today's digital technology, the answer is reassuring.",
       },
       { type: "h2", text: "Digital means dramatically less radiation" },
       {
         type: "p",
-        text: "Modern digital dental X-rays use a fraction of the radiation of older film systems — a very small dose, comparable to what you'd naturally encounter over a normal day or a short flight.",
+        text: "Modern digital dental X-rays use a fraction of the radiation of older film systems: a very small dose, comparable to what you'd naturally encounter over a normal day or a short flight.",
       },
       { type: "h2", text: "What X-rays help us catch" },
       {
@@ -198,7 +198,7 @@ export const posts: Post[] = [
       { type: "h2", text: "How often do you need them?" },
       {
         type: "p",
-        text: "It depends on your individual risk and history — not a fixed schedule. We only take images when they'll genuinely help your care, and we always use protective measures.",
+        text: "It depends on your individual risk and history, not a fixed schedule. We only take images when they'll genuinely help your care, and we always use protective measures.",
       },
       {
         type: "p",

@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { asset } from "@/lib/asset";
 
 /**
- * The tooth + sparkle mark cropped from the practice's real logo — used in
+ * The tooth + sparkle mark cropped from the practice's real logo - used in
  * small icon contexts (booking modal header, badges). `tone="light"` is the
  * cyan/white version for dark backgrounds.
  */

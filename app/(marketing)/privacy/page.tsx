@@ -22,7 +22,7 @@ export default function PrivacyPage() {
       <h2>Information we collect</h2>
       <p>
         When you submit an appointment request or contact form, we collect the
-        information you provide — typically your name, phone number, email address, and
+        information you provide: typically your name, phone number, email address, and
         the reason for your visit. We ask that you not include sensitive medical details
         in website forms.
       </p>

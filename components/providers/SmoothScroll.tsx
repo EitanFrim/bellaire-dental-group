@@ -4,7 +4,7 @@ import { ReactLenis } from "lenis/react";
 import { useEffect, useState } from "react";
 
 /**
- * Weighted smooth scrolling (Lenis) — the single change that makes the site
+ * Weighted smooth scrolling (Lenis) - the single change that makes the site
  * feel "expensive." Disabled automatically for users who prefer reduced motion.
  */
 export default function SmoothScroll({

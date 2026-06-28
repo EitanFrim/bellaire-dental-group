@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * Embeds the practice's real PMS-integrated scheduler (Dolfin "Web Sched")
- * in an iframe — the same secure booking flow the practice already uses.
+ * in an iframe - the same secure booking flow the practice already uses.
  *
  * The scheduler is a multi-step, cross-origin app, so the browser won't let us
  * read its content height to auto-size. Instead:
