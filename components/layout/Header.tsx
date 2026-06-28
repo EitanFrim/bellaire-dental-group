@@ -6,11 +6,10 @@ import { createPortal } from "react-dom";
 import { Phone, Menu, X, ChevronDown, ArrowRight } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
 import { BrandIcon } from "@/components/brand/BrandIcon";
-import { ServiceIcon } from "@/components/brand/ServiceIcon";
 import { BookButton } from "@/components/booking/BookButton";
 import { Container } from "@/components/ui/Container";
 import { navLinks } from "@/lib/nav";
-import { featuredServices } from "@/lib/services";
+import { serviceMenuGroups, getService } from "@/lib/services";
 import { practice } from "@/lib/practice";
 import { cn } from "@/lib/utils";
 
@@ -104,28 +103,36 @@ function ServicesDropdown() {
         Services
         <ChevronDown className="h-4 w-4 transition-transform duration-200 group-hover:rotate-180" />
       </Link>
-      <div className="invisible absolute left-1/2 top-full z-50 w-[34rem] -translate-x-1/2 translate-y-1 pt-2 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
-        <div className="grid grid-cols-2 gap-1 rounded-3xl border border-line bg-white p-3 shadow-2xl">
-          {featuredServices.map((s) => (
-            <Link
-              key={s.slug}
-              href={`/services/${s.slug}`}
-              className="flex items-start gap-3 rounded-2xl p-3 transition-colors hover:bg-cream"
-            >
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-aqua text-navy-700">
-                <ServiceIcon name={s.icon} className="h-5 w-5" />
-              </span>
-              <span className="leading-tight">
-                <span className="block text-sm font-semibold text-navy-900">
-                  {s.shortName ?? s.name}
-                </span>
-                <span className="block text-xs text-ink-soft">{s.tagline}</span>
-              </span>
-            </Link>
-          ))}
+      <div className="invisible absolute left-1/2 top-full z-50 w-[44rem] -translate-x-1/2 translate-y-1 pt-2 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+        <div className="rounded-3xl border border-line bg-white p-5 shadow-2xl">
+          <div className="grid grid-cols-3 gap-x-6 gap-y-1">
+            {serviceMenuGroups.map((group) => (
+              <div key={group.label}>
+                <p className="px-3 pb-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-cyan-700">
+                  {group.label}
+                </p>
+                {group.slugs.map((slug) => {
+                  const s = getService(slug);
+                  if (!s) return null;
+                  return (
+                    <Link
+                      key={slug}
+                      href={`/services/${slug}`}
+                      className="block rounded-xl px-3 py-2 transition-colors hover:bg-cream"
+                    >
+                      <span className="block text-sm font-semibold text-navy-900">
+                        {s.shortName ?? s.name}
+                      </span>
+                      <span className="block text-xs text-ink-soft">{s.tagline}</span>
+                    </Link>
+                  );
+                })}
+              </div>
+            ))}
+          </div>
           <Link
             href="/services"
-            className="col-span-2 mt-1 flex items-center justify-center gap-1.5 rounded-2xl bg-navy-800 px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-navy-700"
+            className="mt-3 flex items-center justify-center gap-1.5 rounded-2xl bg-navy-800 px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-navy-700"
           >
             View all services <ArrowRight className="h-4 w-4" />
           </Link>

@@ -467,6 +467,17 @@ export const services: Service[] = [
 export const pageServices = services.filter((s) => s.hasPage);
 export const featuredServices = services.filter((s) => s.featured);
 
+/**
+ * Curated, balanced groups for the Services mega menu. Grouping by category is
+ * how leading dental sites organize their nav. Every slug here links to a real
+ * /services/[slug] page.
+ */
+export const serviceMenuGroups: Array<{ label: string; slugs: string[] }> = [
+  { label: "Cosmetic", slugs: ["teeth-whitening", "veneers", "invisalign"] },
+  { label: "Restorative & general", slugs: ["dental-implants", "family-dentistry", "laser-dentistry"] },
+  { label: "Specialty", slugs: ["tmj-sleep-apnea", "sedation", "emergency-dentistry"] },
+];
+
 export function getService(slug: string) {
   return services.find((s) => s.slug === slug);
 }

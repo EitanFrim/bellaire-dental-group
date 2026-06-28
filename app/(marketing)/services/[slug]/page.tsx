@@ -7,7 +7,6 @@ import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
-import { ServiceIcon } from "@/components/brand/ServiceIcon";
 import { Accordion } from "@/components/ui/Accordion";
 import { BookButton } from "@/components/booking/BookButton";
 import { FinalCTA } from "@/components/sections/FinalCTA";
@@ -108,9 +107,7 @@ export default async function ServicePage({
           <Container className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-7">
               <Reveal>
-                <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-aqua text-navy-700">
-                  <ServiceIcon name={service.icon} className="h-7 w-7" />
-                </span>
+                <span className="block h-1.5 w-14 rounded-full bg-cyan-400" />
                 <div className="mt-6 space-y-4 text-lg leading-relaxed text-ink-soft">
                   {service.overview.map((p, i) => (
                     <p key={i}>{p}</p>
@@ -209,9 +206,7 @@ export default async function ServicePage({
                   href={`/services/${r.slug}`}
                   className="group flex items-center gap-3 rounded-2xl border border-line bg-white p-5 transition-colors hover:border-cyan-200"
                 >
-                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-aqua text-navy-700 group-hover:bg-cyan-400 group-hover:text-navy-950">
-                    <ServiceIcon name={r.icon} className="h-5 w-5" />
-                  </span>
+                  <span className="h-8 w-1 shrink-0 rounded-full bg-cyan-300 transition-colors group-hover:bg-cyan-400" />
                   <span className="font-medium text-navy-900">
                     {r.shortName ?? r.name}
                   </span>

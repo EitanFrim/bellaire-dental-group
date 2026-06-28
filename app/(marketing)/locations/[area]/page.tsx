@@ -6,7 +6,6 @@ import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
-import { ServiceIcon } from "@/components/brand/ServiceIcon";
 import { StarRating } from "@/components/ui/StarRating";
 import { MapEmbed } from "@/components/ui/MapEmbed";
 import { BookButton } from "@/components/booking/BookButton";
@@ -160,11 +159,9 @@ export default async function LocationPage({
                   href={`/services/${s.slug}`}
                   className="group flex h-full flex-col rounded-3xl border border-line bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-200"
                 >
-                  <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-aqua text-navy-700 group-hover:bg-cyan-400 group-hover:text-navy-950">
-                    <ServiceIcon name={s.icon} className="h-[22px] w-[22px]" />
-                  </span>
-                  <h3 className="mt-4 font-display text-lg text-navy-900">{s.name}</h3>
-                  <p className="mt-1.5 flex-1 text-sm leading-relaxed text-ink-soft">
+                  <h3 className="font-display text-lg text-navy-900">{s.name}</h3>
+                  <span className="mt-3 block h-1 w-10 rounded-full bg-cyan-300 transition-all duration-300 group-hover:w-16 group-hover:bg-cyan-400" />
+                  <p className="mt-4 flex-1 text-sm leading-relaxed text-ink-soft">
                     {s.summary}
                   </p>
                 </Link>

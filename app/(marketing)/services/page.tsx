@@ -4,7 +4,6 @@ import { ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { Stagger, StaggerItem } from "@/components/motion/Reveal";
-import { ServiceIcon } from "@/components/brand/ServiceIcon";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
@@ -71,11 +70,9 @@ export default function ServicesPage() {
 function ServiceCard({ service }: { service: Service }) {
   const inner = (
     <>
-      <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-aqua text-navy-700 transition-colors duration-300 group-hover:bg-cyan-400 group-hover:text-navy-950">
-        <ServiceIcon name={service.icon} className="h-[22px] w-[22px]" />
-      </span>
-      <h3 className="mt-4 font-display text-lg text-navy-900">{service.name}</h3>
-      <p className="mt-1.5 flex-1 text-sm leading-relaxed text-ink-soft">{service.summary}</p>
+      <h3 className="font-display text-lg text-navy-900">{service.name}</h3>
+      <span className="mt-3 block h-1 w-10 rounded-full bg-cyan-300 transition-all duration-300 group-hover:w-16 group-hover:bg-cyan-400" />
+      <p className="mt-4 flex-1 text-sm leading-relaxed text-ink-soft">{service.summary}</p>
       {service.hasPage && (
         <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-cyan-700">
           Learn more
