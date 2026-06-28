@@ -137,6 +137,38 @@ export const practice = {
   ],
   paymentAccepted: ["Cash", "Check", "Credit Card", "Cherry", "CareCredit", "Most PPO insurance"],
 
+  // --- In-office savings plan (for patients without dental insurance) ---
+  // TODO(client): confirm the current annual fee, included visits, and the
+  // discount percentage on other treatment, then surface them here.
+  membershipPlan: {
+    name: "In-Office Dental Savings Plan",
+    tagline: "No insurance? No problem.",
+    summary:
+      "An affordable, no-hassle annual membership for patients without dental insurance — covering your routine preventive care and discounting the rest of your treatment. It's not insurance, so there are no claim forms and none of the usual red tape.",
+    highlights: [
+      "No insurance required",
+      "No deductibles or annual maximums",
+      "No waiting periods or pre-existing limits",
+      "Discounted fees on treatment beyond your covered visits",
+    ],
+  },
+
+  // --- Current specials / offers ---
+  // TODO(client): keep this list current; remove or add seasonal promotions.
+  specials: [
+    {
+      title: "Complimentary cosmetic consultation",
+      description:
+        "Thinking about veneers, Invisalign, or a smile makeover? Sit down with Dr. Valter to talk through your options — no cost, no pressure.",
+    },
+  ],
+
+  // --- Patient resources (env-overridable; graceful fallbacks when unset) ---
+  // New-patient intake forms to complete before the first visit.
+  patientFormsUrl: process.env.NEXT_PUBLIC_PATIENT_FORMS_URL || "",
+  // Existing-patient online portal login.
+  patientPortalUrl: process.env.NEXT_PUBLIC_PATIENT_PORTAL_URL || "",
+
   // --- Social ---
   social: {
     facebook: "https://www.facebook.com/bellairedentalgroup",

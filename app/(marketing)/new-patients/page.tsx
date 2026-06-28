@@ -1,6 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Check, CreditCard, ShieldCheck, FileText, ArrowRight, Phone } from "lucide-react";
+import {
+  Check,
+  CreditCard,
+  ShieldCheck,
+  FileText,
+  ArrowRight,
+  Phone,
+  BadgePercent,
+  Gift,
+  Download,
+  LogIn,
+} from "lucide-react";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -15,7 +26,7 @@ import { practice } from "@/lib/practice";
 export const metadata: Metadata = {
   title: "New Patients — What to Expect",
   description:
-    "New to Bellaire Dental Group? Here's what your first visit looks like, plus insurance, financing (Cherry & CareCredit), and easy ways to book. We can't wait to meet you.",
+    "New to Bellaire Dental Group? Here's what your first visit looks like, plus insurance, financing (Cherry & CareCredit), our no-insurance savings plan, and easy ways to book. We can't wait to meet you.",
   alternates: { canonical: "/new-patients" },
 };
 
@@ -53,7 +64,7 @@ const faqs = [
   },
   {
     q: "What if I don't have insurance?",
-    a: "No problem at all. We offer flexible financing through Cherry and CareCredit so you can spread out the cost of care, and we'll always discuss fees openly before any treatment.",
+    a: "No problem at all. We offer an in-office dental savings plan that covers your routine preventive care and discounts other treatment — no insurance, deductibles, or waiting periods. We also offer flexible financing through Cherry and CareCredit, and we'll always discuss fees openly before any treatment.",
   },
   {
     q: "How early should I arrive?",
@@ -189,6 +200,121 @@ export default function NewPatientsPage() {
               </p>
             </div>
           </Reveal>
+        </Container>
+      </section>
+
+      {/* No insurance? Savings plan + specials */}
+      <section className="py-16 lg:py-24">
+        <Container>
+          <SectionHeading
+            eyebrow="Affordable care"
+            title={
+              <>
+                No insurance? <span className="text-gradient">No problem.</span>
+              </>
+            }
+            intro={practice.membershipPlan.summary}
+          />
+          <div className="mt-12 grid gap-8 lg:grid-cols-2">
+            <Reveal>
+              <div className="h-full rounded-3xl border border-line bg-white p-8">
+                <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-aqua text-navy-700">
+                  <BadgePercent className="h-6 w-6" />
+                </span>
+                <h2 className="mt-5 font-display text-2xl text-navy-900">
+                  {practice.membershipPlan.name}
+                </h2>
+                <ul className="mt-5 space-y-3 text-sm text-navy-800">
+                  {practice.membershipPlan.highlights.map((h) => (
+                    <li key={h} className="flex items-start gap-2">
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-cyan-500" /> {h}
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-5 text-xs text-ink-soft">
+                  Ask us for this year&apos;s membership details — we&apos;ll walk you
+                  through exactly what&apos;s included.
+                </p>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.08}>
+              <div className="h-full rounded-3xl border border-line bg-white p-8">
+                <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gold-100 text-gold-600">
+                  <Gift className="h-6 w-6" />
+                </span>
+                <h2 className="mt-5 font-display text-2xl text-navy-900">
+                  Current specials
+                </h2>
+                <ul className="mt-5 space-y-4">
+                  {practice.specials.map((s) => (
+                    <li key={s.title}>
+                      <span className="block font-medium text-navy-900">{s.title}</span>
+                      <span className="block text-sm leading-relaxed text-ink-soft">
+                        {s.description}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-5 text-xs text-ink-soft">
+                  Call{" "}
+                  <a href={`tel:${practice.phone.tel}`} className="font-medium text-cyan-700">
+                    {practice.phone.display}
+                  </a>{" "}
+                  to ask about our latest offers.
+                </p>
+              </div>
+            </Reveal>
+          </div>
+
+          {/* Save time before your visit — forms & portal (shown when configured) */}
+          {(practice.patientFormsUrl || practice.patientPortalUrl) && (
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              {practice.patientFormsUrl && (
+                <a
+                  href={practice.patientFormsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-4 rounded-2xl border border-line bg-white p-6 transition-colors hover:border-cyan-300"
+                >
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-mint text-navy-700">
+                    <Download className="h-6 w-6" />
+                  </span>
+                  <span>
+                    <span className="block font-semibold text-navy-900">
+                      New-patient forms
+                    </span>
+                    <span className="block text-sm text-ink-soft">
+                      Fill out your paperwork online before you arrive and save time at
+                      check-in.
+                    </span>
+                  </span>
+                  <ArrowRight className="ml-auto h-4 w-4 text-cyan-600 transition-transform group-hover:translate-x-0.5" />
+                </a>
+              )}
+              {practice.patientPortalUrl && (
+                <a
+                  href={practice.patientPortalUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-4 rounded-2xl border border-line bg-white p-6 transition-colors hover:border-cyan-300"
+                >
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-aqua text-navy-700">
+                    <LogIn className="h-6 w-6" />
+                  </span>
+                  <span>
+                    <span className="block font-semibold text-navy-900">
+                      Existing patient portal
+                    </span>
+                    <span className="block text-sm text-ink-soft">
+                      Already a patient? Sign in to manage your account and appointments.
+                    </span>
+                  </span>
+                  <ArrowRight className="ml-auto h-4 w-4 text-cyan-600 transition-transform group-hover:translate-x-0.5" />
+                </a>
+              )}
+            </div>
+          )}
         </Container>
       </section>
 

@@ -39,6 +39,11 @@ const nextConfig: NextConfig = {
             ...wpRedirects,
             { source: "/services.html", destination: "/services", permanent: true },
             { source: "/contact.html", destination: "/contact", permanent: true },
+            // Old blog & gallery sub-paths (pagination, individual posts) →
+            // their new equivalents, so deep old URLs don't 404.
+            { source: "/our-blog/:path*", destination: "/blog", permanent: true },
+            { source: "/patient-resources/blog/:path*", destination: "/blog", permanent: true },
+            { source: "/gallery/:path*", destination: "/smile-gallery", permanent: true },
           ];
         },
       }),

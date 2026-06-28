@@ -53,7 +53,9 @@ export type IconKey =
   | "gum"
   | "screening"
   | "dentures"
-  | "child";
+  | "child"
+  | "laser"
+  | "sedation";
 
 export const SERVICE_CATEGORY_ORDER: ServiceCategory[] = [
   "Cosmetic Dentistry",
@@ -309,6 +311,74 @@ export const services: Service[] = [
     ],
     related: ["family-dentistry", "crowns-bridges", "dental-implants"],
     keywords: ["emergency dentist Houston", "same day dentist Bellaire", "toothache", "broken tooth"],
+  },
+
+  {
+    slug: "sedation",
+    name: "Sedation & Comfort Options",
+    shortName: "Sedation",
+    category: "General & Preventive",
+    icon: "sedation",
+    tagline: "Relax through your visit",
+    summary:
+      "Nervous about the dentist? Nitrous oxide (laughing gas) and a calm, unhurried approach help you stay relaxed and comfortable from start to finish.",
+    hasPage: true,
+    image: "/images/services/sleep.webp",
+    heroHeadline: "Anxiety-free dentistry, at your pace",
+    overview: [
+      "Dental anxiety is real, and at Bellaire Dental Group it's met with patience instead of pressure. Calming visits for nervous patients is one of the things we're known for — we explain every step in plain language, check in often, and never rush you through care.",
+      "For extra ease, Dr. Valter offers nitrous oxide (laughing gas) — a safe, gentle sedation that helps you relax during treatment and wears off within minutes, so you can drive yourself home and get back to your day. If you've put off dental care because of fear, this is a comfortable place to start.",
+    ],
+    benefits: [
+      { title: "Calm by design", description: "A quiet, unhurried environment built around your comfort, not the clock." },
+      { title: "Gentle nitrous sedation", description: "Laughing gas eases anxiety during treatment and wears off in minutes." },
+      { title: "Go at your pace", description: "Tell us you're nervous and we'll explain each step and pause whenever you need." },
+    ],
+    process: [
+      { title: "Tell us how you feel", description: "Share what makes you anxious — past experiences, sounds, needles — so we can plan around it." },
+      { title: "Relax", description: "We offer comfort options including nitrous oxide and take treatment one calm step at a time." },
+      { title: "Recover quickly", description: "Nitrous wears off within minutes, so there's no grogginess and no need for a ride home." },
+    ],
+    faqs: [
+      { q: "Is nitrous oxide (laughing gas) safe?", a: "Yes — nitrous oxide is one of the safest and most widely used sedatives in dentistry, suitable for both adults and children. You breathe it through a small mask, stay fully awake and aware, and the effects wear off within minutes of removing the mask." },
+      { q: "Will I be asleep during treatment?", a: "No. Nitrous oxide helps you feel calm and relaxed while staying conscious and able to respond. It takes the edge off anxiety without putting you to sleep." },
+      { q: "I have severe dental anxiety and haven't been in years. Can you help?", a: "Absolutely — you're exactly who we love to care for. There's zero judgment about how long it's been. We'll go slowly, explain everything, and offer comfort options so you can get back to healthy, comfortable visits." },
+    ],
+    related: ["family-dentistry", "emergency-dentistry", "childrens-dentistry"],
+    keywords: ["sedation dentistry Houston", "nitrous oxide dentist Bellaire", "dental anxiety Houston", "laughing gas dentist", "sedation dentist near me"],
+  },
+  {
+    slug: "laser-dentistry",
+    name: "Laser Dentistry",
+    category: "General & Preventive",
+    icon: "laser",
+    tagline: "Comfortable, precise care",
+    summary:
+      "Dental lasers treat gum and soft-tissue concerns and ease tooth sensitivity — often with less discomfort, less bleeding, and faster healing.",
+    hasPage: true,
+    image: "/images/services/family.webp",
+    heroHeadline: "Gentler, more precise treatment with dental lasers",
+    overview: [
+      "Dentistry keeps getting more comfortable, and laser treatment is a big reason why. Dr. Valter uses dental lasers to address soft-tissue concerns and to relieve tooth sensitivity — a precise, conservative approach that often means less discomfort during and after your visit.",
+      "Because lasers are so targeted, many procedures involve less bleeding and swelling and a quicker recovery than traditional methods. It's another way we keep your experience calm, efficient, and as gentle as possible.",
+    ],
+    benefits: [
+      { title: "More comfortable", description: "Precise treatment often means less discomfort during and after your appointment." },
+      { title: "Faster healing", description: "Targeted soft-tissue care typically means less bleeding, swelling, and downtime." },
+      { title: "Conservative", description: "Lasers preserve more healthy tissue and support gentler, minimally invasive care." },
+    ],
+    process: [
+      { title: "Evaluate", description: "We examine the area and confirm whether laser treatment is the best approach for you." },
+      { title: "Treat", description: "Targeted laser care addresses the soft tissue or sensitivity with precision and comfort." },
+      { title: "Heal", description: "Most patients recover quickly, with simple aftercare guidance to follow at home." },
+    ],
+    faqs: [
+      { q: "What is laser dentistry used for?", a: "At Bellaire Dental Group, dental lasers are used primarily for soft-tissue (gum) treatments and to help relieve tooth sensitivity. Lasers allow for precise, conservative care in these situations." },
+      { q: "Is laser treatment painful?", a: "Most patients find laser treatment more comfortable than traditional methods, with less discomfort during the procedure and a quicker, easier recovery afterward." },
+      { q: "Does laser dentistry cost more?", a: "It depends on the specific treatment. We'll always review the recommended approach and give you a clear estimate before any care, and we offer financing through Cherry and CareCredit." },
+    ],
+    related: ["gum-disease", "family-dentistry", "oral-cancer-screening"],
+    keywords: ["laser dentistry Houston", "soft tissue laser dentist Bellaire", "laser gum treatment Houston"],
   },
 
   // --- Also offered (listed on hub; no dedicated page yet) ---

@@ -23,7 +23,22 @@ const map: Array<[string, string]> = [
   ["/patient-resources/patient-specials", "/new-patients"],
   ["/patient-resources/join-our-referral-giveaway", "/new-patients"],
   ["/privacy-policy", "/privacy"],
+  ["/about-us", "/about"],
+  ["/dr-regina-valter-dds", "/about"],
+  ["/dr-alan-stanton-dds", "/about"], // former dentist; route to the team page
+  ["/appointment", "/book"],
+  ["/contact-us", "/contact"],
+  ["/patient-reviews", "/reviews"],
   // /contact, /reviews already match new routes — no redirect needed.
+
+  // --- Gallery / office tour (old) → smile gallery ---
+  ["/gallery", "/smile-gallery"],
+  ["/gallery/office-tour", "/smile-gallery"],
+  ["/gallery/patient-photos", "/smile-gallery"],
+  ["/lobby-video", "/smile-gallery"],
+
+  // --- Old blog roots → new blog ---
+  ["/our-blog", "/blog"],
 
   // --- Services hub ---
   ["/dental-care", "/services"],
@@ -37,6 +52,7 @@ const map: Array<[string, string]> = [
   ["/dental-care/cosmetic-dentistry/dental-veneers", "/services/veneers"],
   ["/dental-care/cosmetic-dentistry/invisalign", "/services/invisalign"],
   ["/dental-care/cosmetic-dentistry/clear-aligners", "/services/invisalign"],
+  ["/dental-care/cosmetic-dentistry/orafit-clear-aligners", "/services/invisalign"],
   ["/dental-care/cosmetic-dentistry/teeth-whitening", "/services/teeth-whitening"],
   ["/dental-care/cosmetic-dentistry/botox", "/services/botox-fillers"],
   ["/dental-care/cosmetic-dentistry/dermal-fillers", "/services/botox-fillers"],
@@ -54,8 +70,8 @@ const map: Array<[string, string]> = [
   ["/dental-care/general-dentistry/gum-disease-treatment", "/services/gum-disease"],
   ["/dental-care/general-dentistry/oral-cancer-screening", "/services/oral-cancer-screening"],
   ["/dental-care/general-dentistry/dentures-and-partials", "/services/dentures"],
-  ["/dental-care/general-dentistry/laser-dentistry", "/services"],
-  ["/dental-care/general-dentistry/nitrous-oxide-sedation", "/services/family-dentistry"],
+  ["/dental-care/general-dentistry/laser-dentistry", "/services/laser-dentistry"],
+  ["/dental-care/general-dentistry/nitrous-oxide-sedation", "/services/sedation"],
   ["/dental-care/general-dentistry/diagnodent", "/services/family-dentistry"],
 ];
 

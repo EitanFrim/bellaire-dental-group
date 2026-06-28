@@ -95,6 +95,25 @@ function glyph(key: IconKey) {
           <path d="M8.6 10.5h4.8M11 8.1v4.8" />
         </>
       );
+    case "laser":
+      return (
+        <>
+          <path d={TOOTH_D} />
+          <path d="M19.4 3.6 16.2 6.8" />
+          <path
+            d="M18.5 2l.5 1.4 1.4.5-1.4.5-.5 1.4-.5-1.4-1.4-.5 1.4-.5z"
+            fill="currentColor"
+            stroke="none"
+          />
+        </>
+      );
+    case "sedation":
+      return (
+        <>
+          <path d="M5 9h6l-6 7h6" />
+          <path d="M14 4.5h4l-4 4.5h4" />
+        </>
+      );
     default:
       return <path d={TOOTH_D} />;
   }
