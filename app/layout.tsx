@@ -106,11 +106,19 @@ export default function RootLayout({
       className={`${fraunces.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-cream">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-navy-900 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white focus:shadow-lg"
+        >
+          Skip to content
+        </a>
         <SiteJsonLd />
         <SmoothScroll>
           <BookingProvider>
             <Header />
-            <main id="main">{children}</main>
+            <main id="main" tabIndex={-1} className="outline-none">
+              {children}
+            </main>
             <Footer />
             <MobileStickyCTA />
           </BookingProvider>
