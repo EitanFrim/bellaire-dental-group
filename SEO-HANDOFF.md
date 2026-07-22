@@ -13,13 +13,12 @@ steady velocity now mattering more than total count, links ~15%, citations ~7%.)
 The new site cannot rank until it lives on bellairedentalgroup.com. Right now the
 domain still serves the old WordPress site.
 
-First, in the Vercel dashboard (vercel.com, account eitanfrim-6627, project
-"bellaire"): Settings > Domains > add `bellairedentalgroup.com` and
-`www.bellairedentalgroup.com`, and set the www version as primary. (The CLI
-cannot claim an apex domain that is still pointed elsewhere; the dashboard
-handles it and will show the DNS records below.)
+The Vercel side is already fully configured: both domains are attached and
+verified on the project, with bellairedentalgroup.com set to forward to
+www.bellairedentalgroup.com. The moment DNS points at Vercel, the new site
+goes live with HTTPS automatically. Only the registrar step below remains.
 
-Then at your domain registrar (where bellairedentalgroup.com is managed):
+At your domain registrar (where bellairedentalgroup.com is managed):
 
 1. Lower the TTL on existing records to 300 seconds, wait an hour (optional but smooth).
 2. Set these two records, replacing the old host's records:
