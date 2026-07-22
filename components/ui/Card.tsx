@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 
+/** Quiet Studio surface: hairline-ruled paper, no shadow, no blur. */
 export function Card({
   className,
   children,
@@ -8,12 +9,7 @@ export function Card({
   children: React.ReactNode;
 }) {
   return (
-    <div
-      className={cn(
-        "rounded-3xl border border-line bg-white/80 shadow-[0_2px_24px_-12px_rgba(10,31,64,0.18)] backdrop-blur-sm",
-        className,
-      )}
-    >
+    <div className={cn("rounded-[3px] border border-line bg-paper", className)}>
       {children}
     </div>
   );

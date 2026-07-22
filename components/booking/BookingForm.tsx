@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Check, Loader2 } from "lucide-react";
+import { Check, Loader } from "@/components/ui/Icons";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
@@ -14,8 +14,8 @@ const REASONS = [
 ];
 
 const fieldCls =
-  "w-full rounded-xl border border-line bg-white px-4 py-2.5 text-[15px] text-ink shadow-sm outline-none transition-colors placeholder:text-ink-soft/60 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-200";
-const labelCls = "mb-1.5 block text-sm font-medium text-navy-800";
+  "w-full rounded-[2px] border border-line bg-paper px-4 py-2.5 text-[15px] text-ink outline-none transition-colors placeholder:text-ink-faint focus:border-ink";
+const labelCls = "mb-1.5 block text-sm font-medium text-ink";
 
 export function BookingForm({ onSuccess }: { onSuccess?: () => void }) {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">(
@@ -24,15 +24,18 @@ export function BookingForm({ onSuccess }: { onSuccess?: () => void }) {
 
   if (status === "success") {
     return (
-      <div className="flex flex-col items-center gap-3 py-8 text-center">
-        <span className="flex h-14 w-14 items-center justify-center rounded-full bg-mint text-navy-800">
-          <Check className="h-7 w-7" />
+      <div className="flex flex-col items-center gap-4 py-10 text-center">
+        <span className="flex h-14 w-14 items-center justify-center rounded-full border border-line text-bronze">
+          <Check size={24} />
         </span>
-        <h3 className="font-display text-xl text-navy-900">Request received</h3>
-        <p className="max-w-xs text-sm text-ink-soft">
+        <h3 className="font-display text-2xl text-ink">Request received</h3>
+        <p className="max-w-xs text-sm leading-relaxed text-ink-soft">
           Thank you. Our team will reach out shortly to confirm your appointment.
           For anything urgent, please call us at{" "}
-          <a href="tel:+17136688383" className="font-medium text-cyan-600 underline">
+          <a
+            href="tel:+17136688383"
+            className="tnum font-medium text-ink underline decoration-line underline-offset-4"
+          >
             (713) 668-8383
           </a>
           .
@@ -141,7 +144,7 @@ export function BookingForm({ onSuccess }: { onSuccess?: () => void }) {
           type="checkbox"
           name="consent"
           required
-          className="mt-0.5 h-4 w-4 rounded border-line text-cyan-500 focus:ring-cyan-300"
+          className="mt-0.5 h-4 w-4 accent-ink"
         />
         <span>
           I agree to be contacted about my request. This form is not for medical
@@ -158,14 +161,14 @@ export function BookingForm({ onSuccess }: { onSuccess?: () => void }) {
 
       <Button
         type="submit"
-        variant="primary"
+        variant="ink"
         size="lg"
         className="w-full"
         disabled={status === "submitting"}
       >
         {status === "submitting" ? (
           <>
-            <Loader2 className="h-4 w-4 animate-spin" /> Sending…
+            <Loader size={15} /> Sending…
           </>
         ) : (
           "Request appointment"

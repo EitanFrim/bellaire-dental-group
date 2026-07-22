@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { Plus } from "lucide-react";
+import { Plus } from "@/components/ui/Icons";
 import { cn } from "@/lib/utils";
 
 export type FaqItem = { q: string; a: string };
@@ -18,20 +18,29 @@ export function Accordion({
   const reduce = useReducedMotion();
 
   return (
-    <div className={cn("divide-y divide-line rounded-3xl border border-line bg-white/70", className)}>
+    <div className={cn("border-t border-line", className)}>
       {items.map((item, i) => {
         const isOpen = open === i;
         return (
-          <div key={i}>
+          <div key={i} className="border-b border-line">
             <button
               onClick={() => setOpen(isOpen ? null : i)}
               aria-expanded={isOpen}
-              className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left sm:px-6"
+              className="flex w-full items-baseline gap-5 py-6 text-left"
             >
-              <span className="font-display text-lg text-navy-900">{item.q}</span>
+              <span
+                aria-hidden="true"
+                className="font-display text-sm tnum text-bronze"
+              >
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <span className="flex-1 font-display text-lg leading-snug text-ink sm:text-xl">
+                {item.q}
+              </span>
               <Plus
+                size={18}
                 className={cn(
-                  "h-5 w-5 shrink-0 text-cyan-600 transition-transform duration-300",
+                  "relative top-0.5 text-ink-soft transition-transform duration-300",
                   isOpen && "rotate-45",
                 )}
               />
@@ -45,7 +54,7 @@ export function Accordion({
                   transition={{ duration: reduce ? 0 : 0.32, ease: [0.22, 1, 0.36, 1] }}
                   className="overflow-hidden"
                 >
-                  <p className="px-5 pb-5 text-pretty leading-relaxed text-ink-soft sm:px-6">
+                  <p className="max-w-2xl pb-6 pl-9 text-pretty leading-relaxed text-ink-soft">
                     {item.a}
                   </p>
                 </motion.div>

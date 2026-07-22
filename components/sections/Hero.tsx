@@ -1,114 +1,108 @@
-import { Img } from "@/components/ui/Img";
-import { Phone, ArrowRight, ShieldCheck, Sparkles } from "lucide-react";
-import { AuroraBackground } from "./AuroraBackground";
+import { ArrowRight, Phone } from "@/components/ui/Icons";
+import { HeroMedia } from "./HeroMedia";
 import { BookButton } from "@/components/booking/BookButton";
 import { Container } from "@/components/ui/Container";
 import { StarRating } from "@/components/ui/StarRating";
 import { Reveal } from "@/components/motion/Reveal";
 import { practice } from "@/lib/practice";
 
+/**
+ * Full-bleed cinematic hero: a slow ambient film of a golden-hour treatment
+ * lounge under quiet night scrims, serif display type anchored bottom-left,
+ * and a hairline trust bar along the base. The Header renders inverted
+ * (light) over this section until the page is scrolled.
+ */
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-cream">
-      <AuroraBackground />
+    <section className="relative isolate overflow-hidden bg-night">
+      <HeroMedia
+        poster="/images/hero/calm-lounge.webp"
+        posterPortrait="/images/hero/calm-lounge-portrait.webp"
+        posterAlt="Warm golden light falling across a calm, spa-like treatment lounge with a soft ivory chair and an olive tree"
+        videoDesktop="/videos/hero-loop.mp4"
+        videoMobile="/videos/hero-loop-portrait.mp4"
+      />
 
-      <Container className="relative grid items-center gap-12 pb-16 pt-28 lg:grid-cols-12 lg:gap-10 lg:pb-28 lg:pt-40">
-        {/* Copy */}
-        <div className="lg:col-span-6">
+      {/* Scrims: keep the imagery luminous on the right, legible on the left */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 z-[1] bg-gradient-to-r from-night/80 via-night/30 to-transparent"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 bottom-0 z-[1] h-3/5 bg-gradient-to-t from-night/90 via-night/40 to-transparent"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 z-[1] h-40 bg-gradient-to-b from-night/60 to-transparent"
+      />
+
+      <Container className="relative z-[2] flex min-h-[100svh] flex-col">
+        {/* The flex spacer bottom-anchors the copy without overflowing
+            short viewports; pt only clears the fixed header */}
+        <div className="flex-1" />
+
+        <div className="max-w-3xl pb-10 pt-24 sm:pb-14">
           <Reveal>
-            <span className="inline-flex items-center gap-2 rounded-full border border-line bg-white/70 px-3.5 py-1.5 text-sm text-navy-700 shadow-sm backdrop-blur">
-              <StarRating value={5} size={14} />
-              <strong className="font-semibold text-navy-900">
-                {practice.ratings.google.value}
-              </strong>
-              <span className="text-ink-soft">
-                · {practice.ratings.google.count} Google reviews
+            <p className="flex items-center gap-3">
+              <StarRating value={5} size={11} className="text-bronze-soft" />
+              <span className="label text-bone/75">
+                {practice.ratings.google.value} · {practice.ratings.google.count}{" "}
+                Google reviews
               </span>
-            </span>
+            </p>
           </Reveal>
 
           <Reveal delay={0.06}>
-            <h1 className="mt-6 text-balance font-display text-4xl leading-[1.04] text-navy-900 sm:text-5xl lg:text-6xl">
+            <h1 className="mt-7 text-balance font-display text-[2.6rem] leading-[1.06] text-bone sm:text-6xl sm:leading-[1.03] lg:text-7xl">
               Gentle, modern dentistry in the heart of{" "}
-              <span className="text-gradient">Houston</span>.
+              <span className="accent-italic">Houston</span>.
             </h1>
           </Reveal>
 
           <Reveal delay={0.12}>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-soft">
+            <p className="mt-7 max-w-xl text-lg leading-relaxed text-bone/80">
               Cosmetic, family &amp; restorative care from Dr. Regina Valter:
               unhurried, judgment-free, and designed entirely around your comfort.
             </p>
           </Reveal>
 
           <Reveal delay={0.18}>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <BookButton size="lg" variant="primary">
-                Book your visit <ArrowRight className="h-4 w-4" />
+            <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
+              <BookButton size="lg" variant="light">
+                Book your visit <ArrowRight size={15} />
               </BookButton>
               <a
                 href={`tel:${practice.phone.tel}`}
-                className="inline-flex h-[3.25rem] items-center justify-center gap-2 rounded-full border border-navy-200 bg-white/70 px-7 text-base font-medium text-navy-800 backdrop-blur transition-colors hover:bg-white"
+                className="tnum inline-flex h-[3.375rem] items-center justify-center gap-2.5 rounded-[2px] border border-white/35 px-9 text-sm font-medium text-bone transition-colors hover:border-bone hover:bg-bone hover:text-ink"
               >
-                <Phone className="h-4 w-4 text-cyan-600" /> {practice.phone.display}
+                <Phone size={14} /> {practice.phone.display}
               </a>
             </div>
           </Reveal>
+        </div>
 
-          <Reveal delay={0.24}>
-            <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-ink-soft">
-              <span className="inline-flex items-center gap-2">
-                <ShieldCheck className="h-4 w-4 text-cyan-600" /> Most PPO insurance
-                welcome
-              </span>
-              <span className="inline-flex items-center gap-2">
-                <Sparkles className="h-4 w-4 text-gold-400" /> Now welcoming new
-                patients
+        {/* Trust bar along the base of the frame */}
+        <Reveal delay={0.24} y={12} viewportMargin="0px">
+          <div className="flex items-center justify-between gap-6 border-t border-line-light py-4 sm:py-5">
+            <div className="label flex flex-wrap items-center gap-x-8 gap-y-2 text-bone/60">
+              <span>Most PPO insurance</span>
+              <span className="hidden sm:inline">Same-day emergencies</span>
+              <span>New patients welcome</span>
+            </div>
+
+            <div
+              className="hidden shrink-0 items-center gap-3 md:flex"
+              aria-hidden="true"
+            >
+              <span className="label text-bone/45">Scroll</span>
+              <span className="relative h-9 w-px overflow-hidden bg-white/20">
+                <span className="absolute inset-x-0 top-0 h-3 animate-scroll-cue bg-bone/80" />
               </span>
             </div>
-          </Reveal>
-        </div>
-
-        {/* Visual */}
-        <div className="lg:col-span-6">
-          <Reveal delay={0.1}>
-            <HeroVisual />
-          </Reveal>
-        </div>
+          </div>
+        </Reveal>
       </Container>
     </section>
-  );
-}
-
-function HeroVisual() {
-  return (
-    <div className="relative mx-auto max-w-md lg:mr-0 lg:max-w-none">
-      <div className="relative aspect-[4/5] overflow-hidden rounded-[2.25rem] border border-white/70 shadow-[0_40px_80px_-30px_rgba(10,31,64,0.5)]">
-        <Img
-          src="/images/office/lobby.jpg"
-          alt="The calm, modern reception area at Bellaire Dental Group"
-          fill
-          priority
-          sizes="(max-width: 1024px) 90vw, 42vw"
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-navy-950/35 via-transparent to-transparent" />
-      </div>
-
-      {/* Floating review */}
-      <div className="absolute -left-3 bottom-12 w-56 animate-float rounded-2xl border border-line bg-white/90 p-4 shadow-xl backdrop-blur sm:-left-6">
-        <StarRating value={5} size={14} />
-        <p className="mt-2 text-sm leading-snug text-navy-800">
-          “I now look forward to going to the dentist!”
-        </p>
-        <p className="mt-1 text-xs text-ink-soft">Jan, Google review</p>
-      </div>
-
-      {/* Floating stat */}
-      <div className="absolute -right-3 top-10 animate-float rounded-2xl border border-line bg-white/90 px-4 py-3 text-center shadow-xl backdrop-blur [animation-delay:1.6s] sm:-right-5">
-        <p className="font-display text-2xl text-navy-900">4.9★</p>
-        <p className="text-xs text-ink-soft">352 reviews</p>
-      </div>
-    </div>
   );
 }

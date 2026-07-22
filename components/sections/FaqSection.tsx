@@ -18,10 +18,18 @@ export function FaqSection({
   withSchema?: boolean;
 }) {
   return (
-    <section className="py-20 lg:py-28">
-      <Container className="max-w-3xl">
-        <SectionHeading eyebrow={eyebrow} title={title} intro={intro} />
-        <div className="mt-10">
+    <section className="py-24 lg:py-32">
+      <Container className="grid gap-12 lg:grid-cols-12 lg:gap-10">
+        <div className="lg:col-span-4">
+          <SectionHeading
+            align="left"
+            eyebrow={eyebrow}
+            title={title}
+            intro={intro}
+            className="lg:sticky lg:top-28"
+          />
+        </div>
+        <div className="lg:col-span-8">
           <Accordion items={items} />
         </div>
       </Container>

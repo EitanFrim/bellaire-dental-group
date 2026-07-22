@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { Phone, Menu, X, ChevronDown, ArrowRight } from "lucide-react";
+import { Phone, Menu, Close, ChevronDown, ArrowRight } from "@/components/ui/Icons";
 import { Logo } from "@/components/brand/Logo";
-import { BrandIcon } from "@/components/brand/BrandIcon";
 import { BookButton } from "@/components/booking/BookButton";
 import { Container } from "@/components/ui/Container";
 import { navLinks } from "@/lib/nav";
@@ -13,9 +13,16 @@ import { serviceMenuGroups, getService } from "@/lib/services";
 import { practice } from "@/lib/practice";
 import { cn } from "@/lib/utils";
 
+/** Routes whose hero is a dark, full-bleed visual the header sits on top of. */
+const DARK_HERO_ROUTES = new Set(["/"]);
+
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
+  // Invert to white-on-dark while resting over a dark hero; the scrolled
+  // solid state always wins so the header stays legible everywhere else.
+  const overDark = DARK_HERO_ROUTES.has(pathname) && !scrolled;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -34,46 +41,50 @@ export function Header() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        scrolled
-          ? "glass border-b border-line/70 shadow-[0_6px_24px_-14px_rgba(10,31,64,0.3)]"
-          : "bg-transparent",
+        "fixed inset-x-0 top-0 z-50 transition-colors duration-300",
+        scrolled ? "border-b border-line bg-bone" : "bg-transparent",
       )}
     >
       <Container className="flex h-16 items-center justify-between gap-4 lg:h-20">
-        <Logo theme="dark" />
+        <Logo theme={overDark ? "light" : "dark"} height={34} />
 
-        <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
           {navLinks.map((link) =>
             link.hasMega ? (
-              <ServicesDropdown key={link.href} />
+              <ServicesDropdown key={link.href} light={overDark} />
             ) : (
-              <NavLink key={link.href} href={link.href}>
+              <NavLink key={link.href} href={link.href} light={overDark}>
                 {link.label}
               </NavLink>
             ),
           )}
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-6 lg:flex">
           <a
             href={`tel:${practice.phone.tel}`}
-            className="flex items-center gap-2 rounded-full px-3 py-2 text-sm font-semibold text-navy-800 transition-colors hover:bg-navy-50"
+            className={cn(
+              "tnum flex items-center gap-2 text-sm font-medium transition-colors",
+              overDark ? "text-bone hover:text-white" : "text-ink hover:text-ink-soft",
+            )}
           >
-            <Phone className="h-4 w-4 text-cyan-600" />
+            <Phone size={14} />
             <span className="hidden xl:inline">{practice.phone.display}</span>
           </a>
-          <BookButton size="sm" variant="primary">
+          <BookButton size="sm" variant={overDark ? "light" : "ink"}>
             Book appointment
           </BookButton>
         </div>
 
         <button
           onClick={() => setMobileOpen(true)}
-          className="flex h-10 w-10 items-center justify-center rounded-full text-navy-900 transition-colors hover:bg-navy-50 lg:hidden"
+          className={cn(
+            "flex h-10 w-10 items-center justify-center transition-colors lg:hidden",
+            overDark ? "text-bone" : "text-ink",
+          )}
           aria-label="Open menu"
         >
-          <Menu className="h-6 w-6" />
+          <Menu size={22} />
         </button>
       </Container>
 
@@ -82,59 +93,78 @@ export function Header() {
   );
 }
 
-function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
+function NavLink({
+  href,
+  children,
+  light = false,
+}: {
+  href: string;
+  children: React.ReactNode;
+  light?: boolean;
+}) {
   return (
     <Link
       href={href}
-      className="rounded-full px-3.5 py-2 text-sm font-medium text-navy-700 transition-colors hover:bg-navy-50 hover:text-navy-950"
+      className={cn(
+        "text-sm font-medium tracking-[0.01em] transition-colors",
+        light ? "text-bone/80 hover:text-bone" : "text-ink-soft hover:text-ink",
+      )}
     >
       {children}
     </Link>
   );
 }
 
-function ServicesDropdown() {
+function ServicesDropdown({ light = false }: { light?: boolean }) {
   return (
     <div className="group relative">
       <Link
         href="/services"
-        className="flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium text-navy-700 transition-colors hover:bg-navy-50 hover:text-navy-950"
+        className={cn(
+          "flex items-center gap-1.5 text-sm font-medium tracking-[0.01em] transition-colors",
+          light ? "text-bone/80 hover:text-bone" : "text-ink-soft hover:text-ink",
+        )}
       >
         Services
-        <ChevronDown className="h-4 w-4 transition-transform duration-200 group-hover:rotate-180" />
+        <ChevronDown
+          size={13}
+          className="transition-transform duration-200 group-hover:rotate-180"
+        />
       </Link>
-      <div className="invisible absolute left-1/2 top-full z-50 w-[44rem] -translate-x-1/2 translate-y-1 pt-2 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
-        <div className="rounded-3xl border border-line bg-white p-5 shadow-2xl">
-          <div className="grid grid-cols-3 gap-x-6 gap-y-1">
+      <div className="invisible absolute left-1/2 top-full z-50 w-[46rem] -translate-x-1/2 translate-y-1 pt-4 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+        <div className="border border-line bg-paper p-8 shadow-[0_24px_60px_-32px_rgba(15,21,34,0.35)]">
+          <div className="grid grid-cols-3 gap-x-10 gap-y-2">
             {serviceMenuGroups.map((group) => (
               <div key={group.label}>
-                <p className="px-3 pb-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-cyan-700">
-                  {group.label}
-                </p>
-                {group.slugs.map((slug) => {
-                  const s = getService(slug);
-                  if (!s) return null;
-                  return (
-                    <Link
-                      key={slug}
-                      href={`/services/${slug}`}
-                      className="block rounded-xl px-3 py-2 transition-colors hover:bg-cream"
-                    >
-                      <span className="block text-sm font-semibold text-navy-900">
-                        {s.shortName ?? s.name}
-                      </span>
-                      <span className="block text-xs text-ink-soft">{s.tagline}</span>
-                    </Link>
-                  );
-                })}
+                <p className="label pb-3 text-bronze">{group.label}</p>
+                <div className="flex flex-col">
+                  {group.slugs.map((slug) => {
+                    const s = getService(slug);
+                    if (!s) return null;
+                    return (
+                      <Link
+                        key={slug}
+                        href={`/services/${slug}`}
+                        className="group/item border-t border-line py-2.5"
+                      >
+                        <span className="block text-sm font-medium text-ink transition-colors group-hover/item:text-bronze">
+                          {s.shortName ?? s.name}
+                        </span>
+                        <span className="block pt-0.5 text-xs leading-relaxed text-ink-soft">
+                          {s.tagline}
+                        </span>
+                      </Link>
+                    );
+                  })}
+                </div>
               </div>
             ))}
           </div>
           <Link
             href="/services"
-            className="mt-3 flex items-center justify-center gap-1.5 rounded-2xl bg-navy-800 px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-navy-700"
+            className="mt-6 flex items-center justify-between border-t border-line pt-5 text-sm font-medium text-ink transition-colors hover:text-bronze"
           >
-            View all services <ArrowRight className="h-4 w-4" />
+            View all services <ArrowRight size={15} />
           </Link>
         </div>
       </div>
@@ -153,57 +183,67 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
   const menu = (
     <div
       className={cn(
-        "fixed inset-0 z-[60] bg-cream transition-opacity duration-300 lg:hidden",
+        "fixed inset-0 z-[60] bg-bone transition-opacity duration-300 lg:hidden",
         open ? "visible opacity-100" : "invisible opacity-0",
       )}
     >
-      <Container className="flex h-16 items-center justify-between">
-        <Logo theme="dark" />
+      <Container className="flex h-16 items-center justify-between border-b border-line">
+        <Logo theme="dark" height={34} />
         <button
           onClick={onClose}
-          className="flex h-10 w-10 items-center justify-center rounded-full text-navy-900 hover:bg-navy-50"
+          className="flex h-10 w-10 items-center justify-center text-ink"
           aria-label="Close menu"
         >
-          <X className="h-6 w-6" />
+          <Close size={22} />
         </button>
       </Container>
 
       <Container className="flex h-[calc(100%-4rem)] flex-col overflow-y-auto pb-10">
-        <nav className="flex flex-col gap-1 border-b border-line py-4" aria-label="Mobile">
-          {navLinks.map((link) => (
+        <nav className="flex flex-col py-2" aria-label="Mobile">
+          {navLinks.map((link, i) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={onClose}
-              className="flex items-center justify-between rounded-2xl px-3 py-3 font-display text-2xl text-navy-900 transition-colors hover:bg-white"
+              className="flex items-baseline justify-between border-b border-line py-5"
             >
-              {link.label}
-              <ArrowRight className="h-5 w-5 text-cyan-500" />
+              <span className="flex items-baseline gap-4">
+                <span className="font-display text-sm tnum text-bronze" aria-hidden="true">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="font-display text-3xl text-ink">{link.label}</span>
+              </span>
+              <ArrowRight size={16} className="text-ink-soft" />
             </Link>
           ))}
           <Link
             href="/blog"
             onClick={onClose}
-            className="flex items-center justify-between rounded-2xl px-3 py-3 font-display text-2xl text-navy-900 transition-colors hover:bg-white"
+            className="flex items-baseline justify-between border-b border-line py-5"
           >
-            Blog
-            <ArrowRight className="h-5 w-5 text-cyan-500" />
+            <span className="flex items-baseline gap-4">
+              <span className="font-display text-sm tnum text-bronze" aria-hidden="true">
+                {String(navLinks.length + 1).padStart(2, "0")}
+              </span>
+              <span className="font-display text-3xl text-ink">Blog</span>
+            </span>
+            <ArrowRight size={16} className="text-ink-soft" />
           </Link>
         </nav>
 
-        <div className="mt-auto flex flex-col gap-3 pt-6">
-          <BookButton variant="primary" size="lg" className="w-full">
+        <div className="mt-auto flex flex-col gap-3 pt-8">
+          <BookButton variant="ink" size="lg" className="w-full">
             Book appointment
           </BookButton>
           <a
             href={`tel:${practice.phone.tel}`}
-            className="flex items-center justify-center gap-2 rounded-full border border-navy-200 bg-white px-6 py-3 font-semibold text-navy-800"
+            className="tnum inline-flex h-[3.375rem] items-center justify-center gap-2.5 rounded-[2px] border border-line-strong text-sm font-medium text-ink transition-colors hover:bg-ink hover:text-bone"
           >
-            <Phone className="h-4 w-4 text-cyan-600" /> {practice.phone.display}
+            <Phone size={14} /> {practice.phone.display}
           </a>
-          <p className="flex items-center justify-center gap-2 pt-2 text-sm text-ink-soft">
-            <BrandIcon className="h-4 w-4" size={16} /> {practice.ratings.google.value}★ ·{" "}
-            {practice.ratings.google.count} Google reviews
+          <p className="label pt-4 text-center text-ink-faint">
+            {practice.ratings.google.value} stars · {practice.ratings.google.count}{" "}
+            Google reviews
           </p>
         </div>
       </Container>

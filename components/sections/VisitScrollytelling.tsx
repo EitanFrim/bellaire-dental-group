@@ -1,113 +1,281 @@
 "use client";
 
 import { Img } from "@/components/ui/Img";
-import { useState } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { useRef, useState } from "react";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useMotionValueEvent,
+} from "motion/react";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/SectionHeading";
 import { cn } from "@/lib/utils";
 
 const steps = [
   {
-    title: "A warm welcome",
-    body: "Walk into a calm, spa-like space with comfortable seating, fresh coffee, and a team that already knows your name.",
-    image: "/images/office/entry.jpg",
-    alt: "The welcoming entryway at Bellaire Dental Group",
+    label: "Arrival",
+    title: "A quiet arrival",
+    body: "Walk into a calm, spa-like space with soft light, comfortable seating, and a team that already knows your name.",
+    image: "/images/studio/visit-arrival.webp",
+    alt: "The warm oak entry of the studio with an olive branch on a stone ledge",
   },
   {
+    label: "Settle in",
     title: "Settle in, no rush",
     body: "We never double-book or hurry you. There's time to ask every question and understand exactly what's happening.",
-    image: "/images/office/waiting.jpg",
-    alt: "Comfortable, modern waiting area",
+    image: "/images/studio/visit-consult.webp",
+    alt: "A quiet consultation corner with two soft chairs in warm window light",
   },
   {
+    label: "Care",
     title: "Gentle, precise care",
     body: "Modern, low-radiation imaging and gentle techniques, with comfort options like nitrous sedation whenever you want them.",
-    image: "/images/team/dr-regina-valter.jpg",
-    alt: "Dr. Regina Valter providing gentle care",
+    image: "/images/studio/visit-care.webp",
+    alt: "Folded cream linen towels on a warm oak tray in soft light",
   },
   {
-    title: "Leave smiling",
+    label: "Leave",
+    title: "Leave lighter",
     body: "A clear plan, honest pricing, and zero pressure. Most patients tell us it's the most relaxed dental visit they've had.",
-    image: "/images/lifestyle/smile-family.webp",
-    alt: "Happy patients with healthy, natural smiles",
+    image: "/images/studio/studio-lounge.webp",
+    alt: "A warm reading corner of the lounge at dusk",
   },
 ];
 
+/**
+ * "The visit" chapters. On large screens the section pins to the viewport
+ * and scrolling advances through four chapters: the large framed still and
+ * the step text swap together, with a labeled progress rail underneath.
+ * Small screens and reduced-motion users get the stacked editorial version.
+ */
 export function VisitScrollytelling() {
-  const [active, setActive] = useState(0);
   const reduce = useReducedMotion();
+  if (reduce) return <StaticChapters />;
+  return (
+    <>
+      <div className="lg:hidden">
+        <StaticChapters />
+      </div>
+      <div className="hidden lg:block">
+        <PinnedChapters />
+      </div>
+    </>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Pinned chapter player (desktop)                                     */
+/* ------------------------------------------------------------------ */
+
+function PinnedChapters() {
+  const ref = useRef<HTMLElement>(null);
+  const [active, setActive] = useState(0);
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end end"],
+  });
+
+  useMotionValueEvent(scrollYProgress, "change", (v) => {
+    const idx = Math.max(
+      0,
+      Math.min(steps.length - 1, Math.floor(v * steps.length)),
+    );
+    setActive(idx);
+  });
+
+  // Land chapter i mid-dwell: progress (i + 0.5) / n across the scrollable
+  // distance (section height minus the pinned viewport).
+  const jumpTo = (i: number) => {
+    const el = ref.current;
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY;
+    const distance = el.offsetHeight - window.innerHeight;
+    window.scrollTo({
+      top: top + ((i + 0.5) / steps.length) * distance,
+      behavior: "smooth",
+    });
+  };
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-cream to-aqua/40 py-20 lg:py-28">
-      <Container>
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-          {/* Sticky visual + intro */}
-          <div className="lg:sticky lg:top-28 lg:self-start">
-            <Eyebrow>Your visit, reimagined</Eyebrow>
-            <h2 className="mt-4 font-display text-3xl leading-tight text-navy-900 sm:text-4xl">
-              Exactly what to expect, <span className="text-gradient">step by step</span>
-            </h2>
-            <p className="mt-4 max-w-md text-ink-soft">
-              Dental anxiety is real, and common. So we make every moment calm and
-              predictable. Here&apos;s how a visit actually feels.
+    <section
+      ref={ref}
+      className="relative border-y border-line bg-linen/60"
+      style={{ height: `${steps.length * 100}svh` }}
+    >
+      <div className="sticky top-0 h-[100svh] overflow-hidden">
+        <Container className="flex h-full flex-col pb-8 pt-24">
+          {/* Heading row */}
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <div className="flex items-baseline gap-4">
+                <span
+                  aria-hidden="true"
+                  className="font-display text-sm tnum text-bronze"
+                >
+                  03
+                </span>
+                <Eyebrow>The visit</Eyebrow>
+              </div>
+              <h2 className="mt-4 font-display text-3xl leading-[1.1] text-ink">
+                Exactly what to expect,{" "}
+                <span className="accent-italic">step by step</span>
+              </h2>
+            </div>
+            <p className="max-w-sm pb-1 text-sm leading-relaxed text-ink-soft">
+              Dental anxiety is real, and common. So we make every moment calm
+              and predictable. Here&apos;s how a visit actually feels.
             </p>
+          </div>
 
-            <div className="relative mt-8 aspect-[4/3] overflow-hidden rounded-3xl border border-white/70 shadow-2xl">
-              {steps.map((s, i) => (
-                <Img
-                  key={s.title}
-                  src={s.image}
-                  alt={s.alt}
-                  fill
-                  sizes="(max-width: 1024px) 90vw, 42vw"
-                  className={cn(
-                    "object-cover transition-opacity duration-700",
-                    i === active ? "opacity-100" : "opacity-0",
-                  )}
-                />
-              ))}
-              <div className="absolute inset-0 bg-gradient-to-t from-navy-950/45 to-transparent" />
-              <div className="absolute bottom-4 left-4 flex gap-1.5">
-                {steps.map((s, i) => (
-                  <span
-                    key={s.title}
-                    className={cn(
-                      "h-1.5 rounded-full transition-all duration-500",
-                      i === active ? "w-7 bg-white" : "w-1.5 bg-white/50",
-                    )}
-                  />
-                ))}
+          {/* Chapter stage */}
+          <div className="grid min-h-0 flex-1 grid-cols-12 items-center gap-10 py-6 xl:gap-14">
+            <div className="col-span-4">
+              <motion.div
+                key={active}
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <span
+                  aria-hidden="true"
+                  className="font-display text-lg tnum text-bronze"
+                >
+                  {String(active + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-4 font-display text-4xl leading-[1.06] text-ink xl:text-[2.85rem]">
+                  {steps[active].title}
+                </h3>
+                <p className="mt-5 max-w-sm leading-relaxed text-ink-soft">
+                  {steps[active].body}
+                </p>
+              </motion.div>
+            </div>
+
+            <div className="col-span-8 h-full min-h-0">
+              <div className="h-full border border-line bg-paper p-2.5">
+                <div className="relative h-full overflow-hidden">
+                  {steps.map((s, i) => (
+                    <Img
+                      key={s.title}
+                      src={s.image}
+                      alt={s.alt}
+                      aria-hidden={i !== active}
+                      fill
+                      sizes="60vw"
+                      className={cn(
+                        "object-cover transition-opacity duration-700",
+                        i === active ? "opacity-100" : "opacity-0",
+                      )}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Steps */}
-          <ol className="flex flex-col gap-6 lg:gap-10 lg:py-8">
+          {/* Progress rail */}
+          <div className="grid grid-cols-4 gap-5">
             {steps.map((s, i) => (
-              <motion.li
+              <button
                 key={s.title}
-                onViewportEnter={() => setActive(i)}
-                viewport={{ margin: "-45% 0px -45% 0px" }}
-                initial={reduce ? false : { opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                type="button"
+                onClick={() => jumpTo(i)}
+                aria-label={`Go to step ${i + 1}: ${s.label}`}
                 className={cn(
-                  "rounded-3xl border p-6 transition-colors duration-500 sm:p-8",
+                  "group border-t pt-3.5 pb-1 text-left transition-colors duration-500",
                   i === active
-                    ? "border-cyan-200 bg-white shadow-xl"
-                    : "border-line bg-white/40",
+                    ? "border-ink"
+                    : "border-line hover:border-line-strong",
                 )}
               >
-                <span className="font-display text-sm font-semibold text-cyan-600">
-                  0{i + 1}
+                <span
+                  className={cn(
+                    "label flex items-baseline gap-2.5 transition-colors duration-500",
+                    i === active
+                      ? "text-ink"
+                      : "text-ink-faint group-hover:text-ink-soft",
+                  )}
+                >
+                  <span
+                    className={cn(
+                      "tnum transition-colors duration-500",
+                      i === active && "text-bronze",
+                    )}
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  {s.label}
                 </span>
-                <h3 className="mt-2 font-display text-2xl text-navy-900">{s.title}</h3>
-                <p className="mt-2 leading-relaxed text-ink-soft">{s.body}</p>
-              </motion.li>
+              </button>
             ))}
-          </ol>
+          </div>
+        </Container>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Stacked editorial chapters (mobile + reduced motion)                */
+/* ------------------------------------------------------------------ */
+
+function StaticChapters() {
+  return (
+    <section className="border-y border-line bg-linen/60 py-24 lg:py-32">
+      <Container>
+        <div className="flex items-baseline gap-4">
+          <span aria-hidden="true" className="font-display text-sm tnum text-bronze">
+            03
+          </span>
+          <Eyebrow>The visit</Eyebrow>
         </div>
+        <h2 className="mt-5 max-w-2xl font-display text-[2.1rem] leading-[1.08] text-ink sm:text-[2.75rem]">
+          Exactly what to expect,{" "}
+          <span className="accent-italic">step by step</span>
+        </h2>
+        <p className="mt-5 max-w-md leading-relaxed text-ink-soft">
+          Dental anxiety is real, and common. So we make every moment calm and
+          predictable. Here&apos;s how a visit actually feels.
+        </p>
+
+        <ol className="mt-14">
+          {steps.map((s, i) => (
+            <li
+              key={s.title}
+              className="grid items-center gap-8 border-t border-line py-10 last:pb-0 md:grid-cols-2 md:gap-12 lg:py-14"
+            >
+              <div className={cn(i % 2 === 1 && "md:order-2")}>
+                <span
+                  aria-hidden="true"
+                  className="font-display text-lg tnum text-bronze"
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-3 font-display text-2xl text-ink sm:text-[1.85rem]">
+                  {s.title}
+                </h3>
+                <p className="mt-3 max-w-md leading-relaxed text-ink-soft">
+                  {s.body}
+                </p>
+              </div>
+              <div className={cn(i % 2 === 1 && "md:order-1")}>
+                <div className="border border-line bg-paper p-2">
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <Img
+                      src={s.image}
+                      alt={s.alt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ol>
       </Container>
     </section>
   );

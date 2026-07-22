@@ -1,88 +1,102 @@
-import { MapPin, Clock, Phone, Globe, ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "@/components/ui/Icons";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { MapEmbed } from "@/components/ui/MapEmbed";
 import { BookButton } from "@/components/booking/BookButton";
 import { practice, groupedHours } from "@/lib/practice";
 
+/** Practice facts as a tabular editorial sheet beside a hairline-framed map. */
 export function LocationBlock() {
   return (
-    <section className="py-20 lg:py-28">
+    <section className="py-24 lg:py-32">
       <Container>
         <SectionHeading
           align="left"
+          numeral="07"
           eyebrow="Visit us"
           title={
             <>
-              In the heart of <span className="text-gradient">Bellaire</span>
+              In the heart of <span className="accent-italic">Bellaire</span>
             </>
           }
         />
 
-        <div className="mt-10 grid gap-8 lg:grid-cols-2 lg:gap-12">
-          {/* Info */}
-          <div className="grid gap-4 sm:grid-cols-2">
-            <InfoCard icon={MapPin} title="Our address">
-              <a href={practice.directionsUrl} className="hover:text-cyan-700">
-                {practice.address.street}, {practice.address.suite}
-                <br />
-                {practice.address.locality}, {practice.address.region}{" "}
-                {practice.address.postalCode}
-              </a>
-              <span className="mt-1 block text-xs text-ink-soft">{practice.parking}</span>
-            </InfoCard>
+        <div className="mt-12 grid gap-12 lg:grid-cols-2 lg:gap-16">
+          {/* Facts sheet */}
+          <div>
+            <dl className="border-t border-line">
+              <FactRow label="Address">
+                <a
+                  href={practice.directionsUrl}
+                  className="transition-colors hover:text-bronze"
+                >
+                  {practice.address.street}, {practice.address.suite}
+                  <br />
+                  {practice.address.locality}, {practice.address.region}{" "}
+                  {practice.address.postalCode}
+                </a>
+                <span className="mt-1.5 block text-xs text-ink-faint">
+                  {practice.parking}
+                </span>
+              </FactRow>
 
-            <InfoCard icon={Phone} title="Call or text">
-              <a href={`tel:${practice.phone.tel}`} className="hover:text-cyan-700">
-                {practice.phone.display}
-              </a>
-            </InfoCard>
+              <FactRow label="Call or text">
+                <a
+                  href={`tel:${practice.phone.tel}`}
+                  className="tnum transition-colors hover:text-bronze"
+                >
+                  {practice.phone.display}
+                </a>
+              </FactRow>
 
-            <InfoCard icon={Clock} title="Hours">
-              <ul className="space-y-0.5">
-                {groupedHours().map((g) => (
-                  <li key={g.label} className="flex justify-between gap-4">
-                    <span className="font-medium text-navy-800">{g.label}</span>
-                    <span className="text-ink-soft">{g.value}</span>
-                  </li>
-                ))}
-              </ul>
-            </InfoCard>
+              <FactRow label="Hours">
+                <ul className="w-full max-w-xs space-y-1">
+                  {groupedHours().map((g) => (
+                    <li key={g.label} className="tnum flex justify-between gap-6">
+                      <span className="text-ink">{g.label}</span>
+                      <span className="text-ink-soft">{g.value}</span>
+                    </li>
+                  ))}
+                </ul>
+              </FactRow>
 
-            <InfoCard icon={Globe} title="Languages">
-              <p>{practice.languages.join(" · ")}</p>
-            </InfoCard>
+              <FactRow label="Languages">
+                <p>{practice.languages.join(" · ")}</p>
+              </FactRow>
 
-            {/* Financing */}
-            <div className="rounded-3xl border border-line bg-white/70 p-5 sm:col-span-2">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-navy-800">
-                Insurance &amp; financing
-              </h3>
-              <p className="mt-2 text-sm text-ink-soft">
-                We accept most PPO insurance and offer flexible monthly payment plans.
-              </p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {practice.financing.map((f) => (
-                  <a
-                    key={f.name}
-                    href={f.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-full border border-navy-200 bg-white px-4 py-2 text-sm font-medium text-navy-800 transition-colors hover:border-cyan-300 hover:text-cyan-700"
-                  >
-                    {f.name} <ArrowRight className="h-3.5 w-3.5" />
-                  </a>
-                ))}
-              </div>
-              <BookButton size="md" className="mt-5">
-                Book your visit <ArrowRight className="h-4 w-4" />
-              </BookButton>
-            </div>
+              <FactRow label="Insurance">
+                <p className="text-ink-soft">
+                  Most PPO insurance accepted, with flexible monthly plans
+                  through{" "}
+                  {practice.financing.map((f, i) => (
+                    <span key={f.name}>
+                      <a
+                        href={f.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-baseline gap-0.5 text-ink underline decoration-line underline-offset-4 transition-colors hover:text-bronze"
+                      >
+                        {f.name}
+                        <ArrowUpRight size={11} />
+                      </a>
+                      {i < practice.financing.length - 1 ? " and " : ""}
+                    </span>
+                  ))}
+                  .
+                </p>
+              </FactRow>
+            </dl>
+
+            <BookButton size="md" variant="ink" className="mt-9">
+              Book your visit <ArrowRight size={15} />
+            </BookButton>
           </div>
 
           {/* Map */}
-          <div className="min-h-[22rem] overflow-hidden rounded-3xl border border-line shadow-lg lg:min-h-full">
-            <MapEmbed className="min-h-[22rem] lg:h-full" />
+          <div className="border border-line bg-paper p-2.5">
+            <div className="min-h-[22rem] overflow-hidden lg:h-full">
+              <MapEmbed className="min-h-[22rem] lg:h-full" />
+            </div>
           </div>
         </div>
       </Container>
@@ -90,24 +104,17 @@ export function LocationBlock() {
   );
 }
 
-function InfoCard({
-  icon: Icon,
-  title,
+function FactRow({
+  label,
   children,
 }: {
-  icon: React.ElementType;
-  title: string;
+  label: string;
   children: React.ReactNode;
 }) {
   return (
-    <div className="rounded-3xl border border-line bg-white/70 p-5">
-      <div className="flex items-center gap-2 text-cyan-700">
-        <Icon className="h-4 w-4" />
-        <h3 className="text-sm font-semibold uppercase tracking-wider text-navy-800">
-          {title}
-        </h3>
-      </div>
-      <div className="mt-3 text-sm leading-relaxed text-navy-800">{children}</div>
+    <div className="grid grid-cols-[7rem_1fr] gap-6 border-b border-line py-5 sm:grid-cols-[9rem_1fr]">
+      <dt className="label pt-0.5 text-ink-faint">{label}</dt>
+      <dd className="text-sm leading-relaxed text-ink">{children}</dd>
     </div>
   );
 }

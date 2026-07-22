@@ -1,63 +1,81 @@
 import { Img } from "@/components/ui/Img";
 import Link from "next/link";
-import { ArrowRight, Quote } from "lucide-react";
+import { ArrowRight } from "@/components/ui/Icons";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/motion/Reveal";
-import { buttonVariants } from "@/components/ui/Button";
 import { StarRating } from "@/components/ui/StarRating";
 
+/**
+ * "The studio" editorial mosaic: real office photography anchored by
+ * still-life mood details, with a patient quote set in serif.
+ */
 export function SmileGallery() {
   return (
-    <section className="py-20 lg:py-28">
+    <section className="py-24 lg:py-32">
       <Container>
         <SectionHeading
-          eyebrow="A look inside"
+          align="left"
+          numeral="04"
+          eyebrow="The studio"
           title={
             <>
-              A calm space for <span className="text-gradient">real smiles</span>
+              A space that feels{" "}
+              <span className="accent-italic">nothing like a dental office</span>
             </>
           }
-          intro="Warm, modern, and designed to feel nothing like the dental office of memory."
+          intro="Warm, modern, and designed around calm, from the waiting lounge to the smallest details."
         />
 
-        <Reveal>
-          <div className="mt-12 grid auto-rows-[150px] grid-cols-2 gap-3 sm:auto-rows-[200px] sm:grid-cols-4">
+        <Reveal className="mt-14">
+          <div className="grid grid-cols-12 gap-4 lg:gap-5">
             <GalleryTile
               src="/images/office/waiting.jpg"
-              alt="Comfortable, spa-like waiting area"
-              className="col-span-2 row-span-2"
+              alt="The comfortable, spa-like waiting lounge"
+              caption="The waiting lounge"
+              ratio="aspect-[4/3]"
+              className="col-span-12 sm:col-span-7"
             />
             <GalleryTile
-              src="/images/lifestyle/smile-family.webp"
-              alt="Happy patients with healthy, natural smiles"
-              className="col-span-2"
+              src="/images/studio/studio-olive.webp"
+              alt="An olive branch in a ceramic vase against a warm plaster wall"
+              caption="Details we sweat"
+              ratio="aspect-[3/4]"
+              className="col-span-6 sm:col-span-5"
             />
-            <GalleryTile src="/images/office/lobby.jpg" alt="Modern reception area" />
-            {/* Quote tile */}
-            <figure className="flex flex-col justify-between rounded-2xl bg-navy-800 p-5 text-white">
-              <Quote className="h-6 w-6 text-cyan-300" />
-              <blockquote className="text-sm leading-snug">
-                “Huge fear of dentists my entire life, but they made me feel
-                completely at ease.”
+            <figure className="col-span-12 flex flex-col justify-between gap-8 border-y border-line py-8 sm:col-span-7 lg:py-10">
+              <blockquote className="max-w-md font-display text-2xl leading-[1.25] text-ink sm:text-[1.7rem]">
+                &ldquo;Huge fear of dentists my entire life, but they made me
+                feel <span className="accent-italic">completely at ease</span>.&rdquo;
               </blockquote>
-              <figcaption className="text-xs text-navy-200">Brian, Google</figcaption>
+              <figcaption className="label flex items-center gap-3 text-ink-faint">
+                <StarRating value={5} size={11} />
+                Brian · Google review
+              </figcaption>
             </figure>
+            <GalleryTile
+              src="/images/office/lobby.jpg"
+              alt="The modern reception area"
+              caption="Reception"
+              ratio="aspect-square"
+              className="col-span-6 sm:col-span-5"
+            />
           </div>
         </Reveal>
 
-        <div className="mt-10 flex flex-col items-center gap-4">
-          <div className="flex items-center gap-2 text-sm text-ink-soft">
-            <StarRating value={5} size={15} />
+        <div className="mt-12 flex flex-wrap items-center justify-between gap-4">
+          <p className="flex items-center gap-3 text-sm text-ink-soft">
+            <StarRating value={5} size={13} />
             <span>
-              <strong className="text-navy-900">4.9</strong> from 352 happy patients
+              <strong className="font-medium text-ink">4.9</strong> from 352 happy
+              patients
             </span>
-          </div>
+          </p>
           <Link
             href="/smile-gallery"
-            className={buttonVariants({ variant: "secondary", size: "lg" })}
+            className="inline-flex items-center gap-2.5 text-sm font-medium text-ink underline decoration-line underline-offset-4 transition-colors hover:text-bronze"
           >
-            See the smile gallery <ArrowRight className="h-4 w-4" />
+            See the smile gallery <ArrowRight size={15} />
           </Link>
         </div>
       </Container>
@@ -68,21 +86,28 @@ export function SmileGallery() {
 function GalleryTile({
   src,
   alt,
+  caption,
+  ratio,
   className,
 }: {
   src: string;
   alt: string;
+  caption: string;
+  ratio: string;
   className?: string;
 }) {
   return (
-    <div className={`group relative overflow-hidden rounded-2xl ${className ?? ""}`}>
-      <Img
-        src={src}
-        alt={alt}
-        fill
-        sizes="(max-width: 640px) 50vw, 25vw"
-        className="object-cover transition-transform duration-700 group-hover:scale-105"
-      />
-    </div>
+    <figure className={className}>
+      <div className={`group relative overflow-hidden ${ratio}`}>
+        <Img
+          src={src}
+          alt={alt}
+          fill
+          sizes="(max-width: 640px) 100vw, 50vw"
+          className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.03]"
+        />
+      </div>
+      <figcaption className="label pt-3 text-ink-faint">{caption}</figcaption>
+    </figure>
   );
 }

@@ -1,39 +1,64 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
+/**
+ * Quiet Studio buttons: rectangular (2px radius), no glow shadows, quiet
+ * color shifts. `outline` fills to ink on hover; `lightOutline` is the
+ * equivalent for dark grounds.
+ *
+ * Legacy variant names (primary/navy/secondary/gold/white) are kept as
+ * aliases so pages awaiting the Phase E sweep stay coherent.
+ */
 export type ButtonVariant =
+  | "ink"
+  | "outline"
+  | "ghost"
+  | "light"
+  | "lightOutline"
   | "primary"
   | "navy"
   | "secondary"
   | "gold"
-  | "ghost"
   | "white";
+
 export type ButtonSize = "sm" | "md" | "lg";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full font-medium tracking-tight transition-all duration-300 ease-[cubic-bezier(.22,1,.36,1)] focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-50 disabled:pointer-events-none select-none whitespace-nowrap";
+  "inline-flex items-center justify-center gap-2.5 rounded-[2px] font-medium tracking-[0.015em] transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-50 disabled:pointer-events-none select-none whitespace-nowrap";
 
-const variants: Record<ButtonVariant, string> = {
-  // Primary CTA - consistent cyan treatment everywhere, dark text for AA contrast
-  primary:
-    "bg-cyan-400 text-navy-950 hover:bg-cyan-300 shadow-[0_10px_30px_-10px_rgba(43,182,232,0.75)] hover:shadow-[0_16px_44px_-12px_rgba(43,182,232,0.85)] hover:-translate-y-0.5",
-  navy: "bg-navy-800 text-white hover:bg-navy-700 shadow-[0_10px_30px_-12px_rgba(14,42,86,0.6)] hover:-translate-y-0.5",
-  secondary:
-    "border border-navy-200 bg-white/70 text-navy-800 hover:bg-white hover:border-navy-300 backdrop-blur",
-  gold: "bg-gold-400 text-navy-950 hover:bg-gold-300 hover:-translate-y-0.5",
-  ghost: "text-navy-800 hover:bg-navy-50",
-  white:
-    "bg-white text-navy-900 hover:bg-cream hover:-translate-y-0.5 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.35)]",
+type Canonical = "ink" | "outline" | "ghost" | "light" | "lightOutline";
+
+const ALIAS: Record<ButtonVariant, Canonical> = {
+  ink: "ink",
+  outline: "outline",
+  ghost: "ghost",
+  light: "light",
+  lightOutline: "lightOutline",
+  primary: "ink",
+  navy: "ink",
+  secondary: "outline",
+  gold: "ink",
+  white: "light",
+};
+
+const variants: Record<Canonical, string> = {
+  ink: "bg-ink text-bone hover:bg-night-soft",
+  outline:
+    "border border-line-strong text-ink hover:border-ink hover:bg-ink hover:text-bone",
+  ghost: "text-ink hover:bg-ink/5",
+  light: "bg-bone text-ink hover:bg-white",
+  lightOutline:
+    "border border-white/35 text-bone hover:border-bone hover:bg-bone hover:text-ink",
 };
 
 const sizes: Record<ButtonSize, string> = {
-  sm: "h-9 px-4 text-sm",
-  md: "h-11 px-6 text-[15px]",
-  lg: "h-[3.25rem] px-8 text-base",
+  sm: "h-10 px-5 text-[13px]",
+  md: "h-12 px-7 text-sm",
+  lg: "h-[3.375rem] px-9 text-sm",
 };
 
 export function buttonVariants({
-  variant = "primary",
+  variant = "ink",
   size = "md",
   className,
 }: {
@@ -41,7 +66,7 @@ export function buttonVariants({
   size?: ButtonSize;
   className?: string;
 } = {}) {
-  return cn(base, variants[variant], sizes[size], className);
+  return cn(base, variants[ALIAS[variant]], sizes[size], className);
 }
 
 export interface ButtonProps

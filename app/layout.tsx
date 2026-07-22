@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
@@ -11,15 +11,37 @@ import { MobileStickyCTA } from "@/components/layout/MobileStickyCTA";
 import { SiteJsonLd } from "@/components/seo/SiteJsonLd";
 import { practice } from "@/lib/practice";
 
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-fraunces",
+/**
+ * Self-hosted type (Fontshare, ITF Free Font License, commercial use OK):
+ * Sentient = warm editorial serif for display, Switzer = neutral grotesque
+ * for body/UI. Variable files keep the payload small.
+ */
+const sentient = localFont({
+  src: [
+    {
+      path: "./fonts/Sentient-Variable.woff2",
+      weight: "200 700",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Sentient-VariableItalic.woff2",
+      weight: "200 700",
+      style: "italic",
+    },
+  ],
+  variable: "--font-sentient",
   display: "swap",
 });
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
+const switzer = localFont({
+  src: [
+    {
+      path: "./fonts/Switzer-Variable.woff2",
+      weight: "100 900",
+      style: "normal",
+    },
+  ],
+  variable: "--font-switzer",
   display: "swap",
 });
 
@@ -93,7 +115,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0e2a56",
+  themeColor: "#0f1522",
   colorScheme: "light",
 };
 
@@ -103,12 +125,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${inter.variable} h-full antialiased`}
+      className={`${sentient.variable} ${switzer.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-cream">
+      <body className="min-h-full bg-bone">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-navy-900 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white focus:shadow-lg"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-ink focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-bone"
         >
           Skip to content
         </a>

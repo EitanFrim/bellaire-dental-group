@@ -1,5 +1,9 @@
 import { cn } from "@/lib/utils";
 
+/**
+ * Small-caps editorial micro-label. Replaces the old cyan Eyebrow; keeps the
+ * same component API so existing call sites survive the redesign.
+ */
 export function Eyebrow({
   children,
   className,
@@ -12,12 +16,15 @@ export function Eyebrow({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.2em]",
-        light ? "text-cyan-300" : "text-cyan-700",
+        "label inline-flex items-center gap-3",
+        light ? "text-bone/70" : "text-bronze",
         className,
       )}
     >
-      <span className={cn("h-px w-7", light ? "bg-cyan-300/60" : "bg-cyan-600/50")} />
+      <span
+        aria-hidden="true"
+        className={cn("h-px w-8", light ? "bg-bone/30" : "bg-bronze/50")}
+      />
       {children}
     </span>
   );
@@ -31,6 +38,7 @@ export function SectionHeading({
   light = false,
   className,
   as: Tag = "h2",
+  numeral,
 }: {
   eyebrow?: React.ReactNode;
   title: React.ReactNode;
@@ -39,20 +47,37 @@ export function SectionHeading({
   light?: boolean;
   className?: string;
   as?: React.ElementType;
+  /** Optional editorial section numeral, e.g. "02" */
+  numeral?: string;
 }) {
   return (
     <div
       className={cn(
-        "flex flex-col gap-4",
+        "flex flex-col gap-5",
         align === "center" ? "items-center text-center" : "items-start text-left",
         className,
       )}
     >
-      {eyebrow && <Eyebrow light={light}>{eyebrow}</Eyebrow>}
+      {(eyebrow || numeral) && (
+        <div className="flex items-baseline gap-4">
+          {numeral && (
+            <span
+              aria-hidden="true"
+              className={cn(
+                "font-display text-sm tnum",
+                light ? "text-bone/50" : "text-bronze",
+              )}
+            >
+              {numeral}
+            </span>
+          )}
+          {eyebrow && <Eyebrow light={light}>{eyebrow}</Eyebrow>}
+        </div>
+      )}
       <Tag
         className={cn(
-          "max-w-3xl text-balance text-3xl leading-[1.1] sm:text-4xl lg:text-[2.85rem]",
-          light ? "text-white" : "text-navy-900",
+          "max-w-3xl text-balance font-display text-[2.1rem] leading-[1.08] sm:text-[2.75rem] lg:text-[3.25rem] lg:leading-[1.05]",
+          light ? "text-bone" : "text-ink",
         )}
       >
         {title}
@@ -60,9 +85,9 @@ export function SectionHeading({
       {intro && (
         <p
           className={cn(
-            "max-w-2xl text-pretty text-base leading-relaxed sm:text-lg",
+            "max-w-2xl text-pretty text-base leading-relaxed sm:text-[17px]",
             align === "center" ? "mx-auto" : "",
-            light ? "text-navy-200" : "text-ink-soft",
+            light ? "text-bone/70" : "text-ink-soft",
           )}
         >
           {intro}

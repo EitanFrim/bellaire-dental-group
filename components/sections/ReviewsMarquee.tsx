@@ -1,64 +1,68 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight } from "@/components/ui/Icons";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Marquee } from "@/components/ui/Marquee";
+import { Reveal } from "@/components/motion/Reveal";
 import { StarRating } from "@/components/ui/StarRating";
-import { buttonVariants } from "@/components/ui/Button";
 import { curatedReviews, type Review } from "@/lib/reviews";
 import { practice } from "@/lib/practice";
 
+/**
+ * Editorial quotes: three reviews set in serif between hairlines. Replaces
+ * the old auto-scrolling card marquee.
+ */
 export function ReviewsMarquee() {
-  const rowA = curatedReviews;
-  const rowB = [...curatedReviews].reverse();
+  const featured = [...curatedReviews]
+    .sort((a, b) => a.text.length - b.text.length)
+    .slice(0, 3);
 
   return (
-    <section className="overflow-hidden py-20 lg:py-28">
+    <section className="border-t border-line py-24 lg:py-32">
       <Container>
         <SectionHeading
+          align="left"
+          numeral="05"
           eyebrow="Patient love"
           title={
             <>
-              Houston&apos;s most <span className="text-gradient">reassuring</span> dental
-              visit
+              Houston&apos;s most{" "}
+              <span className="accent-italic">reassuring</span> dental visit
             </>
           }
           intro={`Rated ${practice.ratings.google.value} stars across ${practice.ratings.google.count}+ Google reviews, by real neighbors, many for decades.`}
         />
-      </Container>
 
-      <div className="mt-12 flex flex-col gap-4">
-        <Marquee>
-          {rowA.map((r, i) => (
-            <ReviewCard key={`a-${i}`} review={r} />
-          ))}
-        </Marquee>
-        <Marquee reverse>
-          {rowB.map((r, i) => (
-            <ReviewCard key={`b-${i}`} review={r} />
-          ))}
-        </Marquee>
-      </div>
+        <Reveal className="mt-14">
+          <div className="grid border-t border-line lg:grid-cols-3">
+            {featured.map((r, i) => (
+              <QuoteBlock key={i} review={r} />
+            ))}
+          </div>
+        </Reveal>
 
-      <Container className="mt-12 flex justify-center">
-        <Link href="/reviews" className={buttonVariants({ variant: "secondary", size: "lg" })}>
-          Read more reviews <ArrowRight className="h-4 w-4" />
-        </Link>
+        <div className="mt-10">
+          <Link
+            href="/reviews"
+            className="inline-flex items-center gap-2.5 text-sm font-medium text-ink underline decoration-line underline-offset-4 transition-colors hover:text-bronze"
+          >
+            Read all {practice.ratings.google.count}+ reviews{" "}
+            <ArrowRight size={15} />
+          </Link>
+        </div>
       </Container>
     </section>
   );
 }
 
-function ReviewCard({ review }: { review: Review }) {
+function QuoteBlock({ review }: { review: Review }) {
   return (
-    <figure className="flex w-[19rem] shrink-0 flex-col rounded-3xl border border-line bg-white/80 p-6 shadow-[0_2px_24px_-14px_rgba(10,31,64,0.3)] sm:w-[22rem]">
-      <StarRating value={review.rating} size={15} />
-      <blockquote className="mt-3 flex-1 text-pretty text-sm leading-relaxed text-navy-800">
-        <span className="line-clamp-6">“{review.text}”</span>
+    <figure className="flex flex-col gap-6 border-b border-line py-8 lg:border-b-0 lg:border-r lg:px-8 lg:py-10 lg:first:pl-0 lg:last:border-r-0 lg:last:pr-0">
+      <StarRating value={review.rating} size={12} />
+      <blockquote className="flex-1 font-display text-xl leading-[1.35] text-ink sm:text-[1.35rem]">
+        <span className="line-clamp-[7]">{review.text}</span>
       </blockquote>
-      <figcaption className="mt-4 flex items-center gap-2 text-sm">
-        <span className="font-semibold text-navy-900">{review.author}</span>
-        <span className="text-ink-soft">· {review.source}</span>
+      <figcaption className="label text-ink-faint">
+        {review.author} · {review.source}
       </figcaption>
     </figure>
   );

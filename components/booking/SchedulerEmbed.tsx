@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ExternalLink, Loader2, Phone } from "lucide-react";
+import { ExternalLink, Loader, Phone } from "@/components/ui/Icons";
 import { schedulerUrl } from "@/lib/scheduler";
 import { practice } from "@/lib/practice";
 import { cn } from "@/lib/utils";
@@ -38,15 +38,15 @@ export function SchedulerEmbed({
           href={schedulerUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex shrink-0 items-center gap-1.5 text-xs font-medium text-cyan-700 hover:text-cyan-600"
+          className="inline-flex shrink-0 items-center gap-1.5 text-xs font-medium text-ink transition-colors hover:text-bronze"
         >
-          Open in new tab <ExternalLink className="h-3.5 w-3.5" />
+          Open in new tab <ExternalLink size={13} />
         </a>
       </div>
 
       <div
         className={cn(
-          "relative overflow-hidden rounded-2xl border border-line bg-white",
+          "relative overflow-hidden rounded-[2px] border border-line bg-paper",
           isModal && "min-h-0 flex-1",
         )}
         // Page variant: tall and responsive to the viewport so the calendar /
@@ -60,7 +60,7 @@ export function SchedulerEmbed({
       >
         {!loaded && (
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-ink-soft">
-            <Loader2 className="h-6 w-6 animate-spin text-cyan-500" />
+            <Loader size={22} className="text-bronze" />
             <span className="text-sm">Loading the scheduler…</span>
           </div>
         )}
@@ -79,9 +79,9 @@ export function SchedulerEmbed({
         Trouble loading?{" "}
         <a
           href={`tel:${practice.phone.tel}`}
-          className="inline-flex items-center gap-1 font-medium text-cyan-700 hover:text-cyan-600"
+          className="tnum inline-flex items-center gap-1.5 font-medium text-ink transition-colors hover:text-bronze"
         >
-          <Phone className="h-3 w-3" /> Call {practice.phone.display}
+          <Phone size={11} /> Call {practice.phone.display}
         </a>
       </p>
     </div>

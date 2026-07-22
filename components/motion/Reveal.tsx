@@ -4,17 +4,24 @@ import { motion, useReducedMotion, type Variants } from "motion/react";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-/** Fade + rise in when scrolled into view. Static under prefers-reduced-motion. */
+/**
+ * Fade + rise in when scrolled into view. Static under prefers-reduced-motion.
+ * Elements pinned to the viewport edge (e.g. a hero's bottom bar) need
+ * `viewportMargin="0px"`, since the default -80px margin would keep them
+ * from ever counting as in view.
+ */
 export function Reveal({
   children,
   className,
   delay = 0,
-  y = 22,
+  y = 10,
+  viewportMargin = "-80px",
 }: {
   children: React.ReactNode;
   className?: string;
   delay?: number;
   y?: number;
+  viewportMargin?: string;
 }) {
   const reduce = useReducedMotion();
   if (reduce) return <div className={className}>{children}</div>;
@@ -23,7 +30,7 @@ export function Reveal({
       className={className}
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={{ once: true, margin: viewportMargin }}
       transition={{ duration: 0.7, delay, ease: EASE }}
     >
       {children}

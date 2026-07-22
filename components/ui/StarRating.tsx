@@ -1,4 +1,4 @@
-import { Star } from "lucide-react";
+import { Star } from "@/components/ui/Icons";
 import { cn } from "@/lib/utils";
 
 export function StarRating({
@@ -13,17 +13,12 @@ export function StarRating({
   const full = Math.round(value);
   return (
     <span
-      className={cn("inline-flex items-center gap-0.5 text-gold-400", className)}
+      className={cn("inline-flex items-center gap-1 text-bronze", className)}
       role="img"
       aria-label={`${value} out of 5 stars`}
     >
       {Array.from({ length: 5 }).map((_, i) => (
-        <Star
-          key={i}
-          strokeWidth={0}
-          className={i < full ? "fill-current" : "fill-current opacity-25"}
-          style={{ width: size, height: size }}
-        />
+        <Star key={i} size={size} className={i < full ? "" : "opacity-25"} />
       ))}
     </span>
   );

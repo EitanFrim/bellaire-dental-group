@@ -1,49 +1,26 @@
-import { MapPin } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight } from "@/components/ui/Icons";
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Stagger, StaggerItem } from "@/components/motion/Reveal";
+import { Reveal } from "@/components/motion/Reveal";
 import { practice } from "@/lib/practice";
 
-const blurbs: Record<string, string> = {
-  Bellaire: "Our home neighborhood, minutes from anywhere in the City of Bellaire.",
-  "West University Place": "A short drive from West U for families and professionals.",
-  "Upper Kirby": "Convenient, modern dental care just south of Upper Kirby.",
-  Meyerland: "Trusted by Meyerland families for gentle, comprehensive dentistry.",
-  Houston: "Serving patients from across greater Houston and the Inner Loop.",
-};
-
+/** A quiet typographic strip naming the neighborhoods we serve. */
 export function AreasServed() {
   return (
-    <section className="border-t border-line bg-white/60 py-20 lg:py-24">
+    <section className="border-y border-line bg-linen/60 py-16 lg:py-20">
       <Container>
-        <SectionHeading
-          eyebrow="Proudly local"
-          title={
-            <>
-              Your neighborhood dentist in{" "}
-              <span className="text-gradient">Bellaire &amp; Houston</span>
-            </>
-          }
-          intro="Conveniently located at the Chimney Rock Doctors Center with free parking. We welcome patients from across the area."
-        />
-
-        <Stagger className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {practice.areasServed.map((area) => (
-            <StaggerItem key={area}>
-              <div className="flex h-full items-start gap-3 rounded-2xl border border-line bg-white p-5">
-                <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-aqua text-navy-700">
-                  <MapPin className="h-[18px] w-[18px]" />
-                </span>
-                <div>
-                  <h3 className="font-display text-lg text-navy-900">{area}</h3>
-                  <p className="mt-1 text-sm leading-relaxed text-ink-soft">
-                    {blurbs[area] ?? `Caring for ${area} smiles with gentle, modern dentistry.`}
-                  </p>
-                </div>
-              </div>
-            </StaggerItem>
-          ))}
-        </Stagger>
+        <Reveal className="flex flex-col items-center gap-6 text-center">
+          <p className="label text-bronze">Proudly local</p>
+          <p className="max-w-3xl font-display text-2xl leading-[1.3] text-ink sm:text-[1.75rem]">
+            {practice.areasServed.join("  ·  ")}
+          </p>
+          <Link
+            href="/locations"
+            className="inline-flex items-center gap-2.5 text-sm font-medium text-ink underline decoration-line underline-offset-4 transition-colors hover:text-bronze"
+          >
+            Find your neighborhood <ArrowRight size={15} />
+          </Link>
+        </Reveal>
       </Container>
     </section>
   );
