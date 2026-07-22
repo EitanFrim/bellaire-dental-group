@@ -142,3 +142,45 @@ export function MapPin(props: IconProps) {
     </Base>
   );
 }
+
+export function Clock(props: IconProps) {
+  return (
+    <Base {...props}>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 7.5V12l3 1.8" />
+    </Base>
+  );
+}
+
+export function MessageSquare(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M4.5 5.5h15v10h-9l-4 3.2V15.5h-2Z" />
+    </Base>
+  );
+}
+
+export function Navigation(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M20 4 4 11l7 2 2 7Z" />
+    </Base>
+  );
+}
+
+export function Home(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M4 11 12 4l8 7M6 9.5V20h12V9.5" />
+    </Base>
+  );
+}
+
+export function Globe(props: IconProps) {
+  return (
+    <Base {...props}>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M3.5 12h17M12 3.5c2.6 2.3 4 5.3 4 8.5s-1.4 6.2-4 8.5c-2.6-2.3-4-5.3-4-8.5s1.4-6.2 4-8.5Z" />
+    </Base>
+  );
+}

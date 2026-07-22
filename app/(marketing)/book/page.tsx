@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Phone, MessageSquare, Clock, MapPin, Check } from "lucide-react";
+import { Phone, MessageSquare } from "@/components/ui/Icons";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { StarRating } from "@/components/ui/StarRating";
@@ -32,7 +32,8 @@ export default function BookPage() {
         eyebrow="Book your visit"
         title={
           <>
-            Your calmer visit is <span className="text-gradient">one step away</span>
+            Your calmer visit is{" "}
+            <span className="accent-italic">one step away</span>
           </>
         }
         intro="Request an appointment in under a minute. Prefer to talk? Call or text us anytime during office hours."
@@ -42,17 +43,20 @@ export default function BookPage() {
         ]}
       />
 
-      <section className="py-16 lg:py-24">
+      <section className="py-20 lg:py-28">
         <Container className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           {/* Form */}
           <div className="lg:col-span-7">
-            <div className="rounded-3xl border border-line bg-white/80 p-7 shadow-[0_2px_24px_-14px_rgba(10,31,64,0.3)] sm:p-9">
-              <h2 className="font-display text-2xl text-navy-900">
+            <div className="border border-line bg-paper p-7 sm:p-9">
+              <h2 className="font-display text-2xl text-ink">
                 {scheduler ? "Choose a time" : "Request an appointment"}
               </h2>
-              <p className="mt-2 text-sm text-ink-soft">
+              <p className="mt-3 text-sm leading-relaxed text-ink-soft">
                 We&apos;ll confirm by text or phone. For emergencies, please call{" "}
-                <a href={`tel:${practice.phone.tel}`} className="font-medium text-cyan-700">
+                <a
+                  href={`tel:${practice.phone.tel}`}
+                  className="tnum font-medium text-ink underline decoration-line underline-offset-4"
+                >
                   {practice.phone.display}
                 </a>
                 .
@@ -63,48 +67,69 @@ export default function BookPage() {
 
           {/* Aside */}
           <aside className="lg:col-span-5">
-            <div className="rounded-3xl bg-navy-900 p-7 text-white">
-              <StarRating value={5} size={16} />
-              <p className="mt-3 font-display text-xl">
-                {practice.ratings.google.value}-star care, {practice.ratings.google.count}+
-                reviews
+            <div className="bg-night p-8 text-bone lg:p-10">
+              <StarRating value={5} size={13} className="text-bronze-soft" />
+              <p className="tnum mt-4 font-display text-2xl text-bone">
+                {practice.ratings.google.value}-star care,{" "}
+                {practice.ratings.google.count}+ reviews
               </p>
-              <ul className="mt-5 space-y-3">
+              <ul className="mt-7 border-t border-line-light">
                 {reasons.map((r) => (
-                  <li key={r} className="flex gap-2.5 text-sm text-navy-100">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-cyan-300" /> {r}
+                  <li
+                    key={r}
+                    className="flex items-baseline gap-4 border-b border-line-light py-3 text-sm text-bone/70"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="mt-2 h-px w-4 shrink-0 bg-bronze-soft/70"
+                    />
+                    {r}
                   </li>
                 ))}
               </ul>
 
-              <div className="mt-7 space-y-3 border-t border-navy-800 pt-6 text-sm">
-                <a
-                  href={`tel:${practice.phone.tel}`}
-                  className="flex items-center gap-3 text-navy-100 hover:text-cyan-300"
-                >
-                  <Phone className="h-4 w-4 text-cyan-400" /> {practice.phone.display}
-                </a>
-                <a
-                  href={`sms:${practice.sms}`}
-                  className="flex items-center gap-3 text-navy-100 hover:text-cyan-300"
-                >
-                  <MessageSquare className="h-4 w-4 text-cyan-400" /> Text us
-                </a>
-                <p className="flex items-start gap-3 text-navy-200">
-                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-cyan-400" />
-                  {fullAddress()}
-                </p>
-                <div className="flex items-start gap-3 text-navy-200">
-                  <Clock className="mt-0.5 h-4 w-4 shrink-0 text-cyan-400" />
-                  <ul className="space-y-0.5">
-                    {groupedHours().map((g) => (
-                      <li key={g.label}>
-                        <span className="text-navy-100">{g.label}</span> {g.value}
-                      </li>
-                    ))}
-                  </ul>
+              <dl className="mt-8 space-y-4 border-t border-line-light pt-6 text-sm">
+                <div className="flex items-baseline justify-between gap-4">
+                  <dt className="label text-bone/45">Call</dt>
+                  <dd>
+                    <a
+                      href={`tel:${practice.phone.tel}`}
+                      className="tnum text-bone transition-colors hover:text-bronze-soft"
+                    >
+                      {practice.phone.display}
+                    </a>
+                  </dd>
                 </div>
-              </div>
+                <div className="flex items-baseline justify-between gap-4">
+                  <dt className="label text-bone/45">Text</dt>
+                  <dd>
+                    <a
+                      href={`sms:${practice.sms}`}
+                      className="inline-flex items-center gap-2 text-bone transition-colors hover:text-bronze-soft"
+                    >
+                      <MessageSquare size={13} /> Text us
+                    </a>
+                  </dd>
+                </div>
+                <div className="flex items-baseline justify-between gap-6">
+                  <dt className="label shrink-0 text-bone/45">Find us</dt>
+                  <dd className="text-right leading-relaxed text-bone/70">
+                    {fullAddress()}
+                  </dd>
+                </div>
+                <div className="flex items-baseline justify-between gap-6">
+                  <dt className="label shrink-0 text-bone/45">Hours</dt>
+                  <dd className="text-right">
+                    <ul className="tnum space-y-0.5 text-bone/70">
+                      {groupedHours().map((g) => (
+                        <li key={g.label}>
+                          <span className="text-bone">{g.label}</span> {g.value}
+                        </li>
+                      ))}
+                    </ul>
+                  </dd>
+                </div>
+              </dl>
             </div>
           </aside>
         </Container>

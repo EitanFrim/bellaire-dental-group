@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight } from "@/components/ui/Icons";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
-import { Stagger, StaggerItem } from "@/components/motion/Reveal";
+import { Reveal } from "@/components/motion/Reveal";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
@@ -24,7 +24,8 @@ export default function ServicesPage() {
         eyebrow="Our services"
         title={
           <>
-            Everything your smile needs, <span className="text-gradient">in one place</span>
+            Everything your smile needs,{" "}
+            <span className="accent-italic">in one place</span>
           </>
         }
         intro="From a child's first cleaning to a complete smile makeover, we provide comprehensive, gentle dental care for the whole family, all under one calm roof in Bellaire."
@@ -34,26 +35,40 @@ export default function ServicesPage() {
         ]}
       />
 
-      <div className="py-16 lg:py-24">
-        {groups.map((group, gi) => (
-          <section key={group.category} className={gi % 2 === 1 ? "bg-white/60 py-14" : "py-14"}>
-            <Container>
-              <div className="flex items-end justify-between gap-4">
-                <h2 className="font-display text-2xl text-navy-900 sm:text-3xl">
-                  {group.category}
-                </h2>
-                <span className="text-sm text-ink-soft">{group.items.length} services</span>
+      <div className="py-20 lg:py-28">
+        <Container>
+          {groups.map((group, gi) => (
+            <section
+              key={group.category}
+              className={gi > 0 ? "mt-16 lg:mt-24" : ""}
+            >
+              <div className="flex items-baseline justify-between gap-4 border-b border-line-strong pb-4">
+                <div className="flex items-baseline gap-4">
+                  <span
+                    aria-hidden="true"
+                    className="font-display text-sm tnum text-bronze"
+                  >
+                    {String(gi + 1).padStart(2, "0")}
+                  </span>
+                  <h2 className="font-display text-2xl text-ink sm:text-3xl">
+                    {group.category}
+                  </h2>
+                </div>
+                <span className="label text-ink-faint">
+                  {group.items.length} services
+                </span>
               </div>
-              <Stagger className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {group.items.map((s) => (
-                  <StaggerItem key={s.slug} className="h-full">
-                    <ServiceCard service={s} />
-                  </StaggerItem>
-                ))}
-              </Stagger>
-            </Container>
-          </section>
-        ))}
+
+              <Reveal>
+                <ol>
+                  {group.items.map((s) => (
+                    <ServiceRow key={s.slug} service={s} />
+                  ))}
+                </ol>
+              </Reveal>
+            </section>
+          ))}
+        </Container>
       </div>
 
       <FinalCTA />
@@ -67,29 +82,36 @@ export default function ServicesPage() {
   );
 }
 
-function ServiceCard({ service }: { service: Service }) {
+function ServiceRow({ service }: { service: Service }) {
   const inner = (
     <>
-      <h3 className="font-display text-lg text-navy-900">{service.name}</h3>
-      <span className="mt-3 block h-1 w-10 rounded-full bg-cyan-300 transition-all duration-300 group-hover:w-16 group-hover:bg-cyan-400" />
-      <p className="mt-4 flex-1 text-sm leading-relaxed text-ink-soft">{service.summary}</p>
-      {service.hasPage && (
-        <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-cyan-700">
-          Learn more
-          <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-        </span>
+      <h3 className="font-display text-xl leading-tight text-ink transition-colors duration-300 group-hover:text-bronze sm:text-2xl">
+        {service.name}
+      </h3>
+      <p className="hidden max-w-md text-sm leading-relaxed text-ink-soft lg:block">
+        {service.summary}
+      </p>
+      {service.hasPage ? (
+        <ArrowRight
+          size={18}
+          className="justify-self-end text-ink-soft transition-transform duration-300 group-hover:translate-x-1.5 group-hover:text-ink"
+        />
+      ) : (
+        <span className="label justify-self-end text-ink-faint">Included</span>
       )}
     </>
   );
 
   const cls =
-    "group relative flex h-full flex-col rounded-3xl border border-line bg-white p-6 shadow-[0_2px_20px_-14px_rgba(10,31,64,0.25)] transition-all duration-300 hover:-translate-y-1 hover:border-cyan-200 hover:shadow-[0_20px_44px_-24px_rgba(10,31,64,0.4)]";
+    "group grid grid-cols-[1fr_auto] items-baseline gap-4 border-b border-line py-6 lg:grid-cols-[minmax(0,20rem)_1fr_auto] lg:py-7";
 
   return service.hasPage ? (
-    <Link href={`/services/${service.slug}`} className={cls}>
-      {inner}
-    </Link>
+    <li>
+      <Link href={`/services/${service.slug}`} className={cls}>
+        {inner}
+      </Link>
+    </li>
   ) : (
-    <div className={cls}>{inner}</div>
+    <li className={cls}>{inner}</li>
   );
 }

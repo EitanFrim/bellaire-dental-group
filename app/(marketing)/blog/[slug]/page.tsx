@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Img } from "@/components/ui/Img";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight, Clock } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "@/components/ui/Icons";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { FinalCTA } from "@/components/sections/FinalCTA";
@@ -51,22 +51,29 @@ function Blocks({ blocks }: { blocks: Block[] }) {
       {blocks.map((b, i) => {
         if (b.type === "h2")
           return (
-            <h2 key={i} className="mt-10 font-display text-2xl text-navy-900">
+            <h2 key={i} className="mt-12 font-display text-2xl text-ink sm:text-[1.75rem]">
               {b.text}
             </h2>
           );
         if (b.type === "ul")
           return (
-            <ul key={i} className="mt-4 space-y-2">
+            <ul key={i} className="mt-5 space-y-2.5">
               {b.items.map((it, j) => (
-                <li key={j} className="ml-5 list-disc text-pretty leading-relaxed text-ink-soft">
-                  {it}
+                <li
+                  key={j}
+                  className="flex items-baseline gap-4 text-pretty leading-relaxed text-ink-soft"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="relative top-[0.6em] h-px w-4 shrink-0 bg-bronze/60"
+                  />
+                  <span>{it}</span>
                 </li>
               ))}
             </ul>
           );
         return (
-          <p key={i} className="mt-4 text-pretty leading-relaxed text-ink-soft">
+          <p key={i} className="mt-5 text-pretty leading-relaxed text-ink-soft">
             {b.text}
           </p>
         );
@@ -110,65 +117,74 @@ export default async function BlogPostPage({
   return (
     <>
       <PageHero eyebrow={post.category} title={post.title} crumbs={crumbs}>
-        <div className="flex items-center gap-4 text-sm text-ink-soft">
+        <div className="tnum flex items-center gap-3 text-sm text-ink-faint">
           <span>{formatDate(post.date)}</span>
-          <span className="inline-flex items-center gap-1">
-            <Clock className="h-3.5 w-3.5" /> {post.readMinutes} min read
-          </span>
+          <span aria-hidden="true">·</span>
+          <span>{post.readMinutes} min read</span>
         </div>
       </PageHero>
 
       <article className="py-16 lg:py-20">
         <Container className="max-w-3xl">
           {post.cover && (
-            <div className="relative mb-10 aspect-[16/9] overflow-hidden rounded-3xl border border-line">
-              <Img
-                src={post.cover}
-                alt=""
-                fill
-                priority
-                sizes="(max-width: 768px) 100vw, 768px"
-                className="object-cover"
-              />
+            <div className="mb-12 border border-line bg-paper p-2.5">
+              <div className="relative aspect-[16/9] overflow-hidden">
+                <Img
+                  src={post.cover}
+                  alt=""
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 100vw, 768px"
+                  className="object-cover"
+                />
+              </div>
             </div>
           )}
           <div className="text-lg">
-            <p className="text-pretty leading-relaxed text-ink-soft">{post.excerpt}</p>
+            <p className="text-pretty text-xl leading-relaxed text-ink">
+              {post.excerpt}
+            </p>
             <Blocks blocks={post.body} />
           </div>
 
-          <div className="mt-12 flex items-center justify-between border-t border-line pt-8">
+          <div className="mt-12 border-t border-line pt-8">
             <Link
               href="/blog"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-cyan-700 hover:text-cyan-600"
+              className="inline-flex items-center gap-2 text-sm font-medium text-ink underline decoration-line underline-offset-4 transition-colors hover:text-bronze"
             >
-              <ArrowLeft className="h-4 w-4" /> All articles
+              <ArrowLeft size={15} /> All articles
             </Link>
           </div>
         </Container>
       </article>
 
       {related.length > 0 && (
-        <section className="bg-white/60 py-16">
+        <section className="border-t border-line py-16">
           <Container className="max-w-3xl">
-            <h2 className="font-display text-2xl text-navy-900">Keep reading</h2>
-            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            <p className="label text-bronze">Keep reading</p>
+            <ol className="mt-6 border-t border-line">
               {related.map((r) => (
-                <Link
-                  key={r.slug}
-                  href={`/blog/${r.slug}`}
-                  className="group rounded-2xl border border-line bg-white p-5 transition-colors hover:border-cyan-200"
-                >
-                  <span className="text-xs font-semibold uppercase tracking-wider text-cyan-700">
-                    {r.category}
-                  </span>
-                  <h3 className="mt-1.5 font-display text-lg text-navy-900">{r.title}</h3>
-                  <span className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-cyan-700">
-                    Read <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-                  </span>
-                </Link>
+                <li key={r.slug}>
+                  <Link
+                    href={`/blog/${r.slug}`}
+                    className="group flex items-baseline justify-between gap-4 border-b border-line py-5"
+                  >
+                    <span>
+                      <span className="label block text-ink-faint">
+                        {r.category}
+                      </span>
+                      <span className="mt-1.5 block font-display text-lg text-ink transition-colors group-hover:text-bronze">
+                        {r.title}
+                      </span>
+                    </span>
+                    <ArrowRight
+                      size={16}
+                      className="shrink-0 text-ink-soft transition-transform group-hover:translate-x-1.5 group-hover:text-ink"
+                    />
+                  </Link>
+                </li>
               ))}
-            </div>
+            </ol>
           </Container>
         </section>
       )}

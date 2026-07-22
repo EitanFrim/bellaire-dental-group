@@ -1,13 +1,15 @@
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
-import { AuroraBackground } from "./AuroraBackground";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/motion/Reveal";
 
 export type Crumb = { name: string; path: string };
 
-/** Reusable inner-page hero with breadcrumbs + soft aurora. */
+/**
+ * Editorial inner-page header: small-caps breadcrumbs over a hairline, an
+ * oversized serif title, and optional intro/actions. No decorative
+ * background: the quiet paper ground and the hairline do the work.
+ */
 export function PageHero({
   eyebrow,
   title,
@@ -22,21 +24,27 @@ export function PageHero({
   children?: React.ReactNode;
 }) {
   return (
-    <section className="relative overflow-hidden border-b border-line bg-cream">
-      <AuroraBackground interactive={false} className="opacity-70" />
-      <Container className="relative pb-14 pt-28 lg:pb-20 lg:pt-36">
+    <section className="border-b border-line bg-bone">
+      <Container className="pb-16 pt-32 lg:pb-20 lg:pt-40">
         {crumbs && crumbs.length > 0 && (
-          <nav aria-label="Breadcrumb" className="mb-6">
-            <ol className="flex flex-wrap items-center gap-1 text-sm text-ink-soft">
+          <nav aria-label="Breadcrumb" className="mb-10">
+            <ol className="label flex flex-wrap items-center gap-2.5 text-ink-faint">
               {crumbs.map((c, i) => (
-                <li key={c.path} className="flex items-center gap-1">
-                  {i > 0 && <ChevronRight className="h-3.5 w-3.5 opacity-50" />}
+                <li key={c.path} className="flex items-center gap-2.5">
+                  {i > 0 && (
+                    <span aria-hidden="true" className="text-ink-faint/60">
+                      /
+                    </span>
+                  )}
                   {i < crumbs.length - 1 ? (
-                    <Link href={c.path} className="hover:text-cyan-700">
+                    <Link
+                      href={c.path}
+                      className="transition-colors hover:text-ink"
+                    >
                       {c.name}
                     </Link>
                   ) : (
-                    <span className="font-medium text-navy-800">{c.name}</span>
+                    <span className="text-ink">{c.name}</span>
                   )}
                 </li>
               ))}
@@ -44,27 +52,27 @@ export function PageHero({
           </nav>
         )}
 
-        <div className="max-w-3xl">
+        <div className="max-w-4xl">
           {eyebrow && (
             <Reveal>
               <Eyebrow>{eyebrow}</Eyebrow>
             </Reveal>
           )}
           <Reveal delay={0.05}>
-            <h1 className="mt-4 text-balance font-display text-4xl leading-[1.05] text-navy-900 sm:text-5xl lg:text-6xl">
+            <h1 className="mt-5 text-balance font-display text-[2.6rem] leading-[1.05] text-ink sm:text-5xl lg:text-6xl">
               {title}
             </h1>
           </Reveal>
           {intro && (
             <Reveal delay={0.1}>
-              <p className="mt-5 max-w-2xl text-pretty text-lg leading-relaxed text-ink-soft">
+              <p className="mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-ink-soft">
                 {intro}
               </p>
             </Reveal>
           )}
           {children && (
             <Reveal delay={0.15}>
-              <div className="mt-8">{children}</div>
+              <div className="mt-9">{children}</div>
             </Reveal>
           )}
         </div>

@@ -1,21 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  Check,
-  CreditCard,
-  ShieldCheck,
-  FileText,
-  ArrowRight,
-  Phone,
-  BadgePercent,
-  Gift,
-  Download,
-  LogIn,
-} from "lucide-react";
+import { ArrowRight, ArrowUpRight, Phone } from "@/components/ui/Icons";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Stagger, StaggerItem, Reveal } from "@/components/motion/Reveal";
+import { Reveal } from "@/components/motion/Reveal";
 import { Accordion } from "@/components/ui/Accordion";
 import { BookButton } from "@/components/booking/BookButton";
 import { FinalCTA } from "@/components/sections/FinalCTA";
@@ -32,22 +21,18 @@ export const metadata: Metadata = {
 
 const firstVisit = [
   {
-    icon: Phone,
     title: "Before you arrive",
     body: "Book online or call us. We'll confirm your visit and let you know anything to bring, like your insurance card and a list of any medications.",
   },
   {
-    icon: FileText,
     title: "A warm welcome",
     body: "Arrive a few minutes early for a quick check-in. Grab a coffee or water and settle into our calm, comfortable lounge.",
   },
   {
-    icon: ShieldCheck,
     title: "Your comprehensive exam",
     body: "Dr. Valter reviews your history, takes gentle low-radiation imaging, checks your teeth and gums, and screens for oral cancer.",
   },
   {
-    icon: Check,
     title: "Your personalized plan",
     body: "We talk through what we found in plain language (no pressure, no jargon) and build a plan prioritized around what matters to you.",
   },
@@ -83,7 +68,8 @@ export default function NewPatientsPage() {
         eyebrow="New patients"
         title={
           <>
-            Welcome. We&apos;re so glad <span className="text-gradient">you&apos;re here</span>
+            Welcome. We&apos;re so glad{" "}
+            <span className="accent-italic">you&apos;re here</span>
           </>
         }
         intro="Whether it's been six months or six years since your last visit, you'll be met with warmth and zero judgment. Here's exactly what to expect."
@@ -93,249 +79,279 @@ export default function NewPatientsPage() {
         ]}
       >
         <div className="flex flex-col gap-3 sm:flex-row">
-          <BookButton size="lg">
-            Book your first visit <ArrowRight className="h-4 w-4" />
+          <BookButton size="lg" variant="ink">
+            Book your first visit <ArrowRight size={15} />
           </BookButton>
           <a
             href={`tel:${practice.phone.tel}`}
-            className="inline-flex h-[3.25rem] items-center justify-center gap-2 rounded-full border border-navy-200 bg-white/70 px-7 font-medium text-navy-800 backdrop-blur transition-colors hover:bg-white"
+            className="tnum inline-flex h-[3.375rem] items-center justify-center gap-2.5 rounded-[2px] border border-line-strong px-7 text-sm font-medium text-ink transition-colors hover:bg-ink hover:text-bone"
           >
-            <Phone className="h-4 w-4 text-cyan-600" /> {practice.phone.display}
+            <Phone size={14} /> {practice.phone.display}
           </a>
         </div>
       </PageHero>
 
       {/* First visit steps */}
-      <section className="py-16 lg:py-24">
+      <section className="py-20 lg:py-28">
         <Container>
           <SectionHeading
+            align="left"
+            numeral="01"
             eyebrow="Your first visit"
             title={
               <>
-                Calm and predictable, <span className="text-gradient">start to finish</span>
+                Calm and predictable,{" "}
+                <span className="accent-italic">start to finish</span>
               </>
             }
           />
-          <Stagger className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {firstVisit.map((s, i) => (
-              <StaggerItem key={s.title}>
-                <div className="h-full rounded-3xl border border-line bg-white/70 p-6">
-                  <div className="flex items-center justify-between">
-                    <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-aqua text-navy-700">
-                      <s.icon className="h-6 w-6" />
-                    </span>
-                    <span className="font-display text-3xl text-cyan-200">0{i + 1}</span>
-                  </div>
-                  <h3 className="mt-5 font-display text-lg text-navy-900">{s.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-soft">{s.body}</p>
-                </div>
-              </StaggerItem>
-            ))}
-          </Stagger>
+          <Reveal>
+            <ol className="mt-12 grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+              {firstVisit.map((s, i) => (
+                <li key={s.title} className="bg-bone p-7">
+                  <span className="font-display text-lg tnum text-bronze">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mt-4 font-display text-lg text-ink">{s.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+                    {s.body}
+                  </p>
+                </li>
+              ))}
+            </ol>
+          </Reveal>
         </Container>
       </section>
 
       {/* Insurance & financing */}
-      <section className="bg-white/60 py-16 lg:py-24">
-        <Container className="grid gap-8 lg:grid-cols-2">
-          <Reveal>
-            <div className="h-full rounded-3xl border border-line bg-white p-8">
-              <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-mint text-navy-700">
-                <ShieldCheck className="h-6 w-6" />
-              </span>
-              <h2 className="mt-5 font-display text-2xl text-navy-900">Insurance</h2>
-              <p className="mt-3 leading-relaxed text-ink-soft">
-                We&apos;re in-network with most major PPO dental plans and will file your
-                claims for you. Not sure if we take your plan? Call{" "}
-                <a href={`tel:${practice.phone.tel}`} className="font-medium text-cyan-700">
-                  {practice.phone.display}
-                </a>{" "}
-                and we&apos;ll verify your benefits before you come in, with no surprises.
-              </p>
-              <ul className="mt-5 space-y-2 text-sm text-navy-800">
-                {["Most PPO plans accepted", "We file claims for you", "Clear estimates before treatment"].map(
-                  (t) => (
-                    <li key={t} className="flex items-center gap-2">
-                      <Check className="h-4 w-4 text-cyan-500" /> {t}
-                    </li>
-                  ),
-                )}
-              </ul>
-            </div>
-          </Reveal>
+      <section className="border-y border-line bg-linen/60 py-20 lg:py-28">
+        <Container className="grid gap-px overflow-hidden border border-line bg-line lg:grid-cols-2">
+          <div className="bg-bone p-8 lg:p-10">
+            <p className="label text-bronze">Insurance</p>
+            <h2 className="mt-4 font-display text-2xl text-ink">
+              Most PPO plans, filed for you
+            </h2>
+            <p className="mt-4 leading-relaxed text-ink-soft">
+              We&apos;re in-network with most major PPO dental plans and will
+              file your claims for you. Not sure if we take your plan? Call{" "}
+              <a
+                href={`tel:${practice.phone.tel}`}
+                className="tnum font-medium text-ink underline decoration-line underline-offset-4"
+              >
+                {practice.phone.display}
+              </a>{" "}
+              and we&apos;ll verify your benefits before you come in, with no
+              surprises.
+            </p>
+            <ul className="mt-6 border-t border-line">
+              {[
+                "Most PPO plans accepted",
+                "We file claims for you",
+                "Clear estimates before treatment",
+              ].map((t) => (
+                <li
+                  key={t}
+                  className="flex items-baseline gap-4 border-b border-line py-2.5 text-sm text-ink-soft"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="h-px w-4 shrink-0 bg-bronze/60"
+                  />
+                  {t}
+                </li>
+              ))}
+            </ul>
+          </div>
 
-          <Reveal delay={0.08}>
-            <div className="h-full rounded-3xl border border-line bg-white p-8">
-              <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gold-100 text-gold-600">
-                <CreditCard className="h-6 w-6" />
-              </span>
-              <h2 className="mt-5 font-display text-2xl text-navy-900">
-                Financing &amp; payment
-              </h2>
-              <p className="mt-3 leading-relaxed text-ink-soft">
-                Quality care should fit your budget. We offer flexible monthly payment
-                plans so you can move forward comfortably.
-              </p>
-              <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                {practice.financing.map((f) => (
-                  <a
-                    key={f.name}
-                    href={f.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group rounded-2xl border border-line bg-cream p-4 transition-colors hover:border-cyan-300"
-                  >
-                    <span className="flex items-center justify-between font-semibold text-navy-900">
+          <div className="bg-bone p-8 lg:p-10">
+            <p className="label text-bronze">Financing &amp; payment</p>
+            <h2 className="mt-4 font-display text-2xl text-ink">
+              Care that fits your budget
+            </h2>
+            <p className="mt-4 leading-relaxed text-ink-soft">
+              Quality care should fit your budget. We offer flexible monthly
+              payment plans so you can move forward comfortably.
+            </p>
+            <div className="mt-6 border-t border-line">
+              {practice.financing.map((f) => (
+                <a
+                  key={f.name}
+                  href={f.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-baseline justify-between gap-4 border-b border-line py-4"
+                >
+                  <span>
+                    <span className="block font-medium text-ink transition-colors group-hover:text-bronze">
                       {f.name}
-                      <ArrowRight className="h-4 w-4 text-cyan-600 transition-transform group-hover:translate-x-0.5" />
                     </span>
-                    <span className="mt-1 block text-xs leading-relaxed text-ink-soft">
+                    <span className="mt-0.5 block text-xs leading-relaxed text-ink-soft">
                       {f.description}
                     </span>
-                  </a>
-                ))}
-              </div>
-              <p className="mt-4 text-xs text-ink-soft">
-                We also accept cash, check, and all major credit cards.
-              </p>
+                  </span>
+                  <ArrowUpRight
+                    size={15}
+                    className="shrink-0 text-ink-soft transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  />
+                </a>
+              ))}
             </div>
-          </Reveal>
+            <p className="mt-4 text-xs text-ink-faint">
+              We also accept cash, check, and all major credit cards.
+            </p>
+          </div>
         </Container>
       </section>
 
       {/* No insurance? Savings plan + specials */}
-      <section className="py-16 lg:py-24">
+      <section className="py-20 lg:py-28">
         <Container>
           <SectionHeading
+            align="left"
+            numeral="02"
             eyebrow="Affordable care"
             title={
               <>
-                No insurance? <span className="text-gradient">No problem.</span>
+                No insurance? <span className="accent-italic">No problem.</span>
               </>
             }
             intro={practice.membershipPlan.summary}
           />
-          <div className="mt-12 grid gap-8 lg:grid-cols-2">
-            <Reveal>
-              <div className="h-full rounded-3xl border border-line bg-white p-8">
-                <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-aqua text-navy-700">
-                  <BadgePercent className="h-6 w-6" />
-                </span>
-                <h2 className="mt-5 font-display text-2xl text-navy-900">
-                  {practice.membershipPlan.name}
-                </h2>
-                <ul className="mt-5 space-y-3 text-sm text-navy-800">
-                  {practice.membershipPlan.highlights.map((h) => (
-                    <li key={h} className="flex items-start gap-2">
-                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-cyan-500" /> {h}
-                    </li>
-                  ))}
-                </ul>
-                <p className="mt-5 text-xs text-ink-soft">
-                  Ask us for this year&apos;s membership details and we&apos;ll walk you
-                  through exactly what&apos;s included.
-                </p>
-              </div>
-            </Reveal>
+          <div className="mt-12 grid gap-px overflow-hidden border border-line bg-line lg:grid-cols-2">
+            <div className="bg-bone p-8 lg:p-10">
+              <p className="label text-bronze">In-office plan</p>
+              <h2 className="mt-4 font-display text-2xl text-ink">
+                {practice.membershipPlan.name}
+              </h2>
+              <ul className="mt-6 border-t border-line">
+                {practice.membershipPlan.highlights.map((h) => (
+                  <li
+                    key={h}
+                    className="flex items-baseline gap-4 border-b border-line py-3 text-sm text-ink-soft"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="mt-2 h-px w-4 shrink-0 bg-bronze/60"
+                    />
+                    {h}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-5 text-xs text-ink-faint">
+                Ask us for this year&apos;s membership details and we&apos;ll walk
+                you through exactly what&apos;s included.
+              </p>
+            </div>
 
-            <Reveal delay={0.08}>
-              <div className="h-full rounded-3xl border border-line bg-white p-8">
-                <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gold-100 text-gold-600">
-                  <Gift className="h-6 w-6" />
-                </span>
-                <h2 className="mt-5 font-display text-2xl text-navy-900">
-                  Current specials
-                </h2>
-                <ul className="mt-5 space-y-4">
-                  {practice.specials.map((s) => (
-                    <li key={s.title}>
-                      <span className="block font-medium text-navy-900">{s.title}</span>
-                      <span className="block text-sm leading-relaxed text-ink-soft">
-                        {s.description}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-                <p className="mt-5 text-xs text-ink-soft">
-                  Call{" "}
-                  <a href={`tel:${practice.phone.tel}`} className="font-medium text-cyan-700">
-                    {practice.phone.display}
-                  </a>{" "}
-                  to ask about our latest offers.
-                </p>
-              </div>
-            </Reveal>
+            <div className="bg-bone p-8 lg:p-10">
+              <p className="label text-bronze">Current specials</p>
+              <h2 className="mt-4 font-display text-2xl text-ink">
+                A little something to start
+              </h2>
+              <ul className="mt-6 border-t border-line">
+                {practice.specials.map((s) => (
+                  <li key={s.title} className="border-b border-line py-4">
+                    <span className="block font-medium text-ink">{s.title}</span>
+                    <span className="mt-1 block text-sm leading-relaxed text-ink-soft">
+                      {s.description}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-5 text-xs text-ink-faint">
+                Call{" "}
+                <a
+                  href={`tel:${practice.phone.tel}`}
+                  className="tnum font-medium text-ink underline decoration-line underline-offset-4"
+                >
+                  {practice.phone.display}
+                </a>{" "}
+                to ask about our latest offers.
+              </p>
+            </div>
           </div>
 
           {/* Save time before your visit: forms & portal (shown when configured) */}
           {(practice.patientFormsUrl || practice.patientPortalUrl) && (
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+            <ol className="mt-8 border-t border-line">
               {practice.patientFormsUrl && (
-                <a
-                  href={practice.patientFormsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center gap-4 rounded-2xl border border-line bg-white p-6 transition-colors hover:border-cyan-300"
-                >
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-mint text-navy-700">
-                    <Download className="h-6 w-6" />
-                  </span>
-                  <span>
-                    <span className="block font-semibold text-navy-900">
-                      New-patient forms
+                <li>
+                  <a
+                    href={practice.patientFormsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-baseline justify-between gap-4 border-b border-line py-5"
+                  >
+                    <span>
+                      <span className="block font-display text-lg text-ink transition-colors group-hover:text-bronze">
+                        New-patient forms
+                      </span>
+                      <span className="mt-1 block text-sm text-ink-soft">
+                        Fill out your paperwork online before you arrive and save
+                        time at check-in.
+                      </span>
                     </span>
-                    <span className="block text-sm text-ink-soft">
-                      Fill out your paperwork online before you arrive and save time at
-                      check-in.
-                    </span>
-                  </span>
-                  <ArrowRight className="ml-auto h-4 w-4 text-cyan-600 transition-transform group-hover:translate-x-0.5" />
-                </a>
+                    <ArrowUpRight
+                      size={16}
+                      className="shrink-0 text-ink-soft transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    />
+                  </a>
+                </li>
               )}
               {practice.patientPortalUrl && (
-                <a
-                  href={practice.patientPortalUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center gap-4 rounded-2xl border border-line bg-white p-6 transition-colors hover:border-cyan-300"
-                >
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-aqua text-navy-700">
-                    <LogIn className="h-6 w-6" />
-                  </span>
-                  <span>
-                    <span className="block font-semibold text-navy-900">
-                      Existing patient portal
+                <li>
+                  <a
+                    href={practice.patientPortalUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-baseline justify-between gap-4 border-b border-line py-5"
+                  >
+                    <span>
+                      <span className="block font-display text-lg text-ink transition-colors group-hover:text-bronze">
+                        Existing patient portal
+                      </span>
+                      <span className="mt-1 block text-sm text-ink-soft">
+                        Already a patient? Sign in to manage your account and
+                        appointments.
+                      </span>
                     </span>
-                    <span className="block text-sm text-ink-soft">
-                      Already a patient? Sign in to manage your account and appointments.
-                    </span>
-                  </span>
-                  <ArrowRight className="ml-auto h-4 w-4 text-cyan-600 transition-transform group-hover:translate-x-0.5" />
-                </a>
+                    <ArrowUpRight
+                      size={16}
+                      className="shrink-0 text-ink-soft transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    />
+                  </a>
+                </li>
               )}
-            </div>
+            </ol>
           )}
         </Container>
       </section>
 
       {/* FAQ */}
-      <section className="py-16 lg:py-24">
-        <Container className="max-w-3xl">
-          <SectionHeading
-            eyebrow="Good to know"
-            title="New patient questions"
-            intro="A few things people often ask before their first visit."
-          />
-          <div className="mt-10">
-            <Accordion items={faqs} />
+      <section className="border-t border-line py-20 lg:py-28">
+        <Container className="grid gap-12 lg:grid-cols-12 lg:gap-10">
+          <div className="lg:col-span-4">
+            <SectionHeading
+              align="left"
+              eyebrow="Good to know"
+              title="New patient questions"
+              intro="A few things people often ask before their first visit."
+              className="lg:sticky lg:top-28"
+            />
           </div>
-          <p className="mt-8 text-center text-ink-soft">
-            Have another question?{" "}
-            <Link href="/contact" className="font-medium text-cyan-700 hover:text-cyan-600">
-              Get in touch
-            </Link>{" "}
-            and we&apos;re happy to help.
-          </p>
+          <div className="lg:col-span-8">
+            <Accordion items={faqs} />
+            <p className="mt-8 text-ink-soft">
+              Have another question?{" "}
+              <Link
+                href="/contact"
+                className="font-medium text-ink underline decoration-line underline-offset-4 hover:text-bronze"
+              >
+                Get in touch
+              </Link>{" "}
+              and we&apos;re happy to help.
+            </p>
+          </div>
         </Container>
       </section>
 

@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Img } from "@/components/ui/Img";
-import { Award, Heart, Languages, Sparkles } from "lucide-react";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
+import { Reveal } from "@/components/motion/Reveal";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema, dentistPersonSchema } from "@/lib/schema";
@@ -19,22 +18,18 @@ export const metadata: Metadata = {
 
 const values = [
   {
-    icon: Heart,
     title: "Gentle, judgment-free",
     body: "We meet every patient with patience and warmth. No lectures, no rushing, no shame. Just honest, comfortable care.",
   },
   {
-    icon: Sparkles,
     title: "Natural-looking results",
     body: "Dr. Valter designs every smile around your face for results that look like the best version of you, never overdone.",
   },
   {
-    icon: Award,
     title: "Continually advancing",
     body: "Ongoing continuing education and modern technology mean you get current, evidence-based care every visit.",
   },
   {
-    icon: Languages,
     title: "Care in your language",
     body: "Our team speaks English, Spanish, Russian, and Hebrew, so every patient feels truly understood.",
   },
@@ -48,7 +43,8 @@ export default function AboutPage() {
         eyebrow="About the practice"
         title={
           <>
-            Honest, gentle dentistry <span className="text-gradient">for nearly a decade</span>
+            Honest, gentle dentistry{" "}
+            <span className="accent-italic">for nearly a decade</span>
           </>
         }
         intro={practice.longDescription}
@@ -60,80 +56,101 @@ export default function AboutPage() {
 
       {/* Doctor bio */}
       <section className="py-20 lg:py-28">
-        <Container className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
+        <Container className="grid items-start gap-14 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-5">
-            <div className="relative mx-auto max-w-sm lg:sticky lg:top-28">
-              <div className="absolute -inset-5 -z-10 rounded-[2.75rem] bg-gradient-to-br from-cyan-200/60 via-aqua/50 to-mint/60 blur-2xl" />
-              <div className="relative aspect-[3/4] overflow-hidden rounded-[2rem] border border-white/70 shadow-2xl">
-                <Img
-                  src={doc.image}
-                  alt={`${doc.name}, ${doc.role}`}
-                  fill
-                  sizes="(max-width: 1024px) 80vw, 36vw"
-                  className="object-cover object-top"
-                />
+            <figure className="mx-auto max-w-sm lg:sticky lg:top-28 lg:mx-0">
+              <div className="border border-line bg-paper p-2.5">
+                <div className="relative aspect-[3/4] overflow-hidden">
+                  <Img
+                    src={doc.image}
+                    alt={`${doc.name}, ${doc.role}`}
+                    fill
+                    sizes="(max-width: 1024px) 80vw, 36vw"
+                    className="object-cover object-top"
+                  />
+                </div>
               </div>
-              <div className="absolute -bottom-5 left-1/2 flex -translate-x-1/2 items-center gap-2 whitespace-nowrap rounded-full border border-line bg-white px-4 py-2 shadow-xl">
-                <Award className="h-4 w-4 text-gold-400" />
-                <span className="text-sm font-medium text-navy-900">
-                  Houstonia “Top Dentist”
+              <figcaption className="flex items-baseline justify-between pt-3">
+                <span className="label text-ink-soft">
+                  {doc.name} · {doc.credentials}
                 </span>
-              </div>
-            </div>
+                <span className="label text-bronze">Houstonia Top Dentist</span>
+              </figcaption>
+            </figure>
           </Reveal>
 
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-6 lg:col-start-7">
             <SectionHeading
               align="left"
+              numeral="01"
               eyebrow="Meet your dentist"
               title={
                 <>
-                  {doc.name}, <span className="text-ink-soft">{doc.credentials}</span>
+                  {doc.name},{" "}
+                  <span className="accent-italic text-ink-soft">
+                    {doc.credentials}
+                  </span>
                 </>
               }
             />
-            <p className="mt-2 font-medium text-cyan-700">{doc.role}</p>
-            <div className="mt-6 space-y-4 leading-relaxed text-ink-soft">
+            <p className="label mt-3 text-ink-faint">{doc.role}</p>
+            <div className="mt-7 space-y-4 leading-relaxed text-ink-soft">
               {doc.bio.map((p, i) => (
                 <p key={i}>{p}</p>
               ))}
             </div>
-            <div className="mt-6 flex flex-wrap gap-2">
+            <ul className="mt-8 border-t border-line">
               {doc.specialties.map((s) => (
-                <span key={s} className="rounded-full bg-aqua px-3 py-1 text-sm text-navy-700">
+                <li
+                  key={s}
+                  className="flex items-baseline gap-4 border-b border-line py-2.5 text-sm text-ink-soft"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="h-px w-4 shrink-0 bg-bronze/60"
+                  />
                   {s}
-                </span>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </Container>
       </section>
 
       {/* Values */}
-      <section className="bg-white/60 py-20 lg:py-28">
+      <section className="border-y border-line bg-linen/60 py-20 lg:py-28">
         <Container>
           <SectionHeading
+            align="left"
+            numeral="02"
             eyebrow="What we believe"
             title={
               <>
-                Care built on <span className="text-gradient">trust</span>
+                Care built on <span className="accent-italic">trust</span>
               </>
             }
             intro="The principles behind every appointment at Bellaire Dental Group."
           />
-          <Stagger className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {values.map((v) => (
-              <StaggerItem key={v.title}>
-                <div className="h-full rounded-3xl border border-line bg-white p-6">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-aqua text-navy-700">
-                    <v.icon className="h-6 w-6" />
+          <Reveal>
+            <dl className="mt-12 grid gap-x-12 border-t border-line sm:grid-cols-2">
+              {values.map((v, i) => (
+                <div
+                  key={v.title}
+                  className="flex gap-5 border-b border-line py-7"
+                >
+                  <span className="font-display text-sm tnum text-bronze">
+                    {String(i + 1).padStart(2, "0")}
                   </span>
-                  <h3 className="mt-5 font-display text-lg text-navy-900">{v.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-soft">{v.body}</p>
+                  <div>
+                    <dt className="font-display text-xl text-ink">{v.title}</dt>
+                    <dd className="mt-2 text-sm leading-relaxed text-ink-soft">
+                      {v.body}
+                    </dd>
+                  </div>
                 </div>
-              </StaggerItem>
-            ))}
-          </Stagger>
+              ))}
+            </dl>
+          </Reveal>
         </Container>
       </section>
 

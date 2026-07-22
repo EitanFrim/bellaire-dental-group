@@ -58,7 +58,7 @@ export default function Home() {
         eyebrow="New here?"
         title={
           <>
-            Everything you might be <span className="text-gradient">wondering</span>
+            Everything you might be <span className="accent-italic">wondering</span>
           </>
         }
       />

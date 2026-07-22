@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Img } from "@/components/ui/Img";
-import { ArrowRight, Clock } from "lucide-react";
+import { ArrowRight } from "@/components/ui/Icons";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { Stagger, StaggerItem } from "@/components/motion/Reveal";
@@ -33,7 +33,8 @@ export default function BlogPage() {
         eyebrow="Dental health, made simple"
         title={
           <>
-            Tips &amp; answers from <span className="text-gradient">our team</span>
+            Tips &amp; answers from{" "}
+            <span className="accent-italic">our team</span>
           </>
         }
         intro="Friendly, practical guidance on keeping your smile healthy, answering the questions we hear most often in the chair."
@@ -43,12 +44,12 @@ export default function BlogPage() {
         ]}
       />
 
-      <section className="py-16 lg:py-24">
+      <section className="py-20 lg:py-28">
         <Container>
           {/* Featured */}
           <Link
             href={`/blog/${featured.slug}`}
-            className="group grid overflow-hidden rounded-3xl border border-line bg-white/80 shadow-[0_2px_24px_-14px_rgba(10,31,64,0.3)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_50px_-24px_rgba(10,31,64,0.4)] lg:grid-cols-2"
+            className="group grid border border-line bg-paper lg:grid-cols-2"
           >
             <div className="relative aspect-[16/10] overflow-hidden lg:aspect-auto">
               {featured.cover && (
@@ -57,38 +58,40 @@ export default function BlogPage() {
                   alt=""
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.03]"
                 />
               )}
             </div>
-            <div className="flex flex-col justify-center p-8 lg:p-12">
-              <span className="inline-flex w-fit items-center gap-2 rounded-full bg-aqua px-3 py-1 text-xs font-semibold uppercase tracking-wider text-navy-700">
-                {featured.category}
-              </span>
-              <h2 className="mt-4 font-display text-2xl text-navy-900 sm:text-3xl">
+            <div className="flex flex-col justify-center p-8 lg:p-14">
+              <span className="label text-bronze">{featured.category}</span>
+              <h2 className="mt-4 font-display text-2xl leading-tight text-ink transition-colors group-hover:text-bronze sm:text-3xl">
                 {featured.title}
               </h2>
-              <p className="mt-3 leading-relaxed text-ink-soft">{featured.excerpt}</p>
-              <div className="mt-5 flex items-center gap-4 text-sm text-ink-soft">
+              <p className="mt-4 leading-relaxed text-ink-soft">
+                {featured.excerpt}
+              </p>
+              <div className="tnum mt-6 flex items-center gap-3 text-sm text-ink-faint">
                 <span>{formatDate(featured.date)}</span>
-                <span className="inline-flex items-center gap-1">
-                  <Clock className="h-3.5 w-3.5" /> {featured.readMinutes} min read
-                </span>
+                <span aria-hidden="true">·</span>
+                <span>{featured.readMinutes} min read</span>
               </div>
-              <span className="mt-5 inline-flex items-center gap-1.5 font-medium text-cyan-700">
+              <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-ink">
                 Read article
-                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                <ArrowRight
+                  size={15}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                />
               </span>
             </div>
           </Link>
 
           {/* Grid */}
-          <Stagger className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <Stagger className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {rest.map((post) => (
               <StaggerItem key={post.slug} className="h-full">
                 <Link
                   href={`/blog/${post.slug}`}
-                  className="group flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-white/80 shadow-[0_2px_20px_-14px_rgba(10,31,64,0.25)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_44px_-24px_rgba(10,31,64,0.4)]"
+                  className="group flex h-full flex-col border border-line bg-paper"
                 >
                   <div className="relative aspect-[16/10] overflow-hidden">
                     {post.cover && (
@@ -97,23 +100,22 @@ export default function BlogPage() {
                         alt=""
                         fill
                         sizes="(max-width: 640px) 100vw, 33vw"
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.03]"
                       />
                     )}
                   </div>
                   <div className="flex flex-1 flex-col p-6">
-                    <span className="text-xs font-semibold uppercase tracking-wider text-cyan-700">
-                      {post.category}
-                    </span>
-                    <h3 className="mt-2 font-display text-lg text-navy-900">{post.title}</h3>
+                    <span className="label text-bronze">{post.category}</span>
+                    <h3 className="mt-3 font-display text-lg leading-snug text-ink transition-colors group-hover:text-bronze">
+                      {post.title}
+                    </h3>
                     <p className="mt-2 flex-1 text-sm leading-relaxed text-ink-soft">
                       {post.excerpt}
                     </p>
-                    <div className="mt-4 flex items-center gap-3 text-xs text-ink-soft">
+                    <div className="tnum mt-5 flex items-center gap-3 border-t border-line pt-4 text-xs text-ink-faint">
                       <span>{formatDate(post.date)}</span>
-                      <span className="inline-flex items-center gap-1">
-                        <Clock className="h-3 w-3" /> {post.readMinutes} min
-                      </span>
+                      <span aria-hidden="true">·</span>
+                      <span>{post.readMinutes} min</span>
                     </div>
                   </div>
                 </Link>

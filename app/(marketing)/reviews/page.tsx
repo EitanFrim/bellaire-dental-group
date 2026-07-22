@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink } from "@/components/ui/Icons";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { StarRating } from "@/components/ui/StarRating";
@@ -29,7 +29,7 @@ export default async function ReviewsPage() {
         eyebrow="Patient love"
         title={
           <>
-            Loved by <span className="text-gradient">Houston</span> families
+            Loved by <span className="accent-italic">Houston</span> families
           </>
         }
         intro={`We're proud to be rated ${average} stars across ${total}+ Google reviews, by real neighbors, many of whom have trusted us for decades.`}
@@ -38,42 +38,44 @@ export default async function ReviewsPage() {
           { name: "Reviews", path: "/reviews" },
         ]}
       >
-        <div className="flex flex-wrap items-center gap-5">
-          <div className="flex items-center gap-3 rounded-2xl border border-line bg-white/80 px-5 py-3">
-            <span className="font-display text-3xl text-navy-900">{average}</span>
+        <div className="flex flex-wrap items-center gap-8 border-t border-line pt-6">
+          <div className="flex items-baseline gap-4">
+            <span className="tnum font-display text-4xl text-ink">{average}</span>
             <span>
-              <StarRating value={5} size={16} />
-              <span className="block text-xs text-ink-soft">{total}+ Google reviews</span>
+              <StarRating value={5} size={13} />
+              <span className="label mt-1 block text-ink-faint">
+                {total}+ Google reviews
+              </span>
             </span>
           </div>
           <a
             href={practice.ratings.google.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-cyan-700 hover:text-cyan-600"
+            className="inline-flex items-center gap-2 text-sm font-medium text-ink underline decoration-line underline-offset-4 transition-colors hover:text-bronze"
           >
-            See all on Google <ExternalLink className="h-4 w-4" />
+            See all on Google <ExternalLink size={14} />
           </a>
         </div>
       </PageHero>
 
-      <section className="py-16 lg:py-24">
+      <section className="py-20 lg:py-28">
         <Container>
           <Stagger className="columns-1 gap-5 sm:columns-2 lg:columns-3 [&>*]:mb-5">
             {reviews.map((r, i) => (
               <StaggerItem key={i} className="break-inside-avoid">
-                <figure className="rounded-3xl border border-line bg-white/80 p-6 shadow-[0_2px_24px_-14px_rgba(10,31,64,0.3)]">
+                <figure className="border border-line bg-paper p-6">
                   <div className="flex items-center justify-between">
-                    <StarRating value={r.rating} size={15} />
-                    <span className="text-xs font-medium text-ink-soft">{r.source}</span>
+                    <StarRating value={r.rating} size={12} />
+                    <span className="label text-ink-faint">{r.source}</span>
                   </div>
-                  <blockquote className="mt-3 text-pretty leading-relaxed text-navy-800">
-                    “{r.text}”
+                  <blockquote className="mt-4 text-pretty leading-relaxed text-ink">
+                    {r.text}
                   </blockquote>
-                  <figcaption className="mt-4 flex items-center justify-between text-sm">
-                    <span className="font-semibold text-navy-900">{r.author}</span>
+                  <figcaption className="mt-5 flex items-baseline justify-between border-t border-line pt-4 text-sm">
+                    <span className="font-medium text-ink">{r.author}</span>
                     {r.relativeTime && (
-                      <span className="text-ink-soft">{r.relativeTime}</span>
+                      <span className="text-ink-faint">{r.relativeTime}</span>
                     )}
                   </figcaption>
                 </figure>

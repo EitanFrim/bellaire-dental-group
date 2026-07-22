@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { MapPin, ArrowRight, Phone } from "lucide-react";
+import { ArrowRight } from "@/components/ui/Icons";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
-import { Stagger, StaggerItem } from "@/components/motion/Reveal";
+import { Reveal } from "@/components/motion/Reveal";
 import { MapEmbed } from "@/components/ui/MapEmbed";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -25,7 +25,7 @@ export default function LocationsPage() {
         eyebrow="Areas we serve"
         title={
           <>
-            A gentle dentist <span className="text-gradient">near you</span>
+            A gentle dentist <span className="accent-italic">near you</span>
           </>
         }
         intro="From our home in Bellaire, we care for families across West University Place, Upper Kirby, Meyerland, and greater Houston, with free parking and easy, unhurried visits."
@@ -35,54 +35,62 @@ export default function LocationsPage() {
         ]}
       />
 
-      <section className="py-16 lg:py-24">
+      <section className="py-20 lg:py-28">
         <Container>
-          <Stagger className="grid gap-5 sm:grid-cols-2">
-            {locations.map((loc) => (
-              <StaggerItem key={loc.slug} className="h-full">
-                <Link
-                  href={`/locations/${loc.slug}`}
-                  className="group flex h-full flex-col rounded-3xl border border-line bg-white/80 p-7 shadow-[0_2px_24px_-14px_rgba(10,31,64,0.3)] transition-all duration-300 hover:-translate-y-1 hover:border-cyan-200 hover:shadow-[0_24px_50px_-24px_rgba(10,31,64,0.4)]"
-                >
-                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-aqua text-navy-700 transition-colors group-hover:bg-cyan-400 group-hover:text-navy-950">
-                    <MapPin className="h-6 w-6" />
-                  </span>
-                  <h2 className="mt-5 font-display text-2xl text-navy-900">
-                    Dentist in {loc.area}
-                  </h2>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-ink-soft">
-                    {loc.intro}
-                  </p>
-                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-cyan-700">
-                    {loc.area} dental care
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </span>
-                </Link>
-              </StaggerItem>
-            ))}
-          </Stagger>
+          <Reveal>
+            <ol className="border-t border-line">
+              {locations.map((loc, i) => (
+                <li key={loc.slug}>
+                  <Link
+                    href={`/locations/${loc.slug}`}
+                    className="group grid grid-cols-[2.5rem_1fr_auto] items-baseline gap-4 border-b border-line py-7 transition-colors hover:bg-paper sm:grid-cols-[3.5rem_minmax(0,16rem)_1fr_auto]"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="font-display text-sm tnum text-bronze"
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h2 className="font-display text-2xl text-ink transition-colors group-hover:text-bronze">
+                      {loc.area}
+                    </h2>
+                    <p className="hidden max-w-md text-sm leading-relaxed text-ink-soft lg:block">
+                      {loc.intro}
+                    </p>
+                    <ArrowRight
+                      size={18}
+                      className="justify-self-end text-ink-soft transition-transform group-hover:translate-x-1.5 group-hover:text-ink"
+                    />
+                  </Link>
+                </li>
+              ))}
+            </ol>
+          </Reveal>
 
-          <div className="mt-10 grid gap-8 lg:grid-cols-2 lg:items-center">
-            <div className="rounded-3xl border border-line bg-white/70 p-7">
-              <h2 className="font-display text-2xl text-navy-900">
-                One convenient location
+          <div className="mt-16 grid gap-10 lg:grid-cols-2 lg:items-stretch">
+            <div className="flex flex-col justify-center">
+              <p className="label text-bronze">One convenient location</p>
+              <h2 className="mt-4 font-display text-2xl text-ink sm:text-3xl">
+                In the heart of Bellaire
               </h2>
-              <p className="mt-3 text-ink-soft">
+              <p className="mt-4 leading-relaxed text-ink-soft">
                 {practice.address.street}, {practice.address.suite}
                 <br />
                 {practice.address.locality}, {practice.address.region}{" "}
                 {practice.address.postalCode}
               </p>
-              <p className="mt-2 text-sm text-ink-soft">{practice.parking}</p>
+              <p className="mt-2 text-sm text-ink-faint">{practice.parking}</p>
               <a
                 href={`tel:${practice.phone.tel}`}
-                className="mt-5 inline-flex items-center gap-2 font-semibold text-cyan-700 hover:text-cyan-600"
+                className="tnum mt-6 inline-flex items-center gap-2 font-medium text-ink underline decoration-line underline-offset-4 transition-colors hover:text-bronze"
               >
-                <Phone className="h-4 w-4" /> {practice.phone.display}
+                {practice.phone.display}
               </a>
             </div>
-            <div className="h-72 overflow-hidden rounded-3xl border border-line shadow-lg">
-              <MapEmbed />
+            <div className="border border-line bg-paper p-2.5">
+              <div className="h-72 overflow-hidden lg:h-full">
+                <MapEmbed className="h-72 lg:h-full" />
+              </div>
             </div>
           </div>
         </Container>

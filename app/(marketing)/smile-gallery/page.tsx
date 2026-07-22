@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Img } from "@/components/ui/Img";
-import { Quote } from "lucide-react";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
@@ -16,10 +15,18 @@ export const metadata: Metadata = {
 };
 
 const gallery = [
-  { src: "/images/office/lobby.jpg", alt: "Reception and lounge area", span: "sm:col-span-2 sm:row-span-2" },
+  {
+    src: "/images/office/lobby.jpg",
+    alt: "Reception and lounge area",
+    span: "sm:col-span-2 sm:row-span-2",
+  },
   { src: "/images/office/waiting.jpg", alt: "Comfortable waiting area with natural light" },
   { src: "/images/office/entry.jpg", alt: "Welcoming entryway with certifications" },
-  { src: "/images/lifestyle/smile-family.webp", alt: "Happy patients with healthy, confident smiles", span: "sm:col-span-2" },
+  {
+    src: "/images/lifestyle/smile-family.webp",
+    alt: "Happy patients with healthy, confident smiles",
+    span: "sm:col-span-2",
+  },
   { src: "/images/office/detail.jpg", alt: "Thoughtful interior details and artwork" },
 ];
 
@@ -30,7 +37,8 @@ export default function SmileGalleryPage() {
         eyebrow="A look inside"
         title={
           <>
-            A space designed to <span className="text-gradient">put you at ease</span>
+            A space designed to{" "}
+            <span className="accent-italic">put you at ease</span>
           </>
         }
         intro="Warm textures, soft lighting, and little comforts throughout. Our Bellaire office was made to feel nothing like the dental office of memory."
@@ -40,21 +48,21 @@ export default function SmileGalleryPage() {
         ]}
       />
 
-      <section className="py-16 lg:py-24">
+      <section className="py-20 lg:py-28">
         <Container>
           <Reveal>
-            <div className="grid auto-rows-[220px] grid-cols-2 gap-4 sm:grid-cols-4">
+            <div className="grid auto-rows-[220px] grid-cols-2 gap-3 sm:grid-cols-4 lg:gap-4">
               {gallery.map((g) => (
                 <div
                   key={g.src}
-                  className={`group relative overflow-hidden rounded-3xl ${g.span ?? ""}`}
+                  className={`group relative overflow-hidden border border-line ${g.span ?? ""}`}
                 >
                   <Img
                     src={g.src}
                     alt={g.alt}
                     fill
                     sizes="(max-width: 640px) 50vw, 25vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]"
                   />
                 </div>
               ))}
@@ -63,27 +71,32 @@ export default function SmileGalleryPage() {
 
           {/* Before/after placeholder: enabled when consented clinical photos are provided */}
           <Reveal>
-            <div className="mt-16 rounded-3xl border border-dashed border-navy-200 bg-white/50 p-10 text-center">
-              <h2 className="font-display text-2xl text-navy-900">
+            <div className="mt-16 border border-dashed border-line-strong p-10 text-center lg:p-14">
+              <p className="label text-bronze">In progress</p>
+              <h2 className="mt-4 font-display text-2xl text-ink sm:text-3xl">
                 Before &amp; after transformations
               </h2>
-              <p className="mx-auto mt-3 max-w-xl text-ink-soft">
-                We&apos;re curating a gallery of real smile transformations, shared with
-                each patient&apos;s written consent. Want to see results for your specific
-                goals? Ask us at your visit.
+              <p className="mx-auto mt-4 max-w-xl leading-relaxed text-ink-soft">
+                We&apos;re curating a gallery of real smile transformations, shared
+                with each patient&apos;s written consent. Want to see results for
+                your specific goals? Ask us at your visit.
               </p>
             </div>
           </Reveal>
 
           {/* Quote band */}
           <Reveal>
-            <figure className="mt-16 rounded-3xl bg-navy-900 p-10 text-center text-white sm:p-14">
-              <Quote className="mx-auto h-8 w-8 text-cyan-300" />
-              <blockquote className="mx-auto mt-5 max-w-2xl text-balance font-display text-2xl leading-snug sm:text-3xl">
-                “This business is Bellaire proud, and Bellaire is proud to have them in
-                our neighborhood. I now look forward to going to the dentist!”
+            <figure className="mt-16 bg-night px-8 py-16 text-center text-bone sm:px-14 sm:py-20">
+              <p className="label text-bronze-soft">Bellaire proud</p>
+              <blockquote className="mx-auto mt-6 max-w-2xl text-balance font-display text-2xl leading-[1.25] sm:text-[2rem]">
+                This business is Bellaire proud, and Bellaire is proud to have
+                them in our neighborhood. I now{" "}
+                <span className="accent-italic">look forward</span> to going to
+                the dentist.
               </blockquote>
-              <figcaption className="mt-5 text-navy-200">Jan, Google review</figcaption>
+              <figcaption className="label mt-6 text-bone/55">
+                Jan · Google review
+              </figcaption>
             </figure>
           </Reveal>
         </Container>

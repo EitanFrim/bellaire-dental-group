@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { MapPin, Phone, ArrowRight, Check, Star, Navigation } from "lucide-react";
+import { ArrowRight, Phone, Navigation } from "@/components/ui/Icons";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
+import { Reveal } from "@/components/motion/Reveal";
 import { StarRating } from "@/components/ui/StarRating";
 import { MapEmbed } from "@/components/ui/MapEmbed";
 import { BookButton } from "@/components/booking/BookButton";
@@ -75,173 +75,204 @@ export default async function LocationPage({
         eyebrow={`${loc.area}, Houston`}
         title={
           <>
-            Your gentle dentist in <span className="text-gradient">{loc.area}</span>
+            Your gentle dentist in{" "}
+            <span className="accent-italic">{loc.area}</span>
           </>
         }
         intro={loc.intro}
         crumbs={crumbs}
       >
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-          <BookButton size="lg">
-            Book your visit <ArrowRight className="h-4 w-4" />
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+          <BookButton size="lg" variant="ink">
+            Book your visit <ArrowRight size={15} />
           </BookButton>
           <a
             href={`tel:${practice.phone.tel}`}
-            className="inline-flex h-[3.25rem] items-center justify-center gap-2 rounded-full border border-navy-200 bg-white/70 px-7 font-medium text-navy-800 backdrop-blur transition-colors hover:bg-white"
+            className="tnum inline-flex h-[3.375rem] items-center justify-center gap-2.5 rounded-[2px] border border-line-strong px-7 text-sm font-medium text-ink transition-colors hover:bg-ink hover:text-bone"
           >
-            <Phone className="h-4 w-4 text-cyan-600" /> {practice.phone.display}
+            <Phone size={14} /> {practice.phone.display}
           </a>
-          <span className="inline-flex items-center gap-2 text-sm text-ink-soft">
-            <StarRating value={5} size={14} /> {practice.ratings.google.value} ·{" "}
+          <span className="label inline-flex items-center gap-2.5 text-ink-faint">
+            <StarRating value={5} size={12} /> {practice.ratings.google.value} ·{" "}
             {practice.ratings.google.count}+ reviews
           </span>
         </div>
       </PageHero>
 
       {/* Intro copy + highlights */}
-      <section className="py-16 lg:py-24">
+      <section className="py-20 lg:py-28">
         <Container className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-7">
             <Reveal>
-              <div className="space-y-4 text-lg leading-relaxed text-ink-soft">
+              <div className="space-y-5 text-lg leading-relaxed text-ink-soft">
                 {loc.blurb.map((p, i) => (
                   <p key={i}>{p}</p>
                 ))}
               </div>
-              <div className="mt-6 flex flex-wrap gap-2">
-                {loc.landmarks.map((l) => (
-                  <span
-                    key={l}
-                    className="inline-flex items-center gap-1.5 rounded-full bg-aqua px-3 py-1 text-sm text-navy-700"
-                  >
-                    <MapPin className="h-3.5 w-3.5" /> {l}
+              <p className="label mt-8 flex flex-wrap items-center gap-x-3 gap-y-2 text-ink-faint">
+                <span className="text-bronze">Nearby</span>
+                {loc.landmarks.map((l, i) => (
+                  <span key={l} className="flex items-center gap-3">
+                    {i > 0 && (
+                      <span aria-hidden="true" className="text-ink-faint/50">
+                        /
+                      </span>
+                    )}
+                    {l}
                   </span>
                 ))}
-              </div>
+              </p>
             </Reveal>
           </div>
 
           <aside className="lg:col-span-5">
             <Reveal delay={0.1}>
-              <div className="space-y-4">
+              <ul className="border-t border-line-strong">
                 {loc.highlights.map((h) => (
-                  <div key={h.title} className="flex gap-3 rounded-2xl border border-line bg-white/70 p-5">
-                    <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-cyan-400 text-navy-950">
-                      <Check className="h-4 w-4" />
+                  <li key={h.title} className="border-b border-line py-5">
+                    <span className="flex items-baseline gap-3">
+                      <span
+                        aria-hidden="true"
+                        className="mt-2 h-px w-4 shrink-0 bg-bronze/60"
+                      />
+                      <span>
+                        <span className="block font-medium text-ink">
+                          {h.title}
+                        </span>
+                        <span className="mt-1 block text-sm leading-relaxed text-ink-soft">
+                          {h.body}
+                        </span>
+                      </span>
                     </span>
-                    <span>
-                      <span className="block font-medium text-navy-900">{h.title}</span>
-                      <span className="block text-sm text-ink-soft">{h.body}</span>
-                    </span>
-                  </div>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </Reveal>
           </aside>
         </Container>
       </section>
 
       {/* Services for this area */}
-      <section className="bg-white/60 py-16 lg:py-24">
+      <section className="border-y border-line bg-linen/60 py-20 lg:py-28">
         <Container>
           <SectionHeading
+            align="left"
             eyebrow="Complete care"
             title={
               <>
-                Dental services for <span className="text-gradient">{loc.area}</span>
+                Dental services for{" "}
+                <span className="accent-italic">{loc.area}</span>
               </>
             }
           />
-          <Stagger className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredServices.map((s) => (
-              <StaggerItem key={s.slug} className="h-full">
-                <Link
-                  href={`/services/${s.slug}`}
-                  className="group flex h-full flex-col rounded-3xl border border-line bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-200"
-                >
-                  <h3 className="font-display text-lg text-navy-900">{s.name}</h3>
-                  <span className="mt-3 block h-1 w-10 rounded-full bg-cyan-300 transition-all duration-300 group-hover:w-16 group-hover:bg-cyan-400" />
-                  <p className="mt-4 flex-1 text-sm leading-relaxed text-ink-soft">
-                    {s.summary}
-                  </p>
-                </Link>
-              </StaggerItem>
-            ))}
-          </Stagger>
+          <Reveal>
+            <ol className="mt-12 border-t border-line">
+              {featuredServices.map((s) => (
+                <li key={s.slug}>
+                  <Link
+                    href={`/services/${s.slug}`}
+                    className="group grid grid-cols-[1fr_auto] items-baseline gap-4 border-b border-line py-6 lg:grid-cols-[minmax(0,20rem)_1fr_auto]"
+                  >
+                    <h3 className="font-display text-xl text-ink transition-colors group-hover:text-bronze sm:text-2xl">
+                      {s.name}
+                    </h3>
+                    <p className="hidden max-w-md text-sm leading-relaxed text-ink-soft lg:block">
+                      {s.summary}
+                    </p>
+                    <ArrowRight
+                      size={18}
+                      className="justify-self-end text-ink-soft transition-transform group-hover:translate-x-1.5 group-hover:text-ink"
+                    />
+                  </Link>
+                </li>
+              ))}
+            </ol>
+          </Reveal>
         </Container>
       </section>
 
       {/* Directions */}
-      <section className="py-16 lg:py-24">
-        <Container className="grid gap-8 lg:grid-cols-2 lg:items-center">
-          <div>
+      <section className="py-20 lg:py-28">
+        <Container className="grid gap-10 lg:grid-cols-2 lg:items-stretch">
+          <div className="flex flex-col justify-center">
             <SectionHeading
               align="left"
               eyebrow="Easy to reach"
               title={
-                <>
-                  {loc.driveTime === "right in the neighborhood"
-                    ? "Right in your neighborhood"
-                    : `Just ${loc.driveTime} from ${loc.area}`}
-                </>
+                loc.driveTime === "right in the neighborhood"
+                  ? "Right in your neighborhood"
+                  : `Just ${loc.driveTime} from ${loc.area}`
               }
             />
-            <p className="mt-4 text-ink-soft">
+            <p className="mt-6 leading-relaxed text-ink-soft">
               {practice.address.street}, {practice.address.suite}
               <br />
               {practice.address.locality}, {practice.address.region}{" "}
               {practice.address.postalCode}
             </p>
-            <p className="mt-2 text-sm text-ink-soft">{practice.parking}</p>
+            <p className="mt-2 text-sm text-ink-faint">{practice.parking}</p>
             <a
               href={practice.directionsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-5 inline-flex items-center gap-2 rounded-full border border-navy-200 bg-white px-5 py-3 font-medium text-navy-800 transition-colors hover:border-cyan-300"
+              className="mt-7 inline-flex h-12 w-fit items-center gap-2.5 rounded-[2px] border border-line-strong px-6 text-sm font-medium text-ink transition-colors hover:bg-ink hover:text-bone"
             >
-              <Navigation className="h-4 w-4 text-cyan-600" /> Get directions from {loc.area}
+              <Navigation size={15} /> Get directions from {loc.area}
             </a>
           </div>
-          <div className="h-72 overflow-hidden rounded-3xl border border-line shadow-lg lg:h-80">
-            <MapEmbed />
+          <div className="border border-line bg-paper p-2.5">
+            <div className="h-72 overflow-hidden lg:h-full lg:min-h-[22rem]">
+              <MapEmbed className="h-72 lg:h-full" />
+            </div>
           </div>
         </Container>
       </section>
 
       {/* FAQ */}
-      <section className="bg-white/60 py-16 lg:py-24">
-        <Container className="max-w-3xl">
-          <SectionHeading eyebrow="Good to know" title={`Dentist in ${loc.area}: FAQs`} />
-          <div className="mt-10 space-y-4">
-            {faqs.map((f) => (
-              <div key={f.q} className="rounded-2xl border border-line bg-white p-6">
-                <h3 className="font-display text-lg text-navy-900">{f.q}</h3>
-                <p className="mt-2 leading-relaxed text-ink-soft">{f.a}</p>
-              </div>
-            ))}
+      <section className="border-t border-line py-20 lg:py-28">
+        <Container className="grid gap-12 lg:grid-cols-12 lg:gap-10">
+          <div className="lg:col-span-4">
+            <SectionHeading
+              align="left"
+              eyebrow="Good to know"
+              title={`Dentist in ${loc.area}: FAQs`}
+              className="lg:sticky lg:top-28"
+            />
+          </div>
+          <div className="lg:col-span-8">
+            <dl className="border-t border-line">
+              {faqs.map((f) => (
+                <div key={f.q} className="border-b border-line py-6">
+                  <dt className="font-display text-lg text-ink sm:text-xl">
+                    {f.q}
+                  </dt>
+                  <dd className="mt-3 max-w-2xl leading-relaxed text-ink-soft">
+                    {f.a}
+                  </dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </Container>
       </section>
 
       {/* Other areas */}
-      <section className="py-12">
+      <section className="border-t border-line py-12">
         <Container>
-          <p className="text-sm font-semibold uppercase tracking-wider text-ink-soft">
-            We also serve
-          </p>
-          <div className="mt-3 flex flex-wrap gap-2">
+          <p className="label flex flex-wrap items-center gap-x-3 gap-y-2 text-ink-faint">
+            <span className="text-bronze">We also serve</span>
             {locations
               .filter((l) => l.slug !== loc.slug)
               .map((l) => (
                 <Link
                   key={l.slug}
                   href={`/locations/${l.slug}`}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-4 py-2 text-sm font-medium text-navy-800 transition-colors hover:border-cyan-300 hover:text-cyan-700"
+                  className="text-ink-soft transition-colors hover:text-ink"
                 >
-                  <MapPin className="h-3.5 w-3.5 text-cyan-600" /> Dentist in {l.area}
+                  {l.area}
                 </Link>
               ))}
-          </div>
+          </p>
         </Container>
       </section>
 
