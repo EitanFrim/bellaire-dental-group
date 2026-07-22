@@ -23,6 +23,10 @@ const homeFaqs = [
     a: "Yes. We happily welcome new patients of every age, from children age two and up to grandparents. You can book online in under a minute or give us a call.",
   },
   {
+    q: "I'm looking for a gentle dentist near me in Bellaire. Is your office close?",
+    a: "Very likely, yes. We're at the Chimney Rock Doctors Center in the Bellaire area (6699 Chimney Rock Rd., Suite 101, Houston, TX 77081), within about ten minutes of Bellaire, West University Place, Meyerland, Braeswood, Southside Place, Upper Kirby, and the Galleria. There's free on-site parking, and gentle, anxiety-aware care is what we're known for.",
+  },
+  {
     q: "Do you take my insurance?",
     a: "We accept most major PPO dental insurance plans. Coverage varies, so call us at (713) 668-8383 and we'll gladly verify your benefits. We also offer flexible financing through Cherry and CareCredit.",
   },

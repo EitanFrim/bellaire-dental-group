@@ -42,6 +42,8 @@ known for gentle, anxiety-aware, judgment-free care and has served the Bellaire
 and greater Houston community for nearly a decade. It is one of the highest-rated
 dentists in the Bellaire / Meyerland / West University area of Houston.
 
+Last updated: ${new Date().toISOString().slice(0, 10)} (regenerated on every deploy; facts below are current as of this date)
+
 ## Key facts
 - Practice: ${practice.name} (women-owned)
 - Lead dentist: ${practice.team[0].name}, ${practice.team[0].credentials} — ${practice.team[0].role}

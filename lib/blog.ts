@@ -23,6 +23,100 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "dental-cleaning-cost-houston",
+    title: "How Much Does a Dental Cleaning Cost in Houston? (2026 Guide)",
+    excerpt:
+      "Typical Houston prices for a cleaning, exam, and X-rays, with and without insurance, what changes the price, and how to keep preventive care affordable.",
+    date: "2026-06-10",
+    readMinutes: 6,
+    category: "Costs & Insurance",
+    cover: "/images/studio/visit-care.webp",
+    related: ["how-often-should-you-see-the-dentist", "what-to-expect-first-visit"],
+    body: [
+      {
+        type: "p",
+        text: "Price is the number one reason people put off a dental cleaning, so let's answer it plainly. In the Houston area in 2026, a standard adult cleaning typically runs about $100 to $200 without insurance. A full new-patient visit (cleaning, comprehensive exam, and X-rays) usually falls between $150 and $350. With most PPO dental insurance, preventive visits like these are commonly covered at or near 100 percent, which means many insured patients pay little or nothing out of pocket.",
+      },
+      { type: "h2", text: "What exactly am I paying for?" },
+      {
+        type: "ul",
+        items: [
+          "Professional cleaning (prophylaxis): removing plaque and tartar that home brushing physically cannot reach",
+          "Comprehensive exam: the dentist checks every tooth, your gums, your bite, and existing dental work",
+          "Digital X-rays: low-radiation images that reveal decay between teeth and under old fillings",
+          "Oral cancer screening: a quick, painless check that is included in every exam at our office",
+        ],
+      },
+      { type: "h2", text: "Why do some cleanings cost more than others?" },
+      {
+        type: "p",
+        text: "If it has been years since your last visit, or if gum disease has developed, you may need a deep cleaning (scaling and root planing) instead of a standard one. In Houston, deep cleanings typically range from about $150 to $350 per quadrant of the mouth. It is a different procedure treating a different problem, which is why the price differs. A good dental office will always tell you which one you actually need, and why, before anything happens.",
+      },
+      { type: "h2", text: "Is skipping cleanings actually cheaper?" },
+      {
+        type: "p",
+        text: "The math says no. According to CDC data, roughly one in four American adults is living with untreated tooth decay. Small cavities caught at a routine cleaning are typically a one-visit, low-cost fix. Left alone, that same tooth can progress to needing a crown or a root canal, which costs many times more. Preventive care is the least expensive dentistry there is.",
+      },
+      { type: "h2", text: "What if I do not have dental insurance?" },
+      {
+        type: "p",
+        text: "You still have good options. Bellaire Dental Group offers an in-office dental savings plan: an annual membership that covers routine preventive care and discounts other treatment, with no claim forms, deductibles, or waiting periods. We also offer flexible monthly financing through Cherry and CareCredit, and we always give you a clear, itemized estimate before any treatment begins.",
+      },
+      {
+        type: "p",
+        text: "Due (or overdue) for a cleaning in the Houston or Bellaire area? We would love to see you, and we promise a judgment-free welcome no matter how long it has been. Book online in under a minute or call (713) 668-8383.",
+      },
+    ],
+  },
+  {
+    slug: "emergency-dentist-houston-first-30-minutes",
+    title: "Emergency Dentist in Houston: What to Do in the First 30 Minutes",
+    excerpt:
+      "A knocked-out tooth, a cracked crown, or sudden pain? Here's exactly what to do first, when to go to the ER instead, and how same-day dental visits work.",
+    date: "2026-07-08",
+    readMinutes: 6,
+    category: "Emergency Care",
+    cover: "/images/studio/visit-arrival.webp",
+    related: ["dental-cleaning-cost-houston", "what-to-expect-first-visit"],
+    body: [
+      {
+        type: "p",
+        text: "Dental emergencies are decided in minutes, not days. The single most important fact to know: a knocked-out adult tooth has its best chance of being saved if it is back in place within about 30 to 60 minutes, according to American Dental Association guidance. Here is exactly what to do for the most common emergencies, from a dental office in Bellaire that holds room in the schedule for same-day emergency visits.",
+      },
+      { type: "h2", text: "A tooth got knocked out. What do I do right now?" },
+      {
+        type: "ul",
+        items: [
+          "Pick the tooth up by the crown (the chewing part). Do not touch the root.",
+          "If it is dirty, rinse it gently with milk or saline for a few seconds. Do not scrub it.",
+          "If you can, place it back into the socket and bite gently on gauze or a clean cloth to hold it.",
+          "If you cannot, keep it in a cup of cold milk (not water) and get to a dentist immediately.",
+          "Call the dental office on the way: (713) 668-8383. Minutes genuinely matter.",
+        ],
+      },
+      { type: "h2", text: "Should I go to the ER or to a dentist?" },
+      {
+        type: "p",
+        text: "Go to the emergency room for anything life-threatening: trouble breathing or swallowing, uncontrolled bleeding, facial swelling that spreads toward the eye or neck, or a suspected jaw fracture. For everything else (severe toothache, knocked-out or broken teeth, lost crowns, abscess pain), a dentist is the right call. The ADA's Health Policy Institute has counted more than two million ER visits a year for dental pain in the US, and most end with painkillers and a referral, because ERs generally cannot do definitive dental treatment. A same-day dental visit fixes the actual problem, usually for far less money.",
+      },
+      { type: "h2", text: "What about a severe toothache?" },
+      {
+        type: "p",
+        text: "Rinse with warm salt water, floss gently to rule out trapped food, and take an over-the-counter pain reliever as directed. Do not put aspirin directly on the gum (it burns tissue), and do not use heat packs on your face. A toothache that wakes you at night or comes with swelling usually means infection: call for a same-day visit rather than waiting it out. Dental infections do not resolve on their own.",
+      },
+      { type: "h2", text: "Chipped tooth, broken crown, or lost filling?" },
+      {
+        type: "p",
+        text: "Save any pieces, rinse your mouth gently, and cover any sharp edge with dental wax or sugar-free gum if it is cutting your cheek. These are urgent rather than instant emergencies: same-day or next-day care is usually right, and the sooner the tooth is protected, the more of it we can typically save.",
+      },
+      { type: "h2", text: "How fast can I actually be seen in Houston?" },
+      {
+        type: "p",
+        text: "At Bellaire Dental Group we hold room in the schedule for emergencies and will do everything we can to see you the same day you call. We are at 6699 Chimney Rock Rd., Suite 101, minutes from Bellaire, Meyerland, West University, and the Galleria area, with free parking at the door. If you are in pain right now, call (713) 668-8383 and we will get you comfortable.",
+      },
+    ],
+  },
+  {
     slug: "how-often-should-you-see-the-dentist",
     title: "How Often Should You Really See the Dentist?",
     excerpt:

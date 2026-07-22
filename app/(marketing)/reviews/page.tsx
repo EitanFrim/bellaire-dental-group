@@ -48,14 +48,24 @@ export default async function ReviewsPage() {
               </span>
             </span>
           </div>
-          <a
-            href={practice.ratings.google.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm font-medium text-ink underline decoration-line underline-offset-4 transition-colors hover:text-bronze"
-          >
-            See all on Google <ExternalLink size={14} />
-          </a>
+          <span className="flex flex-wrap items-center gap-6">
+            <a
+              href={practice.ratings.google.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-medium text-ink underline decoration-line underline-offset-4 transition-colors hover:text-bronze"
+            >
+              See all on Google <ExternalLink size={14} />
+            </a>
+            <a
+              href={practice.ratings.google.writeReviewUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-medium text-ink underline decoration-line underline-offset-4 transition-colors hover:text-bronze"
+            >
+              Loved your visit? Leave a review <ExternalLink size={14} />
+            </a>
+          </span>
         </div>
       </PageHero>
 

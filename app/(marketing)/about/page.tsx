@@ -35,6 +35,15 @@ const values = [
   },
 ];
 
+function FactCell({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="bg-bone p-6">
+      <dt className="label text-ink-faint">{label}</dt>
+      <dd className="tnum mt-2 text-sm leading-relaxed text-ink">{value}</dd>
+    </div>
+  );
+}
+
 export default function AboutPage() {
   const doc = practice.team[0];
   return (
@@ -114,6 +123,41 @@ export default function AboutPage() {
               ))}
             </ul>
           </div>
+        </Container>
+      </section>
+
+      {/* At a glance: extractable facts for people (and AI assistants) in a hurry */}
+      <section className="border-t border-line py-16 lg:py-20">
+        <Container>
+          <p className="label text-bronze">At a glance</p>
+          <dl className="mt-6 grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+            <FactCell
+              label="Rating"
+              value={`${practice.ratings.google.value} stars across ${practice.ratings.google.count}+ Google reviews`}
+            />
+            <FactCell
+              label="Serving Houston since"
+              value={`${practice.founded}, woman-owned`}
+            />
+            <FactCell label="Languages" value={practice.languages.join(", ")} />
+            <FactCell
+              label="Insurance"
+              value="Most PPO plans accepted and filed for you"
+            />
+            <FactCell
+              label="Emergencies"
+              value="Same-day appointments held in the schedule"
+            />
+            <FactCell label="Patients" value="Families from age two and up" />
+            <FactCell
+              label="Address"
+              value={`${practice.address.street}, ${practice.address.suite}, ${practice.address.locality}, ${practice.address.region} ${practice.address.postalCode}`}
+            />
+            <FactCell
+              label="Phone"
+              value={practice.phone.display}
+            />
+          </dl>
         </Container>
       </section>
 

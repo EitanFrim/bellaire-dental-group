@@ -62,8 +62,9 @@ export function Hero() {
 
           <Reveal delay={0.12}>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-bone/80">
-              Cosmetic, family &amp; restorative care from Dr. Regina Valter:
-              unhurried, judgment-free, and designed entirely around your comfort.
+              Cosmetic, family &amp; restorative care from Dr. Regina Valter in
+              Bellaire: unhurried, judgment-free, and designed entirely around
+              your comfort.
             </p>
           </Reveal>
 

@@ -82,6 +82,13 @@ export const practice = {
       // TODO(client): replace with the exact Place ID review link, e.g.
       // https://search.google.com/local/reviews?placeid=<PLACE_ID>
       url: "https://www.google.com/search?q=Bellaire+Dental+Group+6699+Chimney+Rock+Rd+Suite+101+Houston+TX+77081",
+      // Direct "write a review" destination for post-visit asks and the
+      // reviews page CTA. The GBP dashboard's "Ask for reviews" button gives
+      // the canonical short link (g.page/r/...): swap it in when the owner
+      // supplies it. Until then the profile panel URL above is the target.
+      // TODO(client): replace with https://g.page/r/<CODE>/review from GBP.
+      writeReviewUrl:
+        "https://www.google.com/search?q=Bellaire+Dental+Group+6699+Chimney+Rock+Rd+Suite+101+Houston+TX+77081#lrd=0x0:0x0,3",
     },
     yelp: {
       value: 5,
@@ -99,6 +106,9 @@ export const practice = {
     "West University Place",
     "Upper Kirby",
     "Meyerland",
+    "Galleria",
+    "Braeswood",
+    "Southside Place",
     "Houston",
   ],
 

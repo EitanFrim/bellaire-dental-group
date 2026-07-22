@@ -10,6 +10,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { Accordion } from "@/components/ui/Accordion";
 import { BookButton } from "@/components/booking/BookButton";
 import { FinalCTA } from "@/components/sections/FinalCTA";
+import { ServingAreas } from "@/components/sections/ServingAreas";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema, faqSchema, serviceSchema } from "@/lib/schema";
 import { getService, pageServices, getService as gs } from "@/lib/services";
@@ -233,6 +234,8 @@ export default async function ServicePage({
           </Container>
         </section>
       )}
+
+      <ServingAreas serviceName={service.shortName ?? service.name} />
 
       <FinalCTA />
 

@@ -173,6 +173,121 @@ export const locations: Location[] = [
       "cosmetic dentist Meyerland",
     ],
   },
+  {
+    slug: "galleria",
+    area: "Galleria",
+    zips: ["77056", "77057"],
+    driveTime: "about 10 minutes",
+    intro:
+      "A calm, boutique alternative to big-box dentistry for the Galleria and Uptown area: cosmetic, family, and emergency care a straight shot down Chimney Rock.",
+    blurb: [
+      "If you work or live around the Galleria, we're one of the easiest dental visits you can book: a straight drive south on Chimney Rock Rd, free on-site parking when you arrive, and appointments that start on time so you can be back for your next meeting. Many Uptown patients come at 7 am, before the workday starts.",
+      "Galleria-area patients tend to ask us for two things: discreet cosmetic work (whitening, Invisalign, natural-looking veneers) and a practice that treats them like a person rather than a chart number. That's exactly the kind of dentistry Dr. Valter has built her name on for nearly a decade.",
+    ],
+    landmarks: [
+      "The Galleria",
+      "Uptown Park",
+      "Post Oak Boulevard",
+      "Williams Tower & Water Wall",
+    ],
+    highlights: [
+      {
+        title: "Beats the Uptown garages",
+        body: "Ten minutes down Chimney Rock, then free surface parking at the door.",
+      },
+      {
+        title: "Early, on-time visits",
+        body: "7 am starts midweek and no double-booking: easy to fit around work.",
+      },
+      {
+        title: "Camera-ready cosmetics",
+        body: "Whitening, Invisalign, and veneers designed to look natural, never done.",
+      },
+    ],
+    keywords: [
+      "dentist Galleria Houston",
+      "dentist Uptown Houston",
+      "cosmetic dentist Galleria",
+      "dentist 77056",
+      "dentist near the Galleria",
+    ],
+  },
+  {
+    slug: "braeswood",
+    area: "Braeswood",
+    zips: ["77025", "77030"],
+    driveTime: "about 8 minutes",
+    intro:
+      "Trusted family dentistry for Braeswood Place and the Medical Center corridor: gentle, comprehensive care just up the road from Brays Bayou.",
+    blurb: [
+      "Braeswood families and Texas Medical Center staff know good healthcare when they see it, which is why so many of our patients come from this corridor. We're about eight minutes away, with early-morning hours that work around hospital shifts and school drop-offs alike.",
+      "From routine cleanings for kids to crowns, implants, and TMJ care for parents and grandparents, Dr. Valter keeps the whole household under one calm roof. And because our team speaks English, Spanish, Russian, and Hebrew, every member of the family gets care they fully understand.",
+    ],
+    landmarks: [
+      "Braeswood Place",
+      "Texas Medical Center (nearby)",
+      "Brays Bayou Greenway",
+      "Linkwood & Knollwood Village",
+    ],
+    highlights: [
+      {
+        title: "Fits hospital schedules",
+        body: "7 am midweek openings and Friday mornings: made for TMC shift workers.",
+      },
+      {
+        title: "One roof for the family",
+        body: "Kids from age two, parents, and grandparents, all in the same calm office.",
+      },
+      {
+        title: "Insurance made easy",
+        body: "Most PPO plans accepted and filed for you, with clear estimates first.",
+      },
+    ],
+    keywords: [
+      "dentist Braeswood Houston",
+      "dentist Braeswood Place",
+      "family dentist 77025",
+      "dentist near Texas Medical Center",
+    ],
+  },
+  {
+    slug: "southside-place",
+    area: "Southside Place",
+    zips: ["77005", "77025"],
+    driveTime: "about 8 minutes",
+    intro:
+      "A neighborly dental home for Southside Place: gentle cosmetic, family, and emergency care just minutes from Karl Young Park.",
+    blurb: [
+      "Southside Place is a small city that runs on word of mouth, and that's how most of our Southside patients find us: a neighbor mentions the calm office on Chimney Rock where the dentist actually takes her time. We're about eight minutes away, with free parking and a front desk that knows returning families by name.",
+      "Whether it's a toddler's very first visit, a teenager's Invisalign, or a same-day emergency before a weekend trip, we keep care personal, honest, and unhurried. No upselling, no pressure: just clear guidance from a woman-owned practice that's served this corner of Houston for nearly a decade.",
+    ],
+    landmarks: [
+      "Southside Place",
+      "Karl Young Park",
+      "Rice Village (nearby)",
+      "University Boulevard corridor",
+    ],
+    highlights: [
+      {
+        title: "Small-city neighborly",
+        body: "A practice that matches Southside's scale: personal, unhurried, familiar.",
+      },
+      {
+        title: "Kids to grandparents",
+        body: "Gentle care for every age, starting from a child's first cleaning at two.",
+      },
+      {
+        title: "Same-day emergencies",
+        body: "Cracked tooth before a trip? We hold room in the schedule to see you fast.",
+      },
+    ],
+    keywords: [
+      "dentist Southside Place",
+      "dentist Southside Place TX",
+      "family dentist 77005",
+      "dentist near Rice Village",
+    ],
+  },
 ];
 
 export function getLocation(slug: string) {
